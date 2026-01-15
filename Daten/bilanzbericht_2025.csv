@@ -1,0 +1,16 @@
+﻿"Seite der Bilanz";Kontotyp;Kontoklasse;Kto.-Nr.;Name;Summe
+Aktiva;Aktiva;Umlaufvermögen;000;"Girokonto SKB-Konto 701-";1054,42
+Aktiva;Aktiva;Umlaufvermögen;001;"Girokonto SKB -Konto 700-";11504,00
+Aktiva;Aktiva;Umlaufvermögen;003;"Sparkonto SKB -Rücklagenkonto f. Heizung";33210,05
+Passiva;Passiva;Verbindlichkeiten;004;"Darlehenskonto SKB";343315,81
+Passiva;Passiva;Verbindlichkeiten;006;Privatdarlehen;169000,00
+Passiva;Passiva;Verbindlichkeiten;231;Kaution;80,00
+Passiva;Passiva;Eigenkapital;999;Saldovortragskonto;-503161,32
+Passiva;Passiva;Eigenkapital;800;Umbuchungen;0,00
+Passiva;Passiva;Eigenkapital;900;CPD-Konto;0,00
+Passiva;Passiva;Eigenkapital;9999;Gewinn-Verlust-Überschuss;36533,98
+;;;;;
+"Zeitraum: 01.01.2025 – 31.12.2025";;;;;
+"Stand: 15.01.2026, 08:14:17";;;;;
+"Mandant: Eschweiler - 2025";;;;;
+"Währung: EUR";;;;;

@@ -1,0 +1,4 @@
+Ich soll eine Präsentation zur Finanzlage der Freien evangelischen Gemeinde von Eschweiler halten. 
+Ich habe dazu Zugriff auf die Webseite https://feg-eschweiler.church.tools/ und einige Dateien bereits herunter geladen. 
+Sie liegen hier im Projektordner im Ordner "Daten". 
+Die Powerpointpräsentation solle folgende Sheets beinhalten:

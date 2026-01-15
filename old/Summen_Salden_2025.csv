@@ -1,0 +1,38 @@
+﻿Kontoklasse;Kto.-Nr.;Name;EB-Wert;"Abrechnungsmonat Soll";"Abrechnungsmonat Haben";"Jahreswert Soll";"Jahreswert Haben";Saldo
+Umlaufvermögen;000;"Girokonto SKB-Konto 701-";0,00;1774,62;0,00;1774,62;0,00;1774,62
+Umlaufvermögen;001;"Girokonto SKB -Konto 700-";0,00;24950,68;14452,63;24950,68;14452,63;10498,05
+Umlaufvermögen;003;"Sparkonto SKB -Rücklagenkonto f. Heizung";0,00;21207,23;0,00;21207,23;0,00;21207,23
+Verbindlichkeiten;004;"Darlehenskonto SKB";0,00;3150,00;367051,12;3150,00;367051,12;-363901,12
+Verbindlichkeiten;006;Privatdarlehen;0,00;0,00;169000,00;0,00;169000,00;-169000,00
+Eigenkapital;900;CPD-Konto;0,00;37,39;37,39;37,39;37,39;0,00
+Eigenkapital;999;Saldovortragskonto;-1774,62;536051,12;32889,80;536051,12;32889,80;503161,32
+"Betr. Erträge";102;Vermietung;0,00;0,00;60,00;0,00;60,00;-60,00
+Umsatzerlöse;104;"Kollekte Eigenbedarf";0,00;0,00;1099,60;0,00;1099,60;-1099,60
+Umsatzerlöse;106;"Kollekte zur Weiterleitung";0,00;400,00;397,89;400,00;397,89;2,11
+Umsatzerlöse;109;"Spende von Freunden";0,00;0,00;495,00;0,00;495,00;-495,00
+Umsatzerlöse;110;"Spende von Mitgliedern";0,00;0,00;11030,24;0,00;11030,24;-11030,24
+Umsatzerlöse;112;"Verzicht auf Auslagenerstattung";0,00;0,00;37,39;0,00;37,39;-37,39
+Umsatzerlöse;113;"Spende für Allianz-Mission";0,00;0,00;320,00;0,00;320,00;-320,00
+Umsatzerlöse;114;"Spende für Bund FeG";0,00;0,00;110,00;0,00;110,00;-110,00
+"Betr. Aufwendungen";202;Heizung;0,00;697,00;0,00;697,00;0,00;697,00
+"Betr. Aufwendungen";203;Strom;0,00;42,49;0,00;42,49;0,00;42,49
+"Betr. Aufwendungen";204;Wasser;0,00;24,00;0,00;24,00;0,00;24,00
+"Betr. Aufwendungen";207;Reinigung;0,00;585,99;0,00;585,99;0,00;585,99
+"Betr. Aufwendungen";208;Investitionen/Anschaffungen;0,00;465,66;0,00;465,66;0,00;465,66
+"Betr. Aufwendungen";209;Bewirtung;0,00;253,20;0,00;253,20;0,00;253,20
+"Betr. Aufwendungen";210;Geschenke;0,00;155,88;0,00;155,88;0,00;155,88
+"Betr. Aufwendungen";211;Schulungen;0,00;90,00;0,00;90,00;0,00;90,00
+"Betr. Aufwendungen";212;Veranstaltungen;0,00;331,17;30,00;331,17;30,00;301,17
+"Betr. Aufwendungen";215;Werbung/Gemeindebrief;0,00;206,83;0,00;206,83;0,00;206,83
+"Betr. Aufwendungen";218;Telefon;0,00;39,99;0,00;39,99;0,00;39,99
+"Betr. Aufwendungen";219;Kontoführung/Verwaltung;0,00;74,62;0,00;74,62;0,00;74,62
+"Betr. Aufwendungen";221;"Weiterleitung an Bund FeG";0,00;500,00;0,00;500,00;0,00;500,00
+"Betr. Aufwendungen";223;"Weiterleitung an Rheinischer Kreis";0,00;350,00;0,00;350,00;0,00;350,00
+"Betr. Aufwendungen";224;"Weiterleitung Mission";0,00;320,00;0,00;320,00;0,00;320,00
+"Betr. Aufwendungen";225;"Weiterleitung Diakonie";0,00;200,00;0,00;200,00;0,00;200,00
+Personalaufwand;216;Pastor;0,00;5103,19;0,00;5103,19;0,00;5103,19
+;;;;;;;;
+"Monat: Januar 2025";;;;;;;;
+"Stand: 15.01.2026, 08:04:15";;;;;;;;
+"Mandant: Eschweiler - 2025";;;;;;;;
+"Währung: EUR";;;;;;;;
