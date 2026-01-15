@@ -3,6 +3,7 @@ import path from 'path';
 import { parse } from 'csv-parse/sync';
 import { stringify } from 'csv-stringify/sync';
 import PptxGenJS from 'pptxgenjs';
+import ExcelJS from 'exceljs';
 
 // Design-Farben basierend auf typischen Gemeindefarben (Blau/Grün-Töne)
 const COLORS = {
@@ -17,6 +18,12 @@ const COLORS = {
     '14B8A6', 'A855F7', 'F43F5E', '0EA5E9', '22C55E'
   ]
 };
+
+// Speichere sortierte Daten für PowerPoint
+let sortedIncomeData = null;
+let sortedExpensesData = null;
+let sortedExpensesPieData = null;
+let developmentData = null;
 
 /**
  * Konvertiert deutsche Zahlenformatierung (1.234,56) zu JavaScript-Zahl
@@ -256,7 +263,582 @@ function updateEntwicklungCSV() {
 }
 
 /**
- * Erstellt PowerPoint-Präsentation
+ * Erstellt Excel-Datei mit sortierten Tabellen und Grafiken
+ */
+async function createExcelFile(profitLossReports, years) {
+  const workbook = new ExcelJS.Workbook();
+  
+  // Slide 1: Einnahmen
+  const incomeSheet = workbook.addWorksheet('Einnahmen');
+  
+  // Sammle alle Einnahmen-Kategorien über alle Jahre
+  const allIncomeCategories = new Set();
+  years.forEach(year => {
+    const income = extractIncome(profitLossReports[year]);
+    Object.keys(income).forEach(cat => allIncomeCategories.add(cat));
+  });
+  
+  // Berechne Gesamtsummen pro Kategorie über alle Jahre
+  const incomeTotals = {};
+  allIncomeCategories.forEach(category => {
+    const total = years.reduce((sum, year) => {
+      const income = extractIncome(profitLossReports[year]);
+      return sum + (income[category] || 0);
+    }, 0);
+    incomeTotals[category] = total;
+  });
+  
+  // Sortiere nach Gesamtsumme (absteigend)
+  const sortedIncomeCategories = Array.from(allIncomeCategories)
+    .sort((a, b) => incomeTotals[b] - incomeTotals[a]);
+  
+  // Erstelle Tabelle
+  incomeSheet.columns = [
+    { header: 'Kategorie', key: 'category', width: 40 },
+    ...years.map(year => ({ header: year, key: year, width: 15 }))
+  ];
+  
+  sortedIncomeCategories.forEach(category => {
+    const row = { category };
+    years.forEach(year => {
+      const income = extractIncome(profitLossReports[year]);
+      row[year] = income[category] || 0;
+    });
+    incomeSheet.addRow(row);
+  });
+  
+  // Gesamtsumme
+  const totalRow = { category: 'Gesamt' };
+  years.forEach(year => {
+    const income = extractIncome(profitLossReports[year]);
+    totalRow[year] = Object.values(income).reduce((sum, val) => sum + val, 0);
+  });
+  incomeSheet.addRow(totalRow);
+  
+  // Formatiere Zahlen
+  incomeSheet.eachRow((row, rowNumber) => {
+    if (rowNumber > 1) {
+      years.forEach((year, idx) => {
+        const cell = row.getCell(idx + 2);
+        if (cell.value !== null && typeof cell.value === 'number') {
+          cell.numFmt = '#,##0.00';
+        }
+      });
+    }
+  });
+  
+  // Header-Formatierung
+  incomeSheet.getRow(1).font = { bold: true };
+  incomeSheet.getRow(1).fill = {
+    type: 'pattern',
+    pattern: 'solid',
+    fgColor: { argb: 'FF' + COLORS.primary }
+  };
+  incomeSheet.getRow(1).font = { bold: true, color: { argb: 'FFFFFFFF' } };
+  
+  // Speichere sortierte Daten für PowerPoint
+  sortedIncomeData = {
+    categories: sortedIncomeCategories,
+    data: sortedIncomeCategories.map(category => {
+      const row = {};
+      years.forEach(year => {
+        const income = extractIncome(profitLossReports[year]);
+        row[year] = income[category] || 0;
+      });
+      return { category, ...row };
+    }),
+    totals: totalRow
+  };
+  
+  // Slide 2: Ausgaben
+  const expensesSheet = workbook.addWorksheet('Ausgaben');
+  
+  // Sammle alle Ausgaben-Kategorien über alle Jahre
+  const allExpenseCategories = new Set();
+  years.forEach(year => {
+    const expenses = extractExpenses(profitLossReports[year]);
+    Object.keys(expenses).forEach(cat => allExpenseCategories.add(cat));
+  });
+  
+  // Berechne Gesamtsummen pro Kategorie über alle Jahre
+  const expenseTotals = {};
+  allExpenseCategories.forEach(category => {
+    const total = years.reduce((sum, year) => {
+      const expenses = extractExpenses(profitLossReports[year]);
+      return sum + (expenses[category] || 0);
+    }, 0);
+    expenseTotals[category] = total;
+  });
+  
+  // Sortiere nach Gesamtsumme (absteigend)
+  const sortedExpenseCategories = Array.from(allExpenseCategories)
+    .sort((a, b) => expenseTotals[b] - expenseTotals[a]);
+  
+  // Erstelle Tabelle
+  expensesSheet.columns = [
+    { header: 'Kategorie', key: 'category', width: 40 },
+    ...years.map(year => ({ header: year, key: year, width: 15 }))
+  ];
+  
+  sortedExpenseCategories.forEach(category => {
+    const row = { category };
+    years.forEach(year => {
+      const expenses = extractExpenses(profitLossReports[year]);
+      row[year] = expenses[category] || 0;
+    });
+    expensesSheet.addRow(row);
+  });
+  
+  // Gesamtsumme
+  const expenseTotalRow = { category: 'Gesamt' };
+  years.forEach(year => {
+    const expenses = extractExpenses(profitLossReports[year]);
+    expenseTotalRow[year] = Object.values(expenses).reduce((sum, val) => sum + val, 0);
+  });
+  expensesSheet.addRow(expenseTotalRow);
+  
+  // Formatiere Zahlen
+  expensesSheet.eachRow((row, rowNumber) => {
+    if (rowNumber > 1) {
+      years.forEach((year, idx) => {
+        const cell = row.getCell(idx + 2);
+        if (cell.value !== null && typeof cell.value === 'number') {
+          cell.numFmt = '#,##0.00';
+        }
+      });
+    }
+  });
+  
+  // Header-Formatierung
+  expensesSheet.getRow(1).font = { bold: true };
+  expensesSheet.getRow(1).fill = {
+    type: 'pattern',
+    pattern: 'solid',
+    fgColor: { argb: 'FF' + COLORS.primary }
+  };
+  expensesSheet.getRow(1).font = { bold: true, color: { argb: 'FFFFFFFF' } };
+  
+  // Speichere sortierte Daten für PowerPoint
+  sortedExpensesData = {
+    categories: sortedExpenseCategories,
+    data: sortedExpenseCategories.map(category => {
+      const row = {};
+      years.forEach(year => {
+        const expenses = extractExpenses(profitLossReports[year]);
+        row[year] = expenses[category] || 0;
+      });
+      return { category, ...row };
+    }),
+    totals: expenseTotalRow
+  };
+  
+  // Slide 3: Kuchendiagramm Ausgaben
+  const pieSheet = workbook.addWorksheet('Ausgaben Kuchendiagramm');
+  
+  // Verwende das neueste Jahr für das Kuchendiagramm
+  const latestYear = years[years.length - 1];
+  const expenses = extractExpenses(profitLossReports[latestYear]);
+  
+  // Sortiere nach Wert (absteigend)
+  const sortedPieData = Object.entries(expenses)
+    .sort((a, b) => b[1] - a[1])
+    .map(([name, value]) => ({ name, value }));
+  
+  // Erstelle Tabelle
+  pieSheet.columns = [
+    { header: 'Kategorie', key: 'category', width: 40 },
+    { header: 'Betrag', key: 'amount', width: 15 },
+    { header: 'Anteil %', key: 'percentage', width: 12 }
+  ];
+  
+  const totalExpenses = Object.values(expenses).reduce((sum, val) => sum + val, 0);
+  sortedPieData.forEach(({ name, value }) => {
+    const percentage = (value / totalExpenses) * 100;
+    pieSheet.addRow({
+      category: name,
+      amount: value,
+      percentage: percentage
+    });
+  });
+  
+  // Formatiere Zahlen
+  pieSheet.eachRow((row, rowNumber) => {
+    if (rowNumber > 1) {
+      row.getCell(2).numFmt = '#,##0.00';
+      row.getCell(3).numFmt = '0.0';
+    }
+  });
+  
+  // Header-Formatierung
+  pieSheet.getRow(1).font = { bold: true };
+  pieSheet.getRow(1).fill = {
+    type: 'pattern',
+    pattern: 'solid',
+    fgColor: { argb: 'FF' + COLORS.primary }
+  };
+  pieSheet.getRow(1).font = { bold: true, color: { argb: 'FFFFFFFF' } };
+  
+  // Speichere sortierte Daten für PowerPoint
+  sortedExpensesPieData = sortedPieData;
+  
+  // Slide 4: Entwicklung
+  const developmentSheet = workbook.addWorksheet('Entwicklung');
+  
+  const entwicklungPath = path.join(process.cwd(), 'Daten', 'Entwicklung.csv');
+  const entwicklungData = readCSV(entwicklungPath);
+  
+  // Extrahiere Jahre aus Headern
+  const firstRow = entwicklungData[0];
+  const devYears = Object.keys(firstRow)
+    .filter(key => key !== 'Position' && /^\d{4}$/.test(key))
+    .sort();
+  
+  // Wichtige Konten für die Darstellung
+  const importantAccounts = [
+    'Girokonto SKB 001',
+    'Sparkonto SKB 003',
+    'Freizeitkonto SKB 000',
+    'Darlehenskonto SKB 004',
+    'Privatdarlehen 006'
+  ];
+  
+  // Erstelle Tabelle
+  developmentSheet.columns = [
+    { header: 'Konto', key: 'account', width: 30 },
+    ...devYears.map(year => ({ header: year, key: year, width: 15 }))
+  ];
+  
+  // Sammle Daten für Summenberechnung
+  const accountData = [];
+  
+  importantAccounts.forEach(account => {
+    const row = entwicklungData.find(r => r.Position === account);
+    if (row) {
+      const tableRow = { account };
+      devYears.forEach(year => {
+        tableRow[year] = parseGermanNumber(row[year] || '0');
+      });
+      developmentSheet.addRow(tableRow);
+      accountData.push({ account, ...tableRow });
+    }
+  });
+  
+  // Berechne Summe Guthaben (Aktiva-Konten)
+  const guthabenAccounts = ['Girokonto SKB 001', 'Sparkonto SKB 003', 'Freizeitkonto SKB 000'];
+  const summeGuthabenRow = { account: 'Summe Guthaben' };
+  devYears.forEach(year => {
+    const sum = accountData
+      .filter(item => guthabenAccounts.includes(item.account))
+      .reduce((sum, item) => sum + (item[year] || 0), 0);
+    summeGuthabenRow[year] = sum;
+  });
+  developmentSheet.addRow(summeGuthabenRow);
+  
+  // Berechne Summe Schulden (Passiva-Konten)
+  const schuldenAccounts = ['Darlehenskonto SKB 004', 'Privatdarlehen 006'];
+  const summeSchuldenRow = { account: 'Summe Schulden' };
+  devYears.forEach(year => {
+    const sum = accountData
+      .filter(item => schuldenAccounts.includes(item.account))
+      .reduce((sum, item) => sum + Math.abs(item[year] || 0), 0);
+    summeSchuldenRow[year] = sum;
+  });
+  developmentSheet.addRow(summeSchuldenRow);
+  
+  // Formatiere Zahlen
+  developmentSheet.eachRow((row, rowNumber) => {
+    if (rowNumber > 1) {
+      devYears.forEach((year, idx) => {
+        const cell = row.getCell(idx + 2);
+        if (cell.value !== null && typeof cell.value === 'number') {
+          cell.numFmt = '#,##0.00';
+        }
+      });
+      // Fette Formatierung für Summen-Zeilen
+      if (rowNumber > importantAccounts.length + 1) {
+        row.getCell(1).font = { bold: true };
+        devYears.forEach((year, idx) => {
+          row.getCell(idx + 2).font = { bold: true };
+        });
+      }
+    }
+  });
+  
+  // Header-Formatierung
+  developmentSheet.getRow(1).font = { bold: true };
+  developmentSheet.getRow(1).fill = {
+    type: 'pattern',
+    pattern: 'solid',
+    fgColor: { argb: 'FF' + COLORS.primary }
+  };
+  developmentSheet.getRow(1).font = { bold: true, color: { argb: 'FFFFFFFF' } };
+  
+  // Speichere Daten für PowerPoint
+  developmentData = {
+    accounts: importantAccounts,
+    years: devYears,
+    data: importantAccounts.map(account => {
+      const row = entwicklungData.find(r => r.Position === account);
+      if (row) {
+        const tableRow = { account };
+        devYears.forEach(year => {
+          tableRow[year] = parseGermanNumber(row[year] || '0');
+        });
+        return tableRow;
+      }
+      return null;
+    }).filter(r => r !== null)
+  };
+  
+  // Slide 5: Budget
+  await createBudgetSheet(workbook);
+  
+  // Speichere Excel-Datei
+  const excelPath = path.join(process.cwd(), 'Finanzlage_FeG_Eschweiler.xlsx');
+  await workbook.xlsx.writeFile(excelPath);
+  console.log(`Excel-Datei erstellt: ${excelPath}`);
+}
+
+/**
+ * Liest die neueste Budget-Datei
+ */
+function findLatestBudgetFile() {
+  const dataDir = path.join(process.cwd(), 'Daten');
+  const files = fs.readdirSync(dataDir);
+  const budgetFiles = files.filter(file => file.startsWith('Budgets_') && file.endsWith('.txt'));
+  
+  if (budgetFiles.length === 0) {
+    return null;
+  }
+  
+  // Sortiere nach Jahr (neueste zuerst)
+  budgetFiles.sort((a, b) => {
+    const yearA = parseInt(a.match(/\d{4}/)?.[0] || '0');
+    const yearB = parseInt(b.match(/\d{4}/)?.[0] || '0');
+    return yearB - yearA;
+  });
+  
+  return path.join(dataDir, budgetFiles[0]);
+}
+
+/**
+ * Konvertiert Budget-Wert zu Zahl (behandelt "k. A." und deutsche Zahlenformate)
+ */
+function parseBudgetValue(value) {
+  if (!value || value.trim() === '' || value === 'k. A.') {
+    return null;
+  }
+  
+  // Entferne €-Symbol und Leerzeichen
+  let cleaned = value.toString().trim().replace(/€/g, '').trim();
+  
+  // Wenn leer nach Entfernen, return null
+  if (cleaned === '' || cleaned === 'k. A.') {
+    return null;
+  }
+  
+  // Parse deutsche Zahlenformatierung (1.234,56 -> 1234.56)
+  return parseGermanNumber(cleaned);
+}
+
+/**
+ * Parst Budget-Datei und konvertiert in strukturierte Daten
+ */
+function parseBudgetFile(filePath) {
+  const content = fs.readFileSync(filePath, 'utf-8');
+  const lines = content.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+  
+  // Die ersten 7 Zeilen sind Header
+  // Dann kommen die Daten in Blöcken von 8 Zeilen:
+  // 0: Kostenstellenname
+  // 1: Kostenstellennummer
+  // 2: Verbraucht-Vorjahr
+  // 3: Geplant-Vorjahr
+  // 4: Geplant
+  // 5: Stand (Prozent)
+  // 6: Verbraucht
+  // 7: Übrig
+  
+  const budgetData = [];
+  let i = 7; // Starte nach den Headern
+  
+  while (i < lines.length) {
+    if (i + 7 < lines.length) {
+      const kostenstelle = lines[i];
+      const nummer = lines[i + 1];
+      const verbrauchtVorjahrRaw = lines[i + 2];
+      const geplantVorjahrRaw = lines[i + 3];
+      const geplantRaw = lines[i + 4];
+      const stand = lines[i + 5];
+      const verbrauchtRaw = lines[i + 6];
+      const uebrigRaw = lines[i + 7];
+      
+      // Parse Zahlenwerte (C, D, E, G, H)
+      const verbrauchtVorjahr = parseBudgetValue(verbrauchtVorjahrRaw);
+      const geplantVorjahr = parseBudgetValue(geplantVorjahrRaw);
+      const geplant = parseBudgetValue(geplantRaw);
+      const verbraucht = parseBudgetValue(verbrauchtRaw);
+      const uebrig = parseBudgetValue(uebrigRaw);
+      
+      budgetData.push({
+        kostenstelle: kostenstelle,
+        nummer: nummer,
+        verbrauchtVorjahr: verbrauchtVorjahr,
+        verbrauchtVorjahrRaw: verbrauchtVorjahrRaw, // Für CSV
+        geplantVorjahr: geplantVorjahr,
+        geplantVorjahrRaw: geplantVorjahrRaw, // Für CSV
+        geplant: geplant,
+        geplantRaw: geplantRaw, // Für CSV
+        stand: stand,
+        verbraucht: verbraucht,
+        verbrauchtRaw: verbrauchtRaw, // Für CSV
+        uebrig: uebrig,
+        uebrigRaw: uebrigRaw // Für CSV
+      });
+      
+      i += 8;
+    } else {
+      break;
+    }
+  }
+  
+  return budgetData;
+}
+
+/**
+ * Konvertiert Budget-Daten in CSV und speichert sie
+ */
+function saveBudgetAsCSV(budgetData, year) {
+  const csvPath = path.join(process.cwd(), 'Daten', `Budgets_${year}.csv`);
+  
+  const csvRows = [
+    ['Kostenstelle', 'Nummer', 'Verbraucht-Vorjahr', 'Geplant-Vorjahr', 'Geplant', 'Stand', 'Verbraucht', 'Übrig']
+  ];
+  
+  budgetData.forEach(item => {
+    csvRows.push([
+      item.kostenstelle,
+      item.nummer,
+      item.verbrauchtVorjahr !== null ? formatGermanNumber(item.verbrauchtVorjahr) : 'k. A.',
+      item.geplantVorjahr !== null ? formatGermanNumber(item.geplantVorjahr) : 'k. A.',
+      item.geplant !== null ? formatGermanNumber(item.geplant) : 'k. A.',
+      item.stand,
+      item.verbraucht !== null ? formatGermanNumber(item.verbraucht) : 'k. A.',
+      item.uebrig !== null ? formatGermanNumber(item.uebrig) : 'k. A.'
+    ]);
+  });
+  
+  const csvContent = csvRows.map(row => 
+    row.map(cell => `"${cell}"`).join(';')
+  ).join('\n');
+  
+  fs.writeFileSync(csvPath, csvContent, 'utf-8');
+  console.log(`Budget-CSV erstellt: ${csvPath}`);
+  
+  return csvPath;
+}
+
+/**
+ * Erstellt Budget-Reiter in Excel
+ */
+async function createBudgetSheet(workbook) {
+  const budgetFilePath = findLatestBudgetFile();
+  
+  if (!budgetFilePath) {
+    console.log('Keine Budget-Datei gefunden');
+    return;
+  }
+  
+  // Extrahiere Jahr aus Dateinamen
+  const yearMatch = budgetFilePath.match(/Budgets_(\d{4})/);
+  const year = yearMatch ? yearMatch[1] : '2025';
+  
+  console.log(`Lese Budget-Datei: ${budgetFilePath}`);
+  
+  // Parse Budget-Datei
+  const budgetData = parseBudgetFile(budgetFilePath);
+  
+  // Speichere als CSV
+  saveBudgetAsCSV(budgetData, year);
+  
+  // Erstelle Excel-Reiter
+  const budgetSheet = workbook.addWorksheet(`Budget ${year}`);
+  
+  // Erstelle Spalten
+  budgetSheet.columns = [
+    { header: 'Kostenstelle', key: 'kostenstelle', width: 40 },
+    { header: 'Nummer', key: 'nummer', width: 10 },
+    { header: 'Verbraucht-Vorjahr', key: 'verbrauchtVorjahr', width: 18 },
+    { header: 'Geplant-Vorjahr', key: 'geplantVorjahr', width: 18 },
+    { header: 'Geplant', key: 'geplant', width: 15 },
+    { header: 'Stand', key: 'stand', width: 10 },
+    { header: 'Verbraucht', key: 'verbraucht', width: 15 },
+    { header: 'Übrig', key: 'uebrig', width: 15 }
+  ];
+  
+  // Füge Daten hinzu
+  budgetData.forEach(item => {
+    budgetSheet.addRow({
+      kostenstelle: item.kostenstelle,
+      nummer: item.nummer,
+      verbrauchtVorjahr: item.verbrauchtVorjahr, // Spalte C - Zahl
+      geplantVorjahr: item.geplantVorjahr, // Spalte D - Zahl
+      geplant: item.geplant, // Spalte E - Zahl
+      stand: item.stand,
+      verbraucht: item.verbraucht, // Spalte G - Zahl
+      uebrig: item.uebrig // Spalte H - Zahl
+    });
+  });
+  
+  // Formatiere Zahlen-Spalten (C, D, E, G, H)
+  budgetSheet.eachRow((row, rowNumber) => {
+    if (rowNumber > 1) {
+      // Spalte C: Verbraucht-Vorjahr
+      const cellC = row.getCell(3);
+      if (cellC.value !== null && typeof cellC.value === 'number') {
+        cellC.numFmt = '#,##0.00';
+      }
+      
+      // Spalte D: Geplant-Vorjahr
+      const cellD = row.getCell(4);
+      if (cellD.value !== null && typeof cellD.value === 'number') {
+        cellD.numFmt = '#,##0.00';
+      }
+      
+      // Spalte E: Geplant
+      const cellE = row.getCell(5);
+      if (cellE.value !== null && typeof cellE.value === 'number') {
+        cellE.numFmt = '#,##0.00';
+      }
+      
+      // Spalte G: Verbraucht
+      const cellG = row.getCell(7);
+      if (cellG.value !== null && typeof cellG.value === 'number') {
+        cellG.numFmt = '#,##0.00';
+      }
+      
+      // Spalte H: Übrig
+      const cellH = row.getCell(8);
+      if (cellH.value !== null && typeof cellH.value === 'number') {
+        cellH.numFmt = '#,##0.00';
+      }
+    }
+  });
+  
+  // Header-Formatierung
+  budgetSheet.getRow(1).font = { bold: true };
+  budgetSheet.getRow(1).fill = {
+    type: 'pattern',
+    pattern: 'solid',
+    fgColor: { argb: 'FF' + COLORS.primary }
+  };
+  budgetSheet.getRow(1).font = { bold: true, color: { argb: 'FFFFFFFF' } };
+  
+  console.log(`Budget-Reiter erstellt: Budget ${year}`);
+}
+
+/**
+ * Erstellt PowerPoint-Präsentation mit sortierten Daten
  */
 async function createPresentation() {
   const pres = new PptxGenJS();
@@ -271,14 +853,17 @@ async function createPresentation() {
   
   console.log(`Gefundene Jahre: ${years.join(', ')}`);
   
+  // Erstelle Excel-Datei zuerst (sortiert die Daten)
+  await createExcelFile(profitLossReports, years);
+  
   // Slide 1: Einnahmen
-  createIncomeSlide(pres, profitLossReports, years);
+  createIncomeSlide(pres, years);
   
   // Slide 2: Ausgaben
-  createExpensesSlide(pres, profitLossReports, years);
+  createExpensesSlide(pres, years);
   
   // Slide 3: Kuchendiagramm Ausgaben
-  createExpensesPieChartSlide(pres, profitLossReports, years);
+  createExpensesPieChartSlide(pres, years);
   
   // Slide 4: Entwicklung
   createDevelopmentSlide(pres);
@@ -290,9 +875,9 @@ async function createPresentation() {
 }
 
 /**
- * Erstellt Slide für Einnahmen
+ * Erstellt Slide für Einnahmen mit sortierten Daten
  */
-function createIncomeSlide(pres, reports, years) {
+function createIncomeSlide(pres, years) {
   const slide = pres.addSlide();
   
   // Titel
@@ -307,21 +892,14 @@ function createIncomeSlide(pres, reports, years) {
     align: 'center'
   });
   
-  // Sammle alle Einnahmen-Kategorien über alle Jahre
-  const allCategories = new Set();
-  years.forEach(year => {
-    const income = extractIncome(reports[year]);
-    Object.keys(income).forEach(cat => allCategories.add(cat));
-  });
-  
-  const categories = Array.from(allCategories).sort();
+  if (!sortedIncomeData) return;
   
   // Bereite Daten für gestapeltes Balkendiagramm vor
   const chartData = [];
-  categories.forEach((category, catIdx) => {
+  sortedIncomeData.categories.forEach(category => {
     const seriesData = years.map(year => {
-      const income = extractIncome(reports[year]);
-      return income[category] || 0;
+      const item = sortedIncomeData.data.find(d => d.category === category);
+      return item ? item[year] : 0;
     });
     chartData.push({
       name: category,
@@ -335,7 +913,7 @@ function createIncomeSlide(pres, reports, years) {
     x: 0.5,
     y: 1.2,
     w: 9,
-    h: 5.5,
+    h: 4.5,
     barGrouping: 'stacked',
     catAxisTitle: 'Jahr',
     valAxisTitle: 'Betrag (EUR)',
@@ -349,30 +927,27 @@ function createIncomeSlide(pres, reports, years) {
     ['Kategorie', ...years]
   ];
   
-  categories.forEach(category => {
+  sortedIncomeData.categories.forEach(category => {
+    const item = sortedIncomeData.data.find(d => d.category === category);
     const row = [category];
     years.forEach(year => {
-      const income = extractIncome(reports[year]);
-      const value = income[category] || 0;
-      row.push(formatGermanNumber(value) + ' €');
+      row.push(formatGermanNumber(item ? item[year] : 0) + ' €');
     });
     tableData.push(row);
   });
   
-  // Berechne Gesamtsummen
+  // Gesamtsumme
   const totals = ['Gesamt'];
   years.forEach(year => {
-    const income = extractIncome(reports[year]);
-    const total = Object.values(income).reduce((sum, val) => sum + val, 0);
-    totals.push(formatGermanNumber(total) + ' €');
+    totals.push(formatGermanNumber(sortedIncomeData.totals[year]) + ' €');
   });
   tableData.push(totals);
   
   slide.addTable(tableData, {
     x: 0.5,
-    y: 6.8,
+    y: 5.8,
     w: 9,
-    h: 0.7,
+    h: 1.5,
     fontSize: 8,
     colW: [3, 2, 2, 2],
     align: 'left',
@@ -382,9 +957,9 @@ function createIncomeSlide(pres, reports, years) {
 }
 
 /**
- * Erstellt Slide für Ausgaben
+ * Erstellt Slide für Ausgaben mit sortierten Daten
  */
-function createExpensesSlide(pres, reports, years) {
+function createExpensesSlide(pres, years) {
   const slide = pres.addSlide();
   
   // Titel
@@ -399,21 +974,14 @@ function createExpensesSlide(pres, reports, years) {
     align: 'center'
   });
   
-  // Sammle alle Ausgaben-Kategorien über alle Jahre
-  const allCategories = new Set();
-  years.forEach(year => {
-    const expenses = extractExpenses(reports[year]);
-    Object.keys(expenses).forEach(cat => allCategories.add(cat));
-  });
-  
-  const categories = Array.from(allCategories).sort();
+  if (!sortedExpensesData) return;
   
   // Bereite Daten für gestapeltes Balkendiagramm vor
   const chartData = [];
-  categories.forEach((category, catIdx) => {
+  sortedExpensesData.categories.forEach(category => {
     const seriesData = years.map(year => {
-      const expenses = extractExpenses(reports[year]);
-      return expenses[category] || 0;
+      const item = sortedExpensesData.data.find(d => d.category === category);
+      return item ? item[year] : 0;
     });
     chartData.push({
       name: category,
@@ -427,7 +995,7 @@ function createExpensesSlide(pres, reports, years) {
     x: 0.5,
     y: 1.2,
     w: 9,
-    h: 5.5,
+    h: 4.5,
     barGrouping: 'stacked',
     catAxisTitle: 'Jahr',
     valAxisTitle: 'Betrag (EUR)',
@@ -441,30 +1009,27 @@ function createExpensesSlide(pres, reports, years) {
     ['Kategorie', ...years]
   ];
   
-  categories.forEach(category => {
+  sortedExpensesData.categories.forEach(category => {
+    const item = sortedExpensesData.data.find(d => d.category === category);
     const row = [category];
     years.forEach(year => {
-      const expenses = extractExpenses(reports[year]);
-      const value = expenses[category] || 0;
-      row.push(formatGermanNumber(value) + ' €');
+      row.push(formatGermanNumber(item ? item[year] : 0) + ' €');
     });
     tableData.push(row);
   });
   
-  // Berechne Gesamtsummen
+  // Gesamtsumme
   const totals = ['Gesamt'];
   years.forEach(year => {
-    const expenses = extractExpenses(reports[year]);
-    const total = Object.values(expenses).reduce((sum, val) => sum + val, 0);
-    totals.push(formatGermanNumber(total) + ' €');
+    totals.push(formatGermanNumber(sortedExpensesData.totals[year]) + ' €');
   });
   tableData.push(totals);
   
   slide.addTable(tableData, {
     x: 0.5,
-    y: 6.8,
+    y: 5.8,
     w: 9,
-    h: 0.7,
+    h: 1.5,
     fontSize: 8,
     colW: [3, 2, 2, 2],
     align: 'left',
@@ -474,9 +1039,9 @@ function createExpensesSlide(pres, reports, years) {
 }
 
 /**
- * Erstellt Slide für Kuchendiagramm der Ausgaben
+ * Erstellt Slide für Kuchendiagramm der Ausgaben mit sortierten Daten
  */
-function createExpensesPieChartSlide(pres, reports, years) {
+function createExpensesPieChartSlide(pres, years) {
   const slide = pres.addSlide();
   
   // Titel
@@ -491,16 +1056,13 @@ function createExpensesPieChartSlide(pres, reports, years) {
     align: 'center'
   });
   
-  // Verwende das neueste Jahr für das Kuchendiagramm
+  if (!sortedExpensesPieData) return;
+  
   const latestYear = years[years.length - 1];
-  const expenses = extractExpenses(reports[latestYear]);
   
   // Bereite Daten für Kuchendiagramm vor
-  const expenseEntries = Object.entries(expenses)
-    .sort((a, b) => b[1] - a[1]); // Sortiere nach Wert
-  
-  const pieLabels = expenseEntries.map(([name]) => name);
-  const pieValues = expenseEntries.map(([, value]) => value);
+  const pieLabels = sortedExpensesPieData.map(({ name }) => name);
+  const pieValues = sortedExpensesPieData.map(({ value }) => value);
   
   const pieData = [{
     name: 'Ausgaben',
@@ -524,8 +1086,8 @@ function createExpensesPieChartSlide(pres, reports, years) {
     ['Kategorie', 'Betrag', 'Anteil']
   ];
   
-  const total = Object.values(expenses).reduce((sum, val) => sum + val, 0);
-  expenseEntries.forEach(([name, value]) => {
+  const total = pieValues.reduce((sum, val) => sum + val, 0);
+  sortedExpensesPieData.forEach(({ name, value }) => {
     const percentage = ((value / total) * 100).toFixed(1);
     tableData.push([
       name,
@@ -577,44 +1139,24 @@ function createDevelopmentSlide(pres) {
     align: 'center'
   });
   
-  // Lese Entwicklung.csv
-  const entwicklungPath = path.join(process.cwd(), 'Daten', 'Entwicklung.csv');
-  const entwicklungData = readCSV(entwicklungPath);
-  
-  // Extrahiere Jahre aus Headern
-  const firstRow = entwicklungData[0];
-  const years = Object.keys(firstRow)
-    .filter(key => key !== 'Position' && /^\d{4}$/.test(key))
-    .sort();
-  
-  // Wichtige Konten für die Darstellung
-  const importantAccounts = [
-    'Girokonto SKB 001',
-    'Sparkonto SKB 003',
-    'Freizeitkonto SKB 000',
-    'Darlehenskonto SKB 004',
-    'Privatdarlehen 006'
-  ];
+  if (!developmentData) return;
   
   // Bereite Daten für Liniendiagramm vor
   const chartData = [];
-  importantAccounts.forEach(account => {
-    const row = entwicklungData.find(r => r.Position === account);
-    if (row) {
-      const values = years.map(year => {
-        const value = parseGermanNumber(row[year] || '0');
-        // Für Darlehen: negativer Wert für bessere Darstellung
-        if (account.includes('Darlehen')) {
-          return Math.abs(value);
-        }
-        return value;
-      });
-      chartData.push({
-        name: account,
-        labels: years,
-        values: values
-      });
-    }
+  developmentData.data.forEach(({ account, ...values }) => {
+    const chartValues = developmentData.years.map(year => {
+      const value = values[year] || 0;
+      // Für Darlehen: absoluter Wert für bessere Darstellung
+      if (account.includes('Darlehen')) {
+        return Math.abs(value);
+      }
+      return value;
+    });
+    chartData.push({
+      name: account,
+      labels: developmentData.years,
+      values: chartValues
+    });
   });
   
   // Erstelle Liniendiagramm
@@ -632,28 +1174,50 @@ function createDevelopmentSlide(pres) {
   
   // Erstelle Tabelle mit Kontoständen
   const tableData = [
-    ['Konto', ...years]
+    ['Konto', ...developmentData.years]
   ];
   
-  importantAccounts.forEach(account => {
-    const row = entwicklungData.find(r => r.Position === account);
-    if (row) {
-      const tableRow = [account];
-      years.forEach(year => {
-        const value = parseGermanNumber(row[year] || '0');
-        tableRow.push(formatGermanNumber(value) + ' €');
-      });
-      tableData.push(tableRow);
-    }
+  // Sammle Daten für Summenberechnung
+  const accountRows = [];
+  
+  developmentData.data.forEach(({ account, ...values }) => {
+    const tableRow = [account];
+    developmentData.years.forEach(year => {
+      tableRow.push(formatGermanNumber(values[year] || 0) + ' €');
+    });
+    tableData.push(tableRow);
+    accountRows.push({ account, ...values });
   });
+  
+  // Berechne Summe Guthaben (Aktiva-Konten)
+  const guthabenAccounts = ['Girokonto SKB 001', 'Sparkonto SKB 003', 'Freizeitkonto SKB 000'];
+  const summeGuthabenRow = ['Summe Guthaben'];
+  developmentData.years.forEach(year => {
+    const sum = accountRows
+      .filter(item => guthabenAccounts.includes(item.account))
+      .reduce((sum, item) => sum + (item[year] || 0), 0);
+    summeGuthabenRow.push(formatGermanNumber(sum) + ' €');
+  });
+  tableData.push(summeGuthabenRow);
+  
+  // Berechne Summe Schulden (Passiva-Konten)
+  const schuldenAccounts = ['Darlehenskonto SKB 004', 'Privatdarlehen 006'];
+  const summeSchuldenRow = ['Summe Schulden'];
+  developmentData.years.forEach(year => {
+    const sum = accountRows
+      .filter(item => schuldenAccounts.includes(item.account))
+      .reduce((sum, item) => sum + Math.abs(item[year] || 0), 0);
+    summeSchuldenRow.push(formatGermanNumber(sum) + ' €');
+  });
+  tableData.push(summeSchuldenRow);
   
   slide.addTable(tableData, {
     x: 0.5,
     y: 4.8,
     w: 9,
-    h: 2.5,
+    h: 2.8,
     fontSize: 9,
-    colW: [2.5, ...years.map(() => 0.8)],
+    colW: [2.5, ...developmentData.years.map(() => 0.8)],
     align: 'left',
     valign: 'middle',
     border: { type: 'solid', color: COLORS.text, pt: 1 }
@@ -668,7 +1232,7 @@ async function main() {
     // Aktualisiere Entwicklung.csv
     updateEntwicklungCSV();
     
-    // Erstelle PowerPoint-Präsentation
+    // Erstelle PowerPoint-Präsentation (erstellt auch Excel-Datei)
     await createPresentation();
     
     console.log('Fertig!');

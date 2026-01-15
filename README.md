@@ -29,10 +29,15 @@ Das Skript:
 1. Liest alle Gewinn-Verlust-Berichte aus dem Ordner `Daten/`
 2. Liest alle Bilanzberichte aus dem Ordner `Daten/`
 3. Aktualisiert die Datei `Entwicklung.csv` mit den neuesten Kontoständen
-4. Erstellt eine PowerPoint-Präsentation `Finanzlage_FeG_Eschweiler.pptx` mit 4 Slides:
-   - **Einnahmen**: Gestapeltes Balkendiagramm über die Jahre
-   - **Ausgaben**: Gestapeltes Balkendiagramm über die Jahre
-   - **Ausgaben nach Kategorien**: Kuchendiagramm für das neueste Jahr
+4. **Erstellt eine Excel-Datei** `Finanzlage_FeG_Eschweiler.xlsx` mit 4 Reitern:
+   - **Einnahmen**: Sortierte Tabelle nach Gesamtsumme (absteigend)
+   - **Ausgaben**: Sortierte Tabelle nach Gesamtsumme (absteigend)
+   - **Ausgaben Kuchendiagramm**: Sortierte Tabelle nach Betrag (absteigend) mit Anteil in %
+   - **Entwicklung**: Tabelle mit Kontoständen über die Jahre
+5. Erstellt eine PowerPoint-Präsentation `Finanzlage_FeG_Eschweiler.pptx` mit 4 Slides:
+   - **Einnahmen**: Gestapeltes Balkendiagramm über die Jahre (sortiert nach Gesamtsumme)
+   - **Ausgaben**: Gestapeltes Balkendiagramm über die Jahre (sortiert nach Gesamtsumme)
+   - **Ausgaben nach Kategorien**: Kuchendiagramm für das neueste Jahr (sortiert nach Betrag)
    - **Entwicklung der Kontostände**: Liniendiagramm und Tabelle der Kontostände über die Jahre
 
 ## Datenstruktur
@@ -60,5 +65,15 @@ Die Präsentation verwendet ein professionelles Design mit:
 ## Abhängigkeiten
 
 - `pptxgenjs` - PowerPoint-Generierung
+- `exceljs` - Excel-Dateien erstellen
 - `csv-parse` - CSV-Dateien lesen
 - `csv-stringify` - CSV-Dateien schreiben
+
+## Sortierung
+
+Alle Tabellen werden automatisch nach der Größe der Ein- und Ausgaben sortiert:
+- **Einnahmen**: Nach Gesamtsumme über alle Jahre (absteigend)
+- **Ausgaben**: Nach Gesamtsumme über alle Jahre (absteigend)
+- **Kuchendiagramm**: Nach Betrag des neuesten Jahres (absteigend)
+
+Dies sorgt für eine übersichtlichere Darstellung der wichtigsten Posten.

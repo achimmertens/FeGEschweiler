@@ -26,7 +26,10 @@ Auch hier wünsche ich mir sowohl eine grafische als auch gut lesbare tabellaris
 
 Allgemein:
 Bitte erstelle einen Javascript Code, der zuerst die Daten so weit wie benötigt aufbereitet. 
-Dann soll der Code eine Powerpoint Datei mit den jeweiligen Seiten erstellt. 
+Dann soll der Code eine Exceltabelle erstellen, in der für jede Powerpointseite ein egener Reiter erzeugt wird. 
+Dort sollen die Tabllen abgelegt werden. Bitte sortiere die Ein- und Ausgaben nach Größe. 
+Unter den Tabellen sollen die Grafiken erzeugt werden, die später in das Powerpoint übertragen werden sollen.
+Erstelle dann aus der Excel-Datei eine Powerpoint Datei mit den jeweiligen Seiten. 
 Der Code soll so geschrieben sein, dass er jederzeit neu ausgeführt werden kann und bei geändertend Daten die Präsentation aktualisiert.
 Auch wenn in den nächsten Jahren neue Daten dazu kommen, soll das Programm diese mit integrieren.
 Als Designvorlage verwende bitte das Schema von: https://eschweiler.feg.de/
