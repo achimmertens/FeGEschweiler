@@ -2,3 +2,33 @@ Ich soll eine Präsentation zur Finanzlage der Freien evangelischen Gemeinde von
 Ich habe dazu Zugriff auf die Webseite https://feg-eschweiler.church.tools/ und einige Dateien bereits herunter geladen. 
 Sie liegen hier im Projektordner im Ordner "Daten". 
 Die Powerpointpräsentation solle folgende Sheets beinhalten:
+1. Einnahmen
+Auf dieser Seite sollen die Einnahmen als Balken gestapelt übereinander für die jeweiligen Jahre 2023, 2024 und 20254 dargestellt werden.
+Die Einnahmen sollen in unterschiedlicher Farbe, sowie mit Zahlenwerten je Kategorie übereinander aufgetürmt werden. 
+Die Werte dazu sollen aus den Dateien "gewinn-verlust-bericht_yyyy.csv" geholt werden. Die Kategorie entspricht der Spalte "Namen". 
+Für die Einnahmen werden nur die positiven Werten der Spalte "Summe" verwendet
+
+2. Ausgaben
+Hier gilt das gleiche wie bei den Einnahmen, nur das die Ausgaben dargestellt werden. 
+Hier werden nur die negativen Werte der Spalte "Summe" in Betracht gezogen.
+
+3. Kuchendiagramm der Ausgaben
+Die Kategorien der Ausgaben sollen als Kuchendiagramm dargestellt werden
+
+4. Entwicklung
+Wie viel Geld haben wir auf welchem Konto? Wie ist der Vergleich zu den Jahren davor?
+In dem Ordner Daten gibt es eine Datei, mit dem Namen "Entwicklung.csv". 
+Bitte schreibe einen Code, der dort in der letzten Spalte das letzte Jahr hinzufügt, bzw. überschreibt, wenn schon etwas drin steht.
+Die Inhalte für die Spalte können aus der letzten Datei Bilanzbericht geholt werden.
+Es reicht aus, nur die Summe der Posten je Konto darzustellen, Details interessieren hier nicht.
+Dann nutze diese Datei um daraus eine Powerpointseite zu erstellen, die darstellt, wie sich in den letzten Jahren die Kontostände entwickelt haben. 
+Auch hier wünsche ich mir sowohl eine grafische als auch gut lesbare tabellarische Darstellung auf einer Seite.
+
+Allgemein:
+Bitte erstelle einen Javascript Code, der zuerst die Daten so weit wie benötigt aufbereitet. 
+Dann soll der Code eine Powerpoint Datei mit den jeweiligen Seiten erstellt. 
+Der Code soll so geschrieben sein, dass er jederzeit neu ausgeführt werden kann und bei geändertend Daten die Präsentation aktualisiert.
+Auch wenn in den nächsten Jahren neue Daten dazu kommen, soll das Programm diese mit integrieren.
+Als Designvorlage verwende bitte das Schema von: https://eschweiler.feg.de/
+
+

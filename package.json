@@ -1,0 +1,17 @@
+{
+  "name": "feg-eschweiler-presentation",
+  "version": "1.0.0",
+  "description": "Generiert PowerPoint-Präsentationen für die Finanzlage der FeG Eschweiler",
+  "main": "generate-presentation.js",
+  "type": "module",
+  "scripts": {
+    "start": "node generate-presentation.js"
+  },
+  "dependencies": {
+    "pptxgenjs": "^3.12.0",
+    "csv-parse": "^5.5.2",
+    "csv-stringify": "^6.4.4"
+  },
+  "author": "",
+  "license": "ISC"
+}
