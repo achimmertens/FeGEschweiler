@@ -1085,14 +1085,11 @@ async function createDevelopmentChart() {
     }
   });
   
-  // Bereite Daten für Chart.js vor
+  // Bereite Daten für Chart.js vor - alle Konten im gleichen Stack für korrektes Stacking
   const datasets = accountData.map((accountRow, index) => {
     const values = devYears.map(year => {
       let value = accountRow[year] || 0;
-      // Für Darlehen: absoluter Wert für bessere Darstellung
-      if (accountRow.account.includes('Darlehen')) {
-        value = Math.abs(value);
-      }
+      // Werte behalten ihr Vorzeichen: Guthaben positiv (oben), Schulden negativ (unten)
       return value;
     });
     
@@ -1114,16 +1111,14 @@ async function createDevelopmentChart() {
   const allValues = accountData.flatMap(row => 
     devYears.map(year => {
       let value = row[year] || 0;
-      if (row.account.includes('Darlehen')) {
-        value = Math.abs(value);
-      }
+      // Behalte das Vorzeichen für korrekte Darstellung
       return value;
     })
   );
   
   const maxValue = Math.max(...allValues);
   const minValue = Math.min(...allValues);
-  const range = maxValue - minValue;
+  const range = Math.abs(maxValue) + Math.abs(minValue);
   
   // Runde Y-Achse sinnvoll
   let yAxisMax, yAxisMin;
@@ -1132,8 +1127,8 @@ async function createDevelopmentChart() {
     yAxisMax = Math.ceil(maxValue / step) * step;
     yAxisMin = Math.floor(minValue / step) * step;
   } else {
-    yAxisMax = maxValue + 10000;
-    yAxisMin = minValue - 10000;
+    yAxisMax = 10000;
+    yAxisMin = -10000;
   }
   
   // Erstelle Chart-Konfiguration für QuickChart
@@ -1191,7 +1186,7 @@ async function createDevelopmentChart() {
         },
         y: {
           stacked: true,
-          beginAtZero: false,
+          beginAtZero: true,
           min: yAxisMin,
           max: yAxisMax,
           ticks: {
