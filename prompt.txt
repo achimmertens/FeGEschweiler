@@ -34,4 +34,4 @@ Der Code soll so geschrieben sein, dass er jederzeit neu ausgeführt werden kann
 Auch wenn in den nächsten Jahren neue Daten dazu kommen, soll das Programm diese mit integrieren.
 Als Designvorlage verwende bitte das Schema von: https://eschweiler.feg.de/
 
-
+Ich möchte, dass du in das Script eine Funktion integrierst, die eine Grafik erzeugt, wie sie hier als Beispiel angehangen ist. Sie soll basieren auf den Daten vom Reiter "Einnahmen" der Exceltabelle. Die Grafik soll in den Daten gespeichert werden unter dem Namen "Einnahmen_YYYY.png" wobei YYYY für das Jahr der Auswertung, also des letzten Bilanzberichts steht.

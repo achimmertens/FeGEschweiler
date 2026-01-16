@@ -77,3 +77,14 @@ Alle Tabellen werden automatisch nach der Größe der Ein- und Ausgaben sortiert
 - **Kuchendiagramm**: Nach Betrag des neuesten Jahres (absteigend)
 
 Dies sorgt für eine übersichtlichere Darstellung der wichtigsten Posten.
+
+----------------------------------------------------
+
+# Wie man die Präsentation anhand dieses Tools jährlich erzeugt
+
+Zuerst holt man sich die Daten von "Bilanzbericht", "Gewinn-verlust-Bericht" und speichert sie als csv Datei für das jeweilige Jahr im Ordner Daten.
+Die Budgets.txt erstellt man durch Markieren und einem Copy-Befehl über die Seite "Bugdets".
+
+Danach startet man das Script mit:
+npm run start
+

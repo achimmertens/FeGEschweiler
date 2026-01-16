@@ -4,6 +4,7 @@ import { parse } from 'csv-parse/sync';
 import { stringify } from 'csv-stringify/sync';
 import PptxGenJS from 'pptxgenjs';
 import ExcelJS from 'exceljs';
+import QuickChart from 'quickchart-js';
 
 // Design-Farben basierend auf typischen Gemeindefarben (Blau/Grün-Töne)
 const COLORS = {
@@ -24,6 +25,17 @@ let sortedIncomeData = null;
 let sortedExpensesData = null;
 let sortedExpensesPieData = null;
 let developmentData = null;
+
+/**
+ * Erstellt den Ergebnisordner falls er nicht existiert
+ */
+function ensureResultDirectory() {
+  const resultDir = path.join(process.cwd(), 'Daten', 'result');
+  if (!fs.existsSync(resultDir)) {
+    fs.mkdirSync(resultDir, { recursive: true });
+  }
+  return resultDir;
+}
 
 /**
  * Konvertiert deutsche Zahlenformatierung (1.234,56) zu JavaScript-Zahl
@@ -232,7 +244,7 @@ function updateEntwicklungCSV() {
     if (bilanzAccountName && latestBalances[bilanzAccountName] !== undefined) {
       // Für Darlehen: negativer Wert (wie in Entwicklung.csv)
       let value = latestBalances[bilanzAccountName];
-      if (position.includes('Darlehen')) {
+      if (position.includes('Darlehen') || position.includes('Privatdarlehen')) {
         value = -Math.abs(value);
       }
       row[latestYear] = value.toFixed(2).replace('.', ',');
@@ -594,9 +606,623 @@ async function createExcelFile(profitLossReports, years) {
   await createBudgetSheet(workbook);
   
   // Speichere Excel-Datei
-  const excelPath = path.join(process.cwd(), 'Finanzlage_FeG_Eschweiler.xlsx');
+  ensureResultDirectory();
+  const excelPath = path.join(process.cwd(), 'Daten', 'result', 'Finanzlage_FeG_Eschweiler.xlsx');
   await workbook.xlsx.writeFile(excelPath);
   console.log(`Excel-Datei erstellt: ${excelPath}`);
+}
+
+/**
+ * Erstellt gestapeltes Balkendiagramm der Einnahmen als PNG
+ */
+async function createIncomeChart(profitLossReports, years) {
+  // Finde das neueste Jahr aus Bilanzberichten
+  const balanceReports = readBalanceReports();
+  const balanceYears = Object.keys(balanceReports).sort();
+  const latestYear = balanceYears[balanceYears.length - 1];
+  
+  if (!latestYear) {
+    console.log('Keine Bilanzberichte gefunden, kann Einnahmen-Diagramm nicht erstellen');
+    return;
+  }
+  
+  console.log(`Erstelle Einnahmen-Diagramm für Jahr ${latestYear}`);
+  
+  // Sammle alle Einnahmen-Kategorien über alle Jahre
+  const allIncomeCategories = new Set();
+  years.forEach(year => {
+    const income = extractIncome(profitLossReports[year]);
+    Object.keys(income).forEach(cat => allIncomeCategories.add(cat));
+  });
+  
+  // Berechne Gesamtsummen pro Kategorie über alle Jahre (für Sortierung)
+  const incomeTotals = {};
+  allIncomeCategories.forEach(category => {
+    const total = years.reduce((sum, year) => {
+      const income = extractIncome(profitLossReports[year]);
+      return sum + (income[category] || 0);
+    }, 0);
+    incomeTotals[category] = total;
+  });
+  
+  // Sortiere nach Gesamtsumme (absteigend) - größte zuerst
+  const sortedIncomeCategories = Array.from(allIncomeCategories)
+    .sort((a, b) => incomeTotals[b] - incomeTotals[a]);
+  
+  // Bereite Daten für Chart.js vor
+  const datasets = sortedIncomeCategories.map((category, index) => {
+    const values = years.map(year => {
+      const income = extractIncome(profitLossReports[year]);
+      return income[category] || 0;
+    });
+    
+    // Farben basierend auf Index (verwende verschiedene Farbtöne)
+    const colorIndex = index % COLORS.chartColors.length;
+    const color = COLORS.chartColors[colorIndex];
+    
+    return {
+      label: category,
+      data: values,
+      backgroundColor: `#${color}`,
+      borderColor: `#${color}`,
+      borderWidth: 1
+    };
+  });
+  
+  // Berechne maximale Gesamtsumme für Y-Achse
+  const maxTotal = Math.max(...years.map(year => {
+    const income = extractIncome(profitLossReports[year]);
+    return Object.values(income).reduce((sum, val) => sum + val, 0);
+  }));
+  
+  // Runde auf nächste 20.000 für Y-Achse
+  const yAxisMax = Math.ceil(maxTotal / 20000) * 20000;
+  
+  // Erstelle Chart-Konfiguration für QuickChart
+  const configuration = {
+    type: 'bar',
+    data: {
+      labels: years,
+      datasets: datasets
+    },
+    options: {
+      indexAxis: 'x',
+      plugins: {
+        title: {
+          display: true,
+          text: 'Einnahmen',
+          font: {
+            size: 20,
+            weight: 'bold'
+          },
+          padding: {
+            top: 10,
+            bottom: 20
+          }
+        },
+        legend: {
+          display: true,
+          position: 'right',
+          labels: {
+            boxWidth: 15,
+            padding: 8,
+            font: {
+              size: 10
+            }
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const value = context.parsed.y;
+              return `${context.dataset.label}: ${formatGermanNumber(value)} €`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          stacked: true,
+          title: {
+            display: false
+          },
+          grid: {
+            display: true,
+            color: 'rgba(0, 0, 0, 0.1)'
+          }
+        },
+        y: {
+          stacked: true,
+          beginAtZero: true,
+          max: yAxisMax,
+          ticks: {
+            stepSize: 20000,
+            callback: function(value) {
+              return formatGermanNumber(value);
+            }
+          },
+          title: {
+            display: false
+          },
+          grid: {
+            display: true,
+            color: 'rgba(0, 0, 0, 0.1)'
+          }
+        }
+      },
+      plugins: {
+        tooltip: {
+          mode: 'index',
+          intersect: false
+        }
+      },
+      responsive: false,
+      maintainAspectRatio: false
+    }
+  };
+  
+  // Erstelle QuickChart-Instanz
+  const chart = new QuickChart();
+  chart.setConfig(configuration);
+  chart.setWidth(1200);
+  chart.setHeight(800);
+  chart.setFormat('png');
+  chart.setBackgroundColor('white');
+  
+  // Speichere direkt als PNG-Datei
+  ensureResultDirectory();
+  const outputPath = path.join(process.cwd(), 'Daten', 'result', `Einnahmen_${latestYear}.png`);
+  await chart.toFile(outputPath);
+  console.log(`Einnahmen-Diagramm gespeichert: ${outputPath}`);
+}
+
+/**
+ * Erstellt gestapeltes Balkendiagramm der Ausgaben als PNG
+ */
+async function createExpensesChart(profitLossReports, years) {
+  // Finde das neueste Jahr aus Bilanzberichten
+  const balanceReports = readBalanceReports();
+  const balanceYears = Object.keys(balanceReports).sort();
+  const latestYear = balanceYears[balanceYears.length - 1];
+  
+  if (!latestYear) {
+    console.log('Keine Bilanzberichte gefunden, kann Ausgaben-Diagramm nicht erstellen');
+    return;
+  }
+  
+  console.log(`Erstelle Ausgaben-Diagramm für Jahr ${latestYear}`);
+  
+  // Sammle alle Ausgaben-Kategorien über alle Jahre
+  const allExpenseCategories = new Set();
+  years.forEach(year => {
+    const expenses = extractExpenses(profitLossReports[year]);
+    Object.keys(expenses).forEach(cat => allExpenseCategories.add(cat));
+  });
+  
+  // Berechne Gesamtsummen pro Kategorie über alle Jahre (für Sortierung)
+  const expenseTotals = {};
+  allExpenseCategories.forEach(category => {
+    const total = years.reduce((sum, year) => {
+      const expenses = extractExpenses(profitLossReports[year]);
+      return sum + (expenses[category] || 0);
+    }, 0);
+    expenseTotals[category] = total;
+  });
+  
+  // Sortiere nach Gesamtsumme (absteigend) - größte zuerst
+  const sortedExpenseCategories = Array.from(allExpenseCategories)
+    .sort((a, b) => expenseTotals[b] - expenseTotals[a]);
+  
+  // Bereite Daten für Chart.js vor
+  const datasets = sortedExpenseCategories.map((category, index) => {
+    const values = years.map(year => {
+      const expenses = extractExpenses(profitLossReports[year]);
+      return expenses[category] || 0;
+    });
+    
+    // Farben basierend auf Index
+    const colorIndex = index % COLORS.chartColors.length;
+    const color = COLORS.chartColors[colorIndex];
+    
+    return {
+      label: category,
+      data: values,
+      backgroundColor: `#${color}`,
+      borderColor: `#${color}`,
+      borderWidth: 1
+    };
+  });
+  
+  // Berechne maximale Gesamtsumme für Y-Achse
+  const maxTotal = Math.max(...years.map(year => {
+    const expenses = extractExpenses(profitLossReports[year]);
+    return Object.values(expenses).reduce((sum, val) => sum + val, 0);
+  }));
+  
+  // Runde auf nächste 20.000 für Y-Achse
+  const yAxisMax = Math.ceil(maxTotal / 20000) * 20000;
+  
+  // Erstelle Chart-Konfiguration für QuickChart
+  const configuration = {
+    type: 'bar',
+    data: {
+      labels: years,
+      datasets: datasets
+    },
+    options: {
+      indexAxis: 'x',
+      plugins: {
+        title: {
+          display: true,
+          text: 'Ausgaben',
+          font: {
+            size: 20,
+            weight: 'bold'
+          },
+          padding: {
+            top: 10,
+            bottom: 20
+          }
+        },
+        legend: {
+          display: true,
+          position: 'right',
+          labels: {
+            boxWidth: 15,
+            padding: 8,
+            font: {
+              size: 10
+            }
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const value = context.parsed.y;
+              return `${context.dataset.label}: ${formatGermanNumber(value)} €`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          stacked: true,
+          title: {
+            display: false
+          },
+          grid: {
+            display: true,
+            color: 'rgba(0, 0, 0, 0.1)'
+          }
+        },
+        y: {
+          stacked: true,
+          beginAtZero: true,
+          max: yAxisMax,
+          ticks: {
+            stepSize: 20000,
+            callback: function(value) {
+              return formatGermanNumber(value);
+            }
+          },
+          title: {
+            display: false
+          },
+          grid: {
+            display: true,
+            color: 'rgba(0, 0, 0, 0.1)'
+          }
+        }
+      },
+      responsive: false,
+      maintainAspectRatio: false
+    }
+  };
+  
+  // Erstelle QuickChart-Instanz
+  const chart = new QuickChart();
+  chart.setConfig(configuration);
+  chart.setWidth(1200);
+  chart.setHeight(800);
+  chart.setFormat('png');
+  chart.setBackgroundColor('white');
+  
+  // Speichere direkt als PNG-Datei
+  ensureResultDirectory();
+  const outputPath = path.join(process.cwd(), 'Daten', 'result', `Ausgaben_${latestYear}.png`);
+  await chart.toFile(outputPath);
+  console.log(`Ausgaben-Diagramm gespeichert: ${outputPath}`);
+}
+
+/**
+ * Erstellt Kuchendiagramm der Ausgaben als PNG
+ */
+async function createExpensesPieChart(profitLossReports, years) {
+  // Finde das neueste Jahr aus Bilanzberichten
+  const balanceReports = readBalanceReports();
+  const balanceYears = Object.keys(balanceReports).sort();
+  const latestYear = balanceYears[balanceYears.length - 1];
+  
+  if (!latestYear) {
+    console.log('Keine Bilanzberichte gefunden, kann Ausgaben-Kuchendiagramm nicht erstellen');
+    return;
+  }
+  
+  console.log(`Erstelle Ausgaben-Kuchendiagramm für Jahr ${latestYear}`);
+  
+  // Verwende das neueste Jahr für das Kuchendiagramm
+  const expenses = extractExpenses(profitLossReports[latestYear]);
+  
+  // Sortiere nach Wert (absteigend)
+  const sortedPieData = Object.entries(expenses)
+    .sort((a, b) => b[1] - a[1])
+    .map(([name, value]) => ({ name, value }));
+  
+  // Bereite Daten für Chart.js vor
+  const labels = sortedPieData.map(item => item.name);
+  const data = sortedPieData.map(item => item.value);
+  const backgroundColors = sortedPieData.map((item, index) => {
+    const colorIndex = index % COLORS.chartColors.length;
+    return `#${COLORS.chartColors[colorIndex]}`;
+  });
+  
+  // Erstelle Chart-Konfiguration für QuickChart
+  const configuration = {
+    type: 'pie',
+    data: {
+      labels: labels,
+      datasets: [{
+        data: data,
+        backgroundColor: backgroundColors,
+        borderColor: '#ffffff',
+        borderWidth: 2
+      }]
+    },
+    options: {
+      plugins: {
+        title: {
+          display: true,
+          text: `Ausgaben nach Kategorien (${latestYear})`,
+          font: {
+            size: 20,
+            weight: 'bold'
+          },
+          padding: {
+            top: 10,
+            bottom: 20
+          }
+        },
+        legend: {
+          display: true,
+          position: 'right',
+          labels: {
+            boxWidth: 15,
+            padding: 8,
+            font: {
+              size: 10
+            }
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const label = context.label || '';
+              const value = context.parsed || 0;
+              const total = context.dataset.data.reduce((a, b) => a + b, 0);
+              const percentage = ((value / total) * 100).toFixed(1);
+              return `${label}: ${formatGermanNumber(value)} € (${percentage}%)`;
+            }
+          }
+        }
+      },
+      responsive: false,
+      maintainAspectRatio: false
+    }
+  };
+  
+  // Erstelle QuickChart-Instanz
+  const chart = new QuickChart();
+  chart.setConfig(configuration);
+  chart.setWidth(1200);
+  chart.setHeight(800);
+  chart.setFormat('png');
+  chart.setBackgroundColor('white');
+  
+  // Speichere direkt als PNG-Datei
+  ensureResultDirectory();
+  const outputPath = path.join(process.cwd(), 'Daten', 'result', `Ausgaben_Kuchendiagramm_${latestYear}.png`);
+  await chart.toFile(outputPath);
+  console.log(`Ausgaben-Kuchendiagramm gespeichert: ${outputPath}`);
+}
+
+/**
+ * Erstellt gestapeltes Balkendiagramm der Entwicklung als PNG
+ */
+async function createDevelopmentChart() {
+  // Finde das neueste Jahr aus Bilanzberichten
+  const balanceReports = readBalanceReports();
+  const balanceYears = Object.keys(balanceReports).sort();
+  const latestYear = balanceYears[balanceYears.length - 1];
+  
+  if (!latestYear) {
+    console.log('Keine Bilanzberichte gefunden, kann Entwicklungs-Diagramm nicht erstellen');
+    return;
+  }
+  
+  console.log(`Erstelle Entwicklungs-Diagramm für Jahr ${latestYear}`);
+  
+  // Lese Entwicklung.csv
+  const entwicklungPath = path.join(process.cwd(), 'Daten', 'Entwicklung.csv');
+  const entwicklungData = readCSV(entwicklungPath);
+  
+  // Extrahiere Jahre aus Headern
+  const firstRow = entwicklungData[0];
+  const devYears = Object.keys(firstRow)
+    .filter(key => key !== 'Position' && /^\d{4}$/.test(key))
+    .sort();
+  
+  // Wichtige Konten für die Darstellung (Zeilen 2-6, keine Summen)
+  const importantAccounts = [
+    'Girokonto SKB 001',
+    'Sparkonto SKB 003',
+    'Freizeitkonto SKB 000',
+    'Darlehenskonto SKB 004',
+    'Privatdarlehen 006'
+  ];
+  
+  // Sammle Daten für die Konten
+  const accountData = [];
+  importantAccounts.forEach(account => {
+    const row = entwicklungData.find(r => r.Position === account);
+    if (row) {
+      const accountRow = { account };
+      devYears.forEach(year => {
+        accountRow[year] = parseGermanNumber(row[year] || '0');
+      });
+      accountData.push(accountRow);
+    }
+  });
+  
+  // Bereite Daten für Chart.js vor
+  const datasets = accountData.map((accountRow, index) => {
+    const values = devYears.map(year => {
+      let value = accountRow[year] || 0;
+      // Für Darlehen: absoluter Wert für bessere Darstellung
+      if (accountRow.account.includes('Darlehen')) {
+        value = Math.abs(value);
+      }
+      return value;
+    });
+    
+    // Farben basierend auf Index
+    const colorIndex = index % COLORS.chartColors.length;
+    const color = COLORS.chartColors[colorIndex];
+    
+    return {
+      label: accountRow.account,
+      data: values,
+      backgroundColor: `#${color}`,
+      borderColor: `#${color}`,
+      borderWidth: 1
+    };
+  });
+  
+  // Berechne maximale/minimale Werte für Y-Achse
+  const allValues = accountData.flatMap(row => 
+    devYears.map(year => {
+      let value = row[year] || 0;
+      if (row.account.includes('Darlehen')) {
+        value = Math.abs(value);
+      }
+      return value;
+    })
+  );
+  
+  const maxValue = Math.max(...allValues);
+  const minValue = Math.min(...allValues);
+  const range = maxValue - minValue;
+  
+  // Runde Y-Achse sinnvoll
+  let yAxisMax, yAxisMin;
+  if (range > 0) {
+    const step = Math.pow(10, Math.floor(Math.log10(range)));
+    yAxisMax = Math.ceil(maxValue / step) * step;
+    yAxisMin = Math.floor(minValue / step) * step;
+  } else {
+    yAxisMax = maxValue + 10000;
+    yAxisMin = minValue - 10000;
+  }
+  
+  // Erstelle Chart-Konfiguration für QuickChart
+  const configuration = {
+    type: 'bar',
+    data: {
+      labels: devYears,
+      datasets: datasets
+    },
+    options: {
+      indexAxis: 'x',
+      plugins: {
+        title: {
+          display: true,
+          text: 'Entwicklung der Kontostände',
+          font: {
+            size: 20,
+            weight: 'bold'
+          },
+          padding: {
+            top: 10,
+            bottom: 20
+          }
+        },
+        legend: {
+          display: true,
+          position: 'right',
+          labels: {
+            boxWidth: 15,
+            padding: 8,
+            font: {
+              size: 10
+            }
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const value = context.parsed.y;
+              return `${context.dataset.label}: ${formatGermanNumber(value)} €`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          stacked: true,
+          title: {
+            display: false
+          },
+          grid: {
+            display: true,
+            color: 'rgba(0, 0, 0, 0.1)'
+          }
+        },
+        y: {
+          stacked: true,
+          beginAtZero: false,
+          min: yAxisMin,
+          max: yAxisMax,
+          ticks: {
+            callback: function(value) {
+              return formatGermanNumber(value);
+            }
+          },
+          title: {
+            display: false
+          },
+          grid: {
+            display: true,
+            color: 'rgba(0, 0, 0, 0.1)'
+          }
+        }
+      },
+      responsive: false,
+      maintainAspectRatio: false
+    }
+  };
+  
+  // Erstelle QuickChart-Instanz
+  const chart = new QuickChart();
+  chart.setConfig(configuration);
+  chart.setWidth(1200);
+  chart.setHeight(800);
+  chart.setFormat('png');
+  chart.setBackgroundColor('white');
+  
+  // Speichere direkt als PNG-Datei
+  ensureResultDirectory();
+  const outputPath = path.join(process.cwd(), 'Daten', 'result', `Entwicklung_${latestYear}.png`);
+  await chart.toFile(outputPath);
+  console.log(`Entwicklungs-Diagramm gespeichert: ${outputPath}`);
 }
 
 /**
@@ -709,7 +1335,8 @@ function parseBudgetFile(filePath) {
  * Konvertiert Budget-Daten in CSV und speichert sie
  */
 function saveBudgetAsCSV(budgetData, year) {
-  const csvPath = path.join(process.cwd(), 'Daten', `Budgets_${year}.csv`);
+  ensureResultDirectory();
+  const csvPath = path.join(process.cwd(), 'Daten', 'result', `Budgets_${year}.csv`);
   
   const csvRows = [
     ['Kostenstelle', 'Nummer', 'Verbraucht-Vorjahr', 'Geplant-Vorjahr', 'Geplant', 'Stand', 'Verbraucht', 'Übrig']
@@ -856,6 +1483,12 @@ async function createPresentation() {
   // Erstelle Excel-Datei zuerst (sortiert die Daten)
   await createExcelFile(profitLossReports, years);
   
+  // Erstelle Diagramme als PNG
+  await createIncomeChart(profitLossReports, years);
+  await createExpensesChart(profitLossReports, years);
+  await createExpensesPieChart(profitLossReports, years);
+  await createDevelopmentChart();
+  
   // Slide 1: Einnahmen
   createIncomeSlide(pres, years);
   
@@ -869,7 +1502,8 @@ async function createPresentation() {
   createDevelopmentSlide(pres);
   
   // Speichere Präsentation
-  const outputPath = path.join(process.cwd(), 'Finanzlage_FeG_Eschweiler.pptx');
+  ensureResultDirectory();
+  const outputPath = path.join(process.cwd(), 'Daten', 'result', 'Finanzlage_FeG_Eschweiler.pptx');
   await pres.writeFile({ fileName: outputPath });
   console.log(`Präsentation erstellt: ${outputPath}`);
 }

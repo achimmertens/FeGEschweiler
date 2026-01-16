@@ -11,7 +11,8 @@
     "pptxgenjs": "^3.12.0",
     "csv-parse": "^5.5.2",
     "csv-stringify": "^6.4.4",
-    "exceljs": "^4.4.0"
+    "exceljs": "^4.4.0",
+    "quickchart-js": "^1.1.1"
   },
   "author": "",
   "license": "ISC"
