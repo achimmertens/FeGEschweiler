@@ -1169,22 +1169,22 @@ async function createDevelopmentChart() {
           display: true,
           text: 'Entwicklung der Kontostände',
           font: {
-            size: 20,
+            size: 420,
             weight: 'bold'
           },
           padding: {
-            top: 10,
-            bottom: 20
+            top: 210,
+            bottom: 420
           }
         },
         legend: {
           display: true,
           position: 'right',
           labels: {
-            boxWidth: 15,
-            padding: 8,
+            boxWidth: 315,
+            padding: 168,
             font: {
-              size: 10
+              size: 210
             }
           }
         },
@@ -1214,6 +1214,9 @@ async function createDevelopmentChart() {
           min: yAxisMin,
           max: yAxisMax,
           ticks: {
+            font: {
+              size: 168
+            },
             callback: function(value) {
               return formatGermanNumber(value);
             }
@@ -1235,8 +1238,8 @@ async function createDevelopmentChart() {
   // Erstelle QuickChart-Instanz
   const chart = new QuickChart();
   chart.setConfig(configuration);
-  chart.setWidth(1200);
-  chart.setHeight(800);
+  chart.setWidth(800);
+  chart.setHeight(600);
   chart.setFormat('png');
   chart.setBackgroundColor('white');
   
