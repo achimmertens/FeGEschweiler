@@ -665,7 +665,8 @@ async function createIncomeChart(profitLossReports, years) {
       data: values,
       backgroundColor: `#${color}`,
       borderColor: `#${color}`,
-      borderWidth: 1
+      borderWidth: 1,
+      stack: 'stack1'
     };
   });
   
@@ -829,7 +830,8 @@ async function createExpensesChart(profitLossReports, years) {
       data: values,
       backgroundColor: `#${color}`,
       borderColor: `#${color}`,
-      borderWidth: 1
+      borderWidth: 1,
+      stack: 'stack1'
     };
   });
   
@@ -1103,7 +1105,8 @@ async function createDevelopmentChart() {
       data: values,
       backgroundColor: `#${color}`,
       borderColor: `#${color}`,
-      borderWidth: 1
+      borderWidth: 1,
+      stack: 'stack1'
     };
   });
   
