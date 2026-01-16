@@ -712,7 +712,24 @@ async function createIncomeChart(profitLossReports, years) {
             }
           }
         },
+        datalabels: {
+          color: '#ffffff',
+          font: {
+            weight: 'bold',
+            size: 10
+          },
+          formatter: function(value, context) {
+            return context.dataset.label;
+          },
+          anchor: 'center',
+          align: 'center',
+          display: true,
+          clip: false,
+          clamp: false
+        },
         tooltip: {
+          mode: 'index',
+          intersect: false,
           callbacks: {
             label: function(context) {
               const value = context.parsed.y;
@@ -751,12 +768,6 @@ async function createIncomeChart(profitLossReports, years) {
           }
         }
       },
-      plugins: {
-        tooltip: {
-          mode: 'index',
-          intersect: false
-        }
-      },
       responsive: false,
       maintainAspectRatio: false
     }
@@ -766,7 +777,7 @@ async function createIncomeChart(profitLossReports, years) {
   const chart = new QuickChart();
   chart.setConfig(configuration);
   chart.setWidth(1200);
-  chart.setHeight(800);
+  chart.setHeight(1000);
   chart.setFormat('png');
   chart.setBackgroundColor('white');
   
@@ -876,6 +887,19 @@ async function createExpensesChart(profitLossReports, years) {
               size: 10
             }
           }
+        },
+        datalabels: {
+          color: '#ffffff',
+          font: {
+            weight: 'bold',
+            size: 11
+          },
+          formatter: function(value, context) {
+            return context.dataset.label;
+          },
+          anchor: 'center',
+          align: 'center',
+          display: true
         },
         tooltip: {
           callbacks: {
