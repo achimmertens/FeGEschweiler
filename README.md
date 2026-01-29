@@ -88,3 +88,16 @@ Die Budgets.txt erstellt man durch Markieren und einem Copy-Befehl über die Sei
 Danach startet man das Script mit:
 npm run start
 
+# Präsentationsvorbereitung
+
+Bitte kopiere die Excel Datei result/Finanzlage_FeG_Eschweiler.xlsx nach Kassenbericht_yyyy.ods und von dort weiter nach Documente/FeG.
+Es ist sinnvoll, in der result/Kassenbericht_yyyy.ods weiter zu arbeiten, um zu vermeiden, dass bei einem nächsten Durchlauf diese Planung überschrieben wird.
+Der Budget-Reiter aus dem Kassenbericht wird kopiert in die Datei Budget_yyyz.odp (wobei z das aktuelle Jahr, alys y+1 ist). Dort muss noch um die Planung für das neue Jahr erweitert werden.
+Dieser Kassenbericht und das neue Budget dient dann wiederum als Vorlage um die Tabellen rauszukopieren, die dann in Powerpoint Datei Documente/FeG/Kassenbericht_yyyy.odp eingefügt werden. Dort kommen auch die Grafiken aus dem Result Ordner rein. Diese Datei wird dann für den Vortrag genutzt.
+Kurz: 
+- result/Finanzlage_FeG_Eschweiler.xlsx kopieren und umbenennen und kopieren -> Dokumente/FeG/Kassenbericht_yyyy.ods
+- Budgets in result/Budgets_(aktuelles Jahr).ods und Dokumente/Feg/Kassenbericht.ods eintragen
+- Budgets und resut/Bilder nach Documente/FeG/Kassenbericht_yyyy.odp überführen
+
+
+

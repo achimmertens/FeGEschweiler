@@ -531,7 +531,30 @@ async function createExcelFile(profitLossReports, years) {
         tableRow[year] = parseGermanNumber(row[year] || '0');
       });
       developmentSheet.addRow(tableRow);
+      // Sammle nur die Original-Konten (ohne Delta-Zeilen)
       accountData.push({ account, ...tableRow });
+
+      // Falls Darlehen-Konten: Delta zum Vorjahr direkt darunter einfügen
+      if (account === 'Darlehenskonto SKB 004' || account === 'Privatdarlehen 006') {
+        const deltaRow = { account: `${account} Δ` };
+        devYears.forEach((year, idx) => {
+          if (idx === 0) {
+            deltaRow[year] = 0; // kein Vorjahr vorhanden
+          } else {
+            const prevYear = devYears[idx - 1];
+            deltaRow[year] = tableRow[year] - (tableRow[prevYear] || 0);
+          }
+        });
+        const inserted = developmentSheet.addRow(deltaRow);
+        // Grauen Hintergrund für Delta-Zeilen
+        inserted.eachCell(cell => {
+          cell.fill = {
+            type: 'pattern',
+            pattern: 'solid',
+            fgColor: { argb: 'FFD9D9D9' }
+          };
+        });
+      }
     }
   });
   
@@ -544,7 +567,30 @@ async function createExcelFile(profitLossReports, years) {
       .reduce((sum, item) => sum + (item[year] || 0), 0);
     summeGuthabenRow[year] = sum;
   });
-  developmentSheet.addRow(summeGuthabenRow);
+  // Füge Summe-Zeile ein und markiere sie fett
+  const sumGRow = developmentSheet.addRow(summeGuthabenRow);
+  sumGRow.getCell(1).font = { bold: true };
+  devYears.forEach((year, idx) => {
+    sumGRow.getCell(idx + 2).font = { bold: true };
+  });
+
+  // Delta-Zeile für Summe Guthaben
+  const sumGDelta = { account: 'Summe Guthaben Δ' };
+  devYears.forEach((year, idx) => {
+    if (idx === 0) sumGDelta[year] = 0;
+    else {
+      const prevYear = devYears[idx - 1];
+      sumGDelta[year] = (summeGuthabenRow[year] || 0) - (summeGuthabenRow[prevYear] || 0);
+    }
+  });
+  const sumGDeltaRow = developmentSheet.addRow(sumGDelta);
+  sumGDeltaRow.eachCell(cell => {
+    cell.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'FFD9D9D9' }
+    };
+  });
   
   // Berechne Summe Schulden (Passiva-Konten)
   const schuldenAccounts = ['Darlehenskonto SKB 004', 'Privatdarlehen 006'];
@@ -555,7 +601,30 @@ async function createExcelFile(profitLossReports, years) {
       .reduce((sum, item) => sum + Math.abs(item[year] || 0), 0);
     summeSchuldenRow[year] = sum;
   });
-  developmentSheet.addRow(summeSchuldenRow);
+  // Füge Summe-Schulden-Zeile ein und markiere sie fett
+  const sumSRow = developmentSheet.addRow(summeSchuldenRow);
+  sumSRow.getCell(1).font = { bold: true };
+  devYears.forEach((year, idx) => {
+    sumSRow.getCell(idx + 2).font = { bold: true };
+  });
+
+  // Delta-Zeile für Summe Schulden
+  const sumSDelta = { account: 'Summe Schulden Δ' };
+  devYears.forEach((year, idx) => {
+    if (idx === 0) sumSDelta[year] = 0;
+    else {
+      const prevYear = devYears[idx - 1];
+      sumSDelta[year] = (summeSchuldenRow[year] || 0) - (summeSchuldenRow[prevYear] || 0);
+    }
+  });
+  const sumSDeltaRow = developmentSheet.addRow(sumSDelta);
+  sumSDeltaRow.eachCell(cell => {
+    cell.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'FFD9D9D9' }
+    };
+  });
   
   // Formatiere Zahlen
   developmentSheet.eachRow((row, rowNumber) => {
