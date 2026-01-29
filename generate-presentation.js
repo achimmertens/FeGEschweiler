@@ -1000,6 +1000,14 @@ async function createExpensesChart(profitLossReports, years) {
   }).concat([0]));
   const yAxisMax = Math.max(20000, Math.ceil(maxTotal / 20000) * 20000);
   
+  // Bestimme die 10 größten Kategorien (nach Gesamtsumme über alle Jahre) für Datapoints-Beschriftungen
+  const totalsPerDataset = datasets.map(ds => ({
+    label: ds.label,
+    total: (ds.data || []).reduce((s, v) => s + (v || 0), 0)
+  }));
+  totalsPerDataset.sort((a, b) => b.total - a.total);
+  const top10Labels = totalsPerDataset.slice(0, 10).map(d => d.label);
+  
   // Erstelle Chart-Konfiguration für QuickChart
   const configuration = {
     type: 'bar',
@@ -1014,22 +1022,22 @@ async function createExpensesChart(profitLossReports, years) {
           display: true,
           text: 'Ausgaben',
           font: {
-            size: 20,
+            size: 40,
             weight: 'bold'
           },
           padding: {
-            top: 10,
-            bottom: 20
+            top: 20,
+            bottom: 40
           }
         },
         legend: {
           display: true,
           position: 'right',
           labels: {
-            boxWidth: 15,
-            padding: 8,
+            boxWidth: 30,
+            padding: 16,
             font: {
-              size: 10
+              size: 20
             }
           }
         },
@@ -1037,14 +1045,17 @@ async function createExpensesChart(profitLossReports, years) {
           color: '#ffffff',
           font: {
             weight: 'bold',
-            size: 11
+            size: 22
           },
           formatter: function(value, context) {
             return context.dataset.label;
           },
           anchor: 'center',
           align: 'center',
-          display: true
+          display: function(context) {
+            // Nur für die Top-10 Kategorien Beschriftungen anzeigen
+            return top10Labels.indexOf(context.dataset.label) !== -1;
+          }
         },
         tooltip: {
           callbacks: {
@@ -1094,7 +1105,7 @@ async function createExpensesChart(profitLossReports, years) {
   const chart = new QuickChart();
   chart.setConfig(configuration);
   chart.setWidth(1200);
-  chart.setHeight(800);
+  chart.setHeight(1200);
   chart.setFormat('png');
   chart.setBackgroundColor('white');
   
