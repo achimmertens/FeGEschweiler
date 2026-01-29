@@ -55,6 +55,14 @@ function formatGermanNumber(num) {
 }
 
 /**
+ * Formatiert Zahl ohne Dezimalstellen mit deutschen Tausenderpunkten
+ */
+function formatGermanInteger(num) {
+  const n = Math.round(num || 0);
+  return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
+/**
  * Liest CSV-Datei und gibt Daten als Array zurück
  */
 function readCSV(filePath) {
@@ -926,72 +934,105 @@ async function createExpensesChart(profitLossReports, years) {
     expenseTotals[category] = total;
   });
 
-  // Sortiere nach Gesamtsumme (absteigend) - größte zuerst
+  // Berechne absolute Gesamtsummen pro Kategorie über alle Jahre (für Sortierung nach Größe)
+  const expenseTotalsAbs = {};
+  allExpenseCategories.forEach(category => {
+    const totalAbs = years.reduce((sum, year) => {
+      const expenses = extractExpenses(profitLossReports[year]);
+      return sum + Math.abs(expenses[category] || 0);
+    }, 0);
+    expenseTotalsAbs[category] = totalAbs;
+  });
+
+  // Sortiere nach absoluter Gesamtsumme (Größe) - größte zuerst. So werden auch negative Kategorien berücksichtigt.
   const sortedExpenseCategories = Array.from(allExpenseCategories)
-    .sort((a, b) => expenseTotals[b] - expenseTotals[a]);
+    .sort((a, b) => expenseTotalsAbs[b] - expenseTotalsAbs[a]);
 
   // Baue Datasets aus existierenden Kategorien
+  // Option B: Zeige nur Top-10 Kategorien einzeln, aggregiere Rest in 'Sonstige'
+  const darlehensLabel = 'Darlehensleistung';
+
+  // Berechne Delta der Summe Schulden als Fallback für Darlehensleistung
+  const deltaSchuldenByYearLocal = computeDeltaSchuldenForYears(years);
+  const darlehensValues = years.map(year => {
+    const expenses = extractExpenses(profitLossReports[year]);
+    if (expenses[darlehensLabel] !== undefined) return expenses[darlehensLabel];
+    return deltaSchuldenByYearLocal[year] || 0;
+  });
+
+  // Falls Darlehensleistung nicht in der Liste, ergänze sie mit berechneten Werten
+  if (!sortedExpenseCategories.includes(darlehensLabel)) {
+    const totalDarlehenAbs = darlehensValues.reduce((s, v) => s + Math.abs(v || 0), 0);
+    // Füge nur hinzu, wenn tatsächlich Werte vorhanden
+    if (totalDarlehenAbs > 0.0001) {
+      sortedExpenseCategories.push(darlehensLabel);
+      expenseTotals[darlehensLabel] = darlehensValues.reduce((s, v) => s + (v || 0), 0);
+      expenseTotalsAbs[darlehensLabel] = totalDarlehenAbs;
+      // Resort list by abs size including new entry
+      sortedExpenseCategories.sort((a, b) => (expenseTotalsAbs[b] || 0) - (expenseTotalsAbs[a] || 0));
+    }
+  }
+
+  // Bestimme Top-10 Kategorien
+  const topCategories = sortedExpenseCategories.slice(0, 10);
+  const otherCategories = sortedExpenseCategories.slice(10);
+
   const datasets = [];
-  sortedExpenseCategories.forEach((category, index) => {
+  // Datasets für Top-10
+  topCategories.forEach((category, index) => {
     const values = years.map(year => {
+      if (category === darlehensLabel) return darlehensValues[years.indexOf(year)] || 0;
       const expenses = extractExpenses(profitLossReports[year]);
       return expenses[category] || 0;
     });
     const colorIndex = index % COLORS.chartColors.length;
     const color = COLORS.chartColors[colorIndex];
-    datasets.push({
+    const ds = {
       label: category,
       data: values,
       backgroundColor: `#${color}`,
       borderColor: `#${color}`,
       borderWidth: 1,
       stack: 'stack1'
+    };
+    // Wenn Kategorie in Top-10, aktiviere Datalabels nur für dieses Dataset
+    ds.datalabels = {
+      display: true,
+      color: '#ffffff',
+      font: { weight: 'bold', size: 22 },
+      formatter: function(value, context) {
+        try {
+          const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';
+          return label + ' ' + formatGermanInteger(value) + ' €';
+        } catch (e) {
+          return (context && context.dataset && context.dataset.label ? context.dataset.label + ' ' : '') + Math.round(value) + ' €';
+        }
+      }
+    };
+    datasets.push(ds);
+  });
+
+  // Aggregiere Rest in 'Sonstiges'
+  if (otherCategories.length > 0) {
+    const othersValues = years.map(year => {
+      return otherCategories.reduce((sum, category) => {
+        if (category === darlehensLabel) return sum + (darlehensValues[years.indexOf(year)] || 0);
+        const expenses = extractExpenses(profitLossReports[year]);
+        return sum + (expenses[category] || 0);
+      }, 0);
     });
-  });
-
-  // Berechne Delta der Summe Schulden aus Entwicklung.csv für die gegebenen years
-  // (als Fallback für fehlende Darlehensleistung-Kategorie)
-  const deltaSchuldenByYearLocal = computeDeltaSchuldenForYears(years);
-
-  // Füge Dataset für 'Darlehensleistung' hinzu: benutze vorhandene Werte falls vorhanden,
-  // ansonsten zeige das Delta der Summe Schulden (aus Entwicklung.csv) in den Jahren,
-  // in denen die Kategorie nicht existiert.
-  const darlehensLabel = 'Darlehensleistung';
-  const darlehensValues = years.map(year => {
-    const expenses = extractExpenses(profitLossReports[year]);
-    if (expenses[darlehensLabel] !== undefined) return expenses[darlehensLabel];
-    // Falls nicht vorhanden, nutze Delta der Summe Schulden
-    return deltaSchuldenByYearLocal[year] || 0;
-  });
-
-  // Prüfe, ob Darlehensleistung bereits als Kategorie existiert
-  const alreadyExists = sortedExpenseCategories.includes(darlehensLabel);
-  if (!alreadyExists) {
-    const colorIndex = datasets.length % COLORS.chartColors.length;
-    const color = COLORS.chartColors[colorIndex];
-    // Wenn alle Werte 0, füge nicht hinzu
-    const anyNonZero = darlehensValues.some(v => Math.abs(v) > 0.0001);
+    const anyNonZero = othersValues.some(v => Math.abs(v) > 0.0001);
     if (anyNonZero) {
+      const color = 'A9A9A9'; // grau für Sonstige
       datasets.push({
-        label: darlehensLabel,
-        data: darlehensValues,
+        label: 'Sonstiges',
+        data: othersValues,
         backgroundColor: `#${color}`,
         borderColor: `#${color}`,
         borderWidth: 1,
         stack: 'stack1'
       });
     }
-  } else {
-    // Wenn bereits vorhanden, aktualisiere das bestehende Dataset, ersetze 0-Werte durch Delta
-    datasets.forEach(ds => {
-      if (ds.label === darlehensLabel) {
-        ds.data = years.map((year, idx) => {
-          const expenses = extractExpenses(profitLossReports[year]);
-          if (expenses[darlehensLabel] !== undefined) return expenses[darlehensLabel];
-          return deltaSchuldenByYearLocal[year] || 0;
-        });
-      }
-    });
   }
 
   // Bestimme maximale Gesamtsumme pro Jahr für Y-Achse
@@ -1041,21 +1082,9 @@ async function createExpensesChart(profitLossReports, years) {
             }
           }
         },
+        // Standard: keine globalen Datalabels, wir steuern dies pro Dataset
         datalabels: {
-          color: '#ffffff',
-          font: {
-            weight: 'bold',
-            size: 22
-          },
-          formatter: function(value, context) {
-            return context.dataset.label;
-          },
-          anchor: 'center',
-          align: 'center',
-          display: function(context) {
-            // Nur für die Top-10 Kategorien Beschriftungen anzeigen
-            return top10Labels.indexOf(context.dataset.label) !== -1;
-          }
+          display: false
         },
         tooltip: {
           callbacks: {
