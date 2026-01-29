@@ -175,6 +175,40 @@ function extractAccountBalances(report) {
 }
 
 /**
+ * Berechnet das Delta der Summe Schulden (Darlehen) für gegebene Jahre
+ * Liefert ein Objekt { year: delta }
+ */
+function computeDeltaSchuldenForYears(years) {
+  const result = {};
+  try {
+    const entwicklungPath = path.join(process.cwd(), 'Daten', 'Entwicklung.csv');
+    const entwicklungData = readCSV(entwicklungPath);
+    const darlehenRows = ['Darlehenskonto SKB 004', 'Privatdarlehen 006'];
+    const summeSchuldenByYear = {};
+    years.forEach(year => {
+      let sum = 0;
+      darlehenRows.forEach(acc => {
+        const row = entwicklungData.find(r => r.Position === acc);
+        if (row && row[year] !== undefined) {
+          sum += Math.abs(parseGermanNumber(row[year] || '0'));
+        }
+      });
+      summeSchuldenByYear[year] = sum;
+    });
+    years.forEach((year, idx) => {
+      if (idx === 0) result[year] = 0;
+      else {
+        const prev = years[idx - 1];
+        result[year] = (summeSchuldenByYear[year] || 0) - (summeSchuldenByYear[prev] || 0);
+      }
+    });
+  } catch (err) {
+    years.forEach(year => { result[year] = 0; });
+  }
+  return result;
+}
+
+/**
  * Aktualisiert Entwicklung.csv mit neuesten Daten
  */
 function updateEntwicklungCSV() {
@@ -289,8 +323,7 @@ async function createExcelFile(profitLossReports, years) {
     const income = extractIncome(profitLossReports[year]);
     Object.keys(income).forEach(cat => allIncomeCategories.add(cat));
   });
-  
-  // Berechne Gesamtsummen pro Kategorie über alle Jahre
+  // Berechne Gesamtsummen pro Kategorie über alle Jahre (für Sortierung)
   const incomeTotals = {};
   allIncomeCategories.forEach(category => {
     const total = years.reduce((sum, year) => {
@@ -299,17 +332,18 @@ async function createExcelFile(profitLossReports, years) {
     }, 0);
     incomeTotals[category] = total;
   });
-  
+
   // Sortiere nach Gesamtsumme (absteigend)
   const sortedIncomeCategories = Array.from(allIncomeCategories)
     .sort((a, b) => incomeTotals[b] - incomeTotals[a]);
-  
+
   // Erstelle Tabelle
   incomeSheet.columns = [
     { header: 'Kategorie', key: 'category', width: 40 },
     ...years.map(year => ({ header: year, key: year, width: 15 }))
   ];
-  
+
+  // Fülle Zeilen
   sortedIncomeCategories.forEach(category => {
     const row = { category };
     years.forEach(year => {
@@ -318,7 +352,7 @@ async function createExcelFile(profitLossReports, years) {
     });
     incomeSheet.addRow(row);
   });
-  
+
   // Gesamtsumme
   const totalRow = { category: 'Gesamt' };
   years.forEach(year => {
@@ -326,7 +360,7 @@ async function createExcelFile(profitLossReports, years) {
     totalRow[year] = Object.values(income).reduce((sum, val) => sum + val, 0);
   });
   incomeSheet.addRow(totalRow);
-  
+
   // Formatiere Zahlen
   incomeSheet.eachRow((row, rowNumber) => {
     if (rowNumber > 1) {
@@ -338,7 +372,7 @@ async function createExcelFile(profitLossReports, years) {
       });
     }
   });
-  
+
   // Header-Formatierung
   incomeSheet.getRow(1).font = { bold: true };
   incomeSheet.getRow(1).fill = {
@@ -347,7 +381,7 @@ async function createExcelFile(profitLossReports, years) {
     fgColor: { argb: 'FF' + COLORS.primary }
   };
   incomeSheet.getRow(1).font = { bold: true, color: { argb: 'FFFFFFFF' } };
-  
+
   // Speichere sortierte Daten für PowerPoint
   sortedIncomeData = {
     categories: sortedIncomeCategories,
@@ -361,7 +395,7 @@ async function createExcelFile(profitLossReports, years) {
     }),
     totals: totalRow
   };
-  
+
   // Slide 2: Ausgaben
   const expensesSheet = workbook.addWorksheet('Ausgaben');
   
@@ -371,6 +405,8 @@ async function createExcelFile(profitLossReports, years) {
     const expenses = extractExpenses(profitLossReports[year]);
     Object.keys(expenses).forEach(cat => allExpenseCategories.add(cat));
   });
+  
+  
   
   // Berechne Gesamtsummen pro Kategorie über alle Jahre
   const expenseTotals = {};
@@ -889,40 +925,80 @@ async function createExpensesChart(profitLossReports, years) {
     }, 0);
     expenseTotals[category] = total;
   });
-  
+
   // Sortiere nach Gesamtsumme (absteigend) - größte zuerst
   const sortedExpenseCategories = Array.from(allExpenseCategories)
     .sort((a, b) => expenseTotals[b] - expenseTotals[a]);
-  
-  // Bereite Daten für Chart.js vor
-  const datasets = sortedExpenseCategories.map((category, index) => {
+
+  // Baue Datasets aus existierenden Kategorien
+  const datasets = [];
+  sortedExpenseCategories.forEach((category, index) => {
     const values = years.map(year => {
       const expenses = extractExpenses(profitLossReports[year]);
       return expenses[category] || 0;
     });
-    
-    // Farben basierend auf Index
     const colorIndex = index % COLORS.chartColors.length;
     const color = COLORS.chartColors[colorIndex];
-    
-    return {
+    datasets.push({
       label: category,
       data: values,
       backgroundColor: `#${color}`,
       borderColor: `#${color}`,
       borderWidth: 1,
       stack: 'stack1'
-    };
+    });
   });
-  
-  // Berechne maximale Gesamtsumme für Y-Achse
-  const maxTotal = Math.max(...years.map(year => {
+
+  // Berechne Delta der Summe Schulden aus Entwicklung.csv für die gegebenen years
+  // (als Fallback für fehlende Darlehensleistung-Kategorie)
+  const deltaSchuldenByYearLocal = computeDeltaSchuldenForYears(years);
+
+  // Füge Dataset für 'Darlehensleistung' hinzu: benutze vorhandene Werte falls vorhanden,
+  // ansonsten zeige das Delta der Summe Schulden (aus Entwicklung.csv) in den Jahren,
+  // in denen die Kategorie nicht existiert.
+  const darlehensLabel = 'Darlehensleistung';
+  const darlehensValues = years.map(year => {
     const expenses = extractExpenses(profitLossReports[year]);
-    return Object.values(expenses).reduce((sum, val) => sum + val, 0);
-  }));
-  
-  // Runde auf nächste 20.000 für Y-Achse
-  const yAxisMax = Math.ceil(maxTotal / 20000) * 20000;
+    if (expenses[darlehensLabel] !== undefined) return expenses[darlehensLabel];
+    // Falls nicht vorhanden, nutze Delta der Summe Schulden
+    return deltaSchuldenByYearLocal[year] || 0;
+  });
+
+  // Prüfe, ob Darlehensleistung bereits als Kategorie existiert
+  const alreadyExists = sortedExpenseCategories.includes(darlehensLabel);
+  if (!alreadyExists) {
+    const colorIndex = datasets.length % COLORS.chartColors.length;
+    const color = COLORS.chartColors[colorIndex];
+    // Wenn alle Werte 0, füge nicht hinzu
+    const anyNonZero = darlehensValues.some(v => Math.abs(v) > 0.0001);
+    if (anyNonZero) {
+      datasets.push({
+        label: darlehensLabel,
+        data: darlehensValues,
+        backgroundColor: `#${color}`,
+        borderColor: `#${color}`,
+        borderWidth: 1,
+        stack: 'stack1'
+      });
+    }
+  } else {
+    // Wenn bereits vorhanden, aktualisiere das bestehende Dataset, ersetze 0-Werte durch Delta
+    datasets.forEach(ds => {
+      if (ds.label === darlehensLabel) {
+        ds.data = years.map((year, idx) => {
+          const expenses = extractExpenses(profitLossReports[year]);
+          if (expenses[darlehensLabel] !== undefined) return expenses[darlehensLabel];
+          return deltaSchuldenByYearLocal[year] || 0;
+        });
+      }
+    });
+  }
+
+  // Bestimme maximale Gesamtsumme pro Jahr für Y-Achse
+  const maxTotal = Math.max(...years.map((year, yi) => {
+    return datasets.reduce((sum, ds) => sum + (ds.data[yi] || 0), 0);
+  }).concat([0]));
+  const yAxisMax = Math.max(20000, Math.ceil(maxTotal / 20000) * 20000);
   
   // Erstelle Chart-Konfiguration für QuickChart
   const configuration = {
