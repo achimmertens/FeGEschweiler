@@ -997,7 +997,17 @@ async function createExpensesChart(profitLossReports, years) {
     };
     // Wenn Kategorie in Top-10, aktiviere Datalabels nur für dieses Dataset
     ds.datalabels = {
-      display: true,
+      // Nur anzeigen, wenn der Wert != 0 (vermeidet z.B. "Darlehensleistungen 0 €")
+      display: function(context) {
+        try {
+          const v = context && context.dataset && context.dataset.data && typeof context.dataIndex === 'number'
+            ? context.dataset.data[context.dataIndex]
+            : (context && context.parsed ? context.parsed : 0);
+          return Math.abs(v || 0) > 0.5; // Schwelle: >0.5
+        } catch (e) {
+          return false;
+        }
+      },
       color: '#ffffff',
       font: { weight: 'bold', size: 22 },
       formatter: function(value, context) {
