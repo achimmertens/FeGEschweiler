@@ -821,7 +821,7 @@ async function createIncomeChart(profitLossReports, years) {
             boxWidth: 15,
             padding: 8,
             font: {
-              size: 10
+              size: 26
             }
           }
         },
@@ -987,8 +987,13 @@ async function createExpensesChart(profitLossReports, years) {
     });
     const colorIndex = index % COLORS.chartColors.length;
     const color = COLORS.chartColors[colorIndex];
+    // Wenn 'Weiterleitung' im Kategorienamen vorkommt, ersetze es durch 'WL'
+    let shortLabel = category;
+    if (typeof category === 'string' && category.indexOf('Weiterleitung') !== -1) {
+      shortLabel = category.replace(/Weiterleitung/g, 'WL');
+    }
     const ds = {
-      label: category,
+      label: shortLabel,
       data: values,
       backgroundColor: `#${color}`,
       borderColor: `#${color}`,
@@ -1009,7 +1014,8 @@ async function createExpensesChart(profitLossReports, years) {
         }
       },
       color: '#ffffff',
-      font: { weight: 'bold', size: 22 },
+      // Kategorie-Schriftgröße auf ca. 80% setzen (22 -> 18)
+      font: { weight: 'bold', size: 18 },
       formatter: function(value, context) {
         try {
           const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';
@@ -1088,7 +1094,7 @@ async function createExpensesChart(profitLossReports, years) {
             boxWidth: 30,
             padding: 16,
             font: {
-              size: 20
+              size: 40
             }
           }
         },
@@ -1111,6 +1117,10 @@ async function createExpensesChart(profitLossReports, years) {
           title: {
             display: false
           },
+          ticks: {
+            // Schriftgröße der Achsenbeschriftung (verdoppelt)
+            font: { size: 20 }
+          },
           grid: {
             display: true,
             color: 'rgba(0, 0, 0, 0.1)'
@@ -1122,6 +1132,8 @@ async function createExpensesChart(profitLossReports, years) {
           max: yAxisMax,
           ticks: {
             stepSize: 20000,
+            // Schriftgröße der Y-Achsenbeschriftungen (verdoppelt)
+            font: { size: 20 },
             callback: function(value) {
               return formatGermanNumber(value);
             }
@@ -1143,8 +1155,9 @@ async function createExpensesChart(profitLossReports, years) {
   // Erstelle QuickChart-Instanz
   const chart = new QuickChart();
   chart.setConfig(configuration);
-  chart.setWidth(1200);
-  chart.setHeight(1200);
+  // Reduziere Auflösung um Faktor 2 (verringert DPI und führt zu besserer Lesbarkeit der Schriftarten)
+  chart.setWidth(1000);
+  chart.setHeight(800);
   chart.setFormat('png');
   chart.setBackgroundColor('white');
   
@@ -1244,8 +1257,8 @@ async function createExpensesPieChart(profitLossReports, years) {
   // Erstelle QuickChart-Instanz
   const chart = new QuickChart();
   chart.setConfig(configuration);
-  chart.setWidth(1200);
-  chart.setHeight(800);
+  chart.setWidth(1000);
+  chart.setHeight(1000);
   chart.setFormat('png');
   chart.setBackgroundColor('white');
   
