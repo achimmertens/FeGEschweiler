@@ -1,453 +1,15 @@
-[2026-02-02T11:20:44.638Z] Starte Generierung der Präsentation...
-[2026-02-02T11:20:45.182Z] Gefundene Jahre: 2023, 2024, 2025
-[2026-02-02T11:20:45.248Z] saveChartAsPNG: Einnahmen_2025.png - configuration:
-{
-  "type": "bar",
-  "data": {
-    "labels": [
-      "2023",
-      "2024",
-      "2025"
-    ],
-    "datasets": [
-      {
-        "label": "Spende von Mitgliedern",
-        "data": [
-          {
-            "y": 134808.58,
-            "__cat": "Spende von Mitgliedern"
-          },
-          {
-            "y": 143404.88,
-            "__cat": "Spende von Mitgliedern"
-          },
-          {
-            "y": 139829.89,
-            "__cat": "Spende von Mitgliedern"
-          }
-        ],
-        "backgroundColor": "#3B82F6",
-        "borderColor": "#ffffff",
-        "borderWidth": 1,
-        "stack": "stack1",
-        "barPercentage": 1,
-        "categoryPercentage": 1,
-        "datalabels": {
-          "display": "function(context) {\r\n        try {\r\n          const v = context && context.dataset && context.dataset.data && typeof context.dataIndex === 'number'\r\n            ? context.dataset.data[context.dataIndex]\r\n            : (context && context.parsed ? context.parsed : 0);\r\n          return Math.abs(v || 0) > 0.5;\r\n        } catch (e) {\r\n          return false;\r\n        }\r\n      }",
-          "color": "#ffffff",
-          "font": {
-            "weight": "bold",
-            "size": 14
-          },
-          "anchor": "center",
-          "align": "center",
-          "formatter": "function(value, context) {\r\n        try {\r\n          const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';\r\n          // show category and value on same line\r\n          return (label ? label + ' ' : '') + (function(v){const n=Math.round(v); return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.');})(value) + ' €';\r\n        } catch (e) {\r\n          return Math.round(value) + ' €';\r\n        }\r\n      }"
-        }
-      },
-      {
-        "label": "Kollekte Eigenbedarf",
-        "data": [
-          {
-            "y": 9681.44,
-            "__cat": "Kollekte Eigenbedarf"
-          },
-          {
-            "y": 12041.66,
-            "__cat": "Kollekte Eigenbedarf"
-          },
-          {
-            "y": 12585.3,
-            "__cat": "Kollekte Eigenbedarf"
-          }
-        ],
-        "backgroundColor": "#10B981",
-        "borderColor": "#ffffff",
-        "borderWidth": 1,
-        "stack": "stack1",
-        "barPercentage": 1,
-        "categoryPercentage": 1,
-        "datalabels": {
-          "display": "function(context) {\r\n        try {\r\n          const v = context && context.dataset && context.dataset.data && typeof context.dataIndex === 'number'\r\n            ? context.dataset.data[context.dataIndex]\r\n            : (context && context.parsed ? context.parsed : 0);\r\n          return Math.abs(v || 0) > 0.5;\r\n        } catch (e) {\r\n          return false;\r\n        }\r\n      }",
-          "color": "#ffffff",
-          "font": {
-            "weight": "bold",
-            "size": 14
-          },
-          "anchor": "center",
-          "align": "center",
-          "formatter": "function(value, context) {\r\n        try {\r\n          const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';\r\n          // show category and value on same line\r\n          return (label ? label + ' ' : '') + (function(v){const n=Math.round(v); return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.');})(value) + ' €';\r\n        } catch (e) {\r\n          return Math.round(value) + ' €';\r\n        }\r\n      }"
-        }
-      },
-      {
-        "label": "Freizeitbeträge Teilnehmer",
-        "data": [
-          {
-            "y": 5440.5,
-            "__cat": "Freizeitbeträge Teilnehmer"
-          },
-          {
-            "y": 780,
-            "__cat": "Freizeitbeträge Teilnehmer"
-          },
-          {
-            "y": 10100,
-            "__cat": "Freizeitbeträge Teilnehmer"
-          }
-        ],
-        "backgroundColor": "#F59E0B",
-        "borderColor": "#ffffff",
-        "borderWidth": 1,
-        "stack": "stack1",
-        "barPercentage": 1,
-        "categoryPercentage": 1,
-        "datalabels": {
-          "display": "function(context) {\r\n        try {\r\n          const v = context && context.dataset && context.dataset.data && typeof context.dataIndex === 'number'\r\n            ? context.dataset.data[context.dataIndex]\r\n            : (context && context.parsed ? context.parsed : 0);\r\n          return Math.abs(v || 0) > 0.5;\r\n        } catch (e) {\r\n          return false;\r\n        }\r\n      }",
-          "color": "#ffffff",
-          "font": {
-            "weight": "bold",
-            "size": 14
-          },
-          "anchor": "center",
-          "align": "center",
-          "formatter": "function(value, context) {\r\n        try {\r\n          const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';\r\n          // show category and value on same line\r\n          return (label ? label + ' ' : '') + (function(v){const n=Math.round(v); return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.');})(value) + ' €';\r\n        } catch (e) {\r\n          return Math.round(value) + ' €';\r\n        }\r\n      }"
-        }
-      },
-      {
-        "label": "Spende von Freunden",
-        "data": [
-          {
-            "y": 2093.38,
-            "__cat": "Spende von Freunden"
-          },
-          {
-            "y": 5590,
-            "__cat": "Spende von Freunden"
-          },
-          {
-            "y": 6130,
-            "__cat": "Spende von Freunden"
-          }
-        ],
-        "backgroundColor": "#EF4444",
-        "borderColor": "#ffffff",
-        "borderWidth": 1,
-        "stack": "stack1",
-        "barPercentage": 1,
-        "categoryPercentage": 1,
-        "datalabels": {
-          "display": "function(context) {\r\n        try {\r\n          const v = context && context.dataset && context.dataset.data && typeof context.dataIndex === 'number'\r\n            ? context.dataset.data[context.dataIndex]\r\n            : (context && context.parsed ? context.parsed : 0);\r\n          return Math.abs(v || 0) > 0.5;\r\n        } catch (e) {\r\n          return false;\r\n        }\r\n      }",
-          "color": "#ffffff",
-          "font": {
-            "weight": "bold",
-            "size": 14
-          },
-          "anchor": "center",
-          "align": "center",
-          "formatter": "function(value, context) {\r\n        try {\r\n          const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';\r\n          // show category and value on same line\r\n          return (label ? label + ' ' : '') + (function(v){const n=Math.round(v); return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.');})(value) + ' €';\r\n        } catch (e) {\r\n          return Math.round(value) + ' €';\r\n        }\r\n      }"
-        }
-      },
-      {
-        "label": "Spende für Allianz-Mission",
-        "data": [
-          {
-            "y": 2200,
-            "__cat": "Spende für Allianz-Mission"
-          },
-          {
-            "y": 3720,
-            "__cat": "Spende für Allianz-Mission"
-          },
-          {
-            "y": 3730,
-            "__cat": "Spende für Allianz-Mission"
-          }
-        ],
-        "backgroundColor": "#8B5CF6",
-        "borderColor": "#ffffff",
-        "borderWidth": 1,
-        "stack": "stack1",
-        "barPercentage": 1,
-        "categoryPercentage": 1,
-        "datalabels": {
-          "display": "function(context) {\r\n        try {\r\n          const v = context && context.dataset && context.dataset.data && typeof context.dataIndex === 'number'\r\n            ? context.dataset.data[context.dataIndex]\r\n            : (context && context.parsed ? context.parsed : 0);\r\n          return Math.abs(v || 0) > 0.5;\r\n        } catch (e) {\r\n          return false;\r\n        }\r\n      }",
-          "color": "#ffffff",
-          "font": {
-            "weight": "bold",
-            "size": 14
-          },
-          "anchor": "center",
-          "align": "center",
-          "formatter": "function(value, context) {\r\n        try {\r\n          const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';\r\n          // show category and value on same line\r\n          return (label ? label + ' ' : '') + (function(v){const n=Math.round(v); return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.');})(value) + ' €';\r\n        } catch (e) {\r\n          return Math.round(value) + ' €';\r\n        }\r\n      }"
-        }
-      },
-      {
-        "label": "Vermietung",
-        "data": [
-          {
-            "y": 1785,
-            "__cat": "Vermietung"
-          },
-          {
-            "y": 2940,
-            "__cat": "Vermietung"
-          },
-          {
-            "y": 4292,
-            "__cat": "Vermietung"
-          }
-        ],
-        "backgroundColor": "#EC4899",
-        "borderColor": "#ffffff",
-        "borderWidth": 1,
-        "stack": "stack1",
-        "barPercentage": 1,
-        "categoryPercentage": 1,
-        "datalabels": {
-          "display": "function(context) {\r\n        try {\r\n          const v = context && context.dataset && context.dataset.data && typeof context.dataIndex === 'number'\r\n            ? context.dataset.data[context.dataIndex]\r\n            : (context && context.parsed ? context.parsed : 0);\r\n          return Math.abs(v || 0) > 0.5;\r\n        } catch (e) {\r\n          return false;\r\n        }\r\n      }",
-          "color": "#ffffff",
-          "font": {
-            "weight": "bold",
-            "size": 14
-          },
-          "anchor": "center",
-          "align": "center",
-          "formatter": "function(value, context) {\r\n        try {\r\n          const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';\r\n          // show category and value on same line\r\n          return (label ? label + ' ' : '') + (function(v){const n=Math.round(v); return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.');})(value) + ' €';\r\n        } catch (e) {\r\n          return Math.round(value) + ' €';\r\n        }\r\n      }"
-        }
-      },
-      {
-        "label": "Kollekte zur Weiterleitung",
-        "data": [
-          {
-            "y": 2576.62,
-            "__cat": "Kollekte zur Weiterleitung"
-          },
-          {
-            "y": 1997.45,
-            "__cat": "Kollekte zur Weiterleitung"
-          },
-          {
-            "y": 1113.15,
-            "__cat": "Kollekte zur Weiterleitung"
-          }
-        ],
-        "backgroundColor": "#06B6D4",
-        "borderColor": "#ffffff",
-        "borderWidth": 1,
-        "stack": "stack1",
-        "barPercentage": 1,
-        "categoryPercentage": 1,
-        "datalabels": {
-          "display": "function(context) {\r\n        try {\r\n          const v = context && context.dataset && context.dataset.data && typeof context.dataIndex === 'number'\r\n            ? context.dataset.data[context.dataIndex]\r\n            : (context && context.parsed ? context.parsed : 0);\r\n          return Math.abs(v || 0) > 0.5;\r\n        } catch (e) {\r\n          return false;\r\n        }\r\n      }",
-          "color": "#ffffff",
-          "font": {
-            "weight": "bold",
-            "size": 14
-          },
-          "anchor": "center",
-          "align": "center",
-          "formatter": "function(value, context) {\r\n        try {\r\n          const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';\r\n          // show category and value on same line\r\n          return (label ? label + ' ' : '') + (function(v){const n=Math.round(v); return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.');})(value) + ' €';\r\n        } catch (e) {\r\n          return Math.round(value) + ' €';\r\n        }\r\n      }"
-        }
-      },
-      {
-        "label": "Sonstiges",
-        "data": [
-          {
-            "y": 1254.33,
-            "__cat": "Sonstiges"
-          },
-          {
-            "y": 809.21,
-            "__cat": "Sonstiges"
-          },
-          {
-            "y": 363.23,
-            "__cat": "Sonstiges"
-          }
-        ],
-        "backgroundColor": "#A9A9A9",
-        "borderColor": "#ffffff",
-        "borderWidth": 1,
-        "stack": "stack1",
-        "barPercentage": 1,
-        "categoryPercentage": 1,
-        "datalabels": {
-          "display": "function(context) {\r\n        try {\r\n          const v = context && context.dataset && context.dataset.data && typeof context.dataIndex === 'number'\r\n            ? context.dataset.data[context.dataIndex]\r\n            : (context && context.parsed ? context.parsed : 0);\r\n          return Math.abs(v || 0) > 0.5;\r\n        } catch (e) {\r\n          return false;\r\n        }\r\n      }",
-          "color": "#ffffff",
-          "font": {
-            "weight": "bold",
-            "size": 14
-          },
-          "anchor": "center",
-          "align": "center",
-          "formatter": "function(value, context) {\r\n        try {\r\n          const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';\r\n          // show category and value on same line\r\n          return (label ? label + ' ' : '') + (function(v){const n=Math.round(v); return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.');})(value) + ' €';\r\n        } catch (e) {\r\n          return Math.round(value) + ' €';\r\n        }\r\n      }"
-        }
-      },
-      {
-        "label": "Sonstige Einnahmen",
-        "data": [
-          {
-            "y": 3126.19,
-            "__cat": "Sonstige Einnahmen"
-          },
-          {
-            "y": 102,
-            "__cat": "Sonstige Einnahmen"
-          },
-          {
-            "y": 600,
-            "__cat": "Sonstige Einnahmen"
-          }
-        ],
-        "backgroundColor": "#F97316",
-        "borderColor": "#ffffff",
-        "borderWidth": 1,
-        "stack": "stack1",
-        "barPercentage": 1,
-        "categoryPercentage": 1,
-        "datalabels": {
-          "display": "function(context) {\r\n        try {\r\n          const v = context && context.dataset && context.dataset.data && typeof context.dataIndex === 'number'\r\n            ? context.dataset.data[context.dataIndex]\r\n            : (context && context.parsed ? context.parsed : 0);\r\n          return Math.abs(v || 0) > 0.5;\r\n        } catch (e) {\r\n          return false;\r\n        }\r\n      }",
-          "color": "#ffffff",
-          "font": {
-            "weight": "bold",
-            "size": 14
-          },
-          "anchor": "center",
-          "align": "center",
-          "formatter": "function(value, context) {\r\n        try {\r\n          const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';\r\n          // show category and value on same line\r\n          return (label ? label + ' ' : '') + (function(v){const n=Math.round(v); return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.');})(value) + ' €';\r\n        } catch (e) {\r\n          return Math.round(value) + ' €';\r\n        }\r\n      }"
-        }
-      },
-      {
-        "label": "Spende für Bund FeG",
-        "data": [
-          {
-            "y": 120,
-            "__cat": "Spende für Bund FeG"
-          },
-          {
-            "y": 1570,
-            "__cat": "Spende für Bund FeG"
-          },
-          {
-            "y": 1350,
-            "__cat": "Spende für Bund FeG"
-          }
-        ],
-        "backgroundColor": "#6366F1",
-        "borderColor": "#ffffff",
-        "borderWidth": 1,
-        "stack": "stack1",
-        "barPercentage": 1,
-        "categoryPercentage": 1,
-        "datalabels": {
-          "display": "function(context) {\r\n        try {\r\n          const v = context && context.dataset && context.dataset.data && typeof context.dataIndex === 'number'\r\n            ? context.dataset.data[context.dataIndex]\r\n            : (context && context.parsed ? context.parsed : 0);\r\n          return Math.abs(v || 0) > 0.5;\r\n        } catch (e) {\r\n          return false;\r\n        }\r\n      }",
-          "color": "#ffffff",
-          "font": {
-            "weight": "bold",
-            "size": 14
-          },
-          "anchor": "center",
-          "align": "center",
-          "formatter": "function(value, context) {\r\n        try {\r\n          const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';\r\n          // show category and value on same line\r\n          return (label ? label + ' ' : '') + (function(v){const n=Math.round(v); return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.');})(value) + ' €';\r\n        } catch (e) {\r\n          return Math.round(value) + ' €';\r\n        }\r\n      }"
-        }
-      },
-      {
-        "label": "Sonstiges",
-        "data": [
-          {
-            "y": 1254.33,
-            "__cat": "Sonstiges"
-          },
-          {
-            "y": 809.21,
-            "__cat": "Sonstiges"
-          },
-          {
-            "y": 363.23,
-            "__cat": "Sonstiges"
-          }
-        ],
-        "backgroundColor": "#A9A9A9",
-        "borderColor": "#ffffff",
-        "borderWidth": 1,
-        "stack": "stack1",
-        "barPercentage": 1,
-        "categoryPercentage": 1,
-        "datalabels": {
-          "display": "function(context) {\r\n        try {\r\n          const v = context && context.dataset && context.dataset.data && typeof context.dataIndex === 'number'\r\n            ? context.dataset.data[context.dataIndex]\r\n            : (context && context.parsed ? context.parsed : 0);\r\n          return Math.abs(v || 0) > 0.5;\r\n        } catch (e) {\r\n          return false;\r\n        }\r\n      }",
-          "color": "#ffffff",
-          "font": {
-            "weight": "bold",
-            "size": 14
-          },
-          "anchor": "center",
-          "align": "center",
-          "formatter": "function(value, context) {\r\n        try {\r\n          const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';\r\n          // show category and value on same line\r\n          return (label ? label + ' ' : '') + (function(v){const n=Math.round(v); return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.');})(value) + ' €';\r\n        } catch (e) {\r\n          return Math.round(value) + ' €';\r\n        }\r\n      }"
-        }
-      }
-    ]
-  },
-  "options": {
-    "indexAxis": "x",
-    "plugins": {
-      "datalabels": {
-        "display": true,
-        "color": "#ffffff",
-        "font": {
-          "weight": "bold",
-          "size": 14
-        },
-        "anchor": "center",
-        "align": "center",
-        "formatter": "function(value, context) {\r\n          try {\r\n            const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';\r\n            return (label ? label + ' ' : '') + (function(v){const n=Math.round(v); return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.');})(value) + ' €';\r\n          } catch (e) {\r\n            return Math.round(value) + ' €';\r\n          }\r\n        }"
-      }
-    },
-    "elements": {
-      "bar": {
-        "barThickness": 80,
-        "maxBarThickness": 140
-      }
-    },
-    "scales": {
-      "x": {
-        "stacked": true,
-        "title": {
-          "display": false
-        },
-        "ticks": {
-          "font": {
-            "size": 20
-          }
-        },
-        "grid": {
-          "display": true,
-          "color": "rgba(0, 0, 0, 0.1)"
-        }
-      },
-      "y": {
-        "stacked": true,
-        "beginAtZero": true,
-        "ticks": {
-          "stepSize": 20000,
-          "font": {
-            "size": 20
-          },
-          "callback": "function(value) { const n = Math.round(value); return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); }"
-        },
-        "title": {
-          "display": false
-        },
-        "grid": {
-          "display": true,
-          "color": "rgba(0, 0, 0, 0.1)"
-        }
-      }
-    },
-    "responsive": false,
-    "maintainAspectRatio": false
-  }
-}
-
-[2026-02-02T11:20:45.948Z] saveChartAsPNG: Ausgaben_2025.png - configuration:
+[2026-02-02T14:26:23.474Z] Starte Generierung der Präsentation...
+[2026-02-02T14:26:24.009Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-02T14:26:24.067Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-02T14:26:24.067Z] sortedExpensesData rows: 11
+[2026-02-02T14:26:24.068Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
+[2026-02-02T14:26:24.071Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Einnahmen JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-02T14:26:24.073Z] Einnahmen JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[charts] generateAusgabenChartFromJson called for 2025
+[charts] QuickChart config for Ausgaben_2025:
 {
   "type": "bar",
   "data": {
@@ -462,373 +24,1495 @@
         "data": [
           {
             "y": 61013.45,
-            "__cat": "Pastor"
+            "__cat": "Pastor",
+            "label": "Pastor"
           },
           {
             "y": 63591.79,
-            "__cat": "Pastor"
+            "__cat": "Pastor",
+            "label": "Pastor"
           },
           {
             "y": 66705.58,
-            "__cat": "Pastor"
+            "__cat": "Pastor",
+            "label": "Pastor"
           }
         ],
         "backgroundColor": "#3B82F6",
         "borderColor": "#ffffff",
         "borderWidth": 1,
-        "stack": "stack1",
-        "barPercentage": 1,
-        "categoryPercentage": 1,
-        "datalabels": {
-          "display": "function(context) {\r\n        try {\r\n          const v = context && context.dataset && context.dataset.data && typeof context.dataIndex === 'number'\r\n            ? context.dataset.data[context.dataIndex]\r\n            : (context && context.parsed ? context.parsed : 0);\r\n          return Math.abs(v || 0) > 0.5;\r\n        } catch (e) {\r\n          return false;\r\n        }\r\n      }",
-          "color": "#ffffff",
-          "font": {
-            "weight": "bold",
-            "size": 18
-          },
-          "anchor": "center",
-          "align": "center",
-          "formatter": "function(value, context) {\r\n        try {\r\n          const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';\r\n          // show category and value on same line\r\n          return (label ? label + ' ' : '') + (function(v){const n=Math.round(v); return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.');})(value) + ' €';\r\n        } catch (e) {\r\n          return Math.round(value) + ' €';\r\n        }\r\n      }"
-        }
+        "stack": "stack1"
       },
       {
         "label": "Darlehensleistungen",
         "data": [
           {
-            "y": 38200,
-            "__cat": "Darlehensleistungen"
+            "y": -38200,
+            "__cat": "Darlehensleistungen",
+            "label": "Darlehensleistungen"
           },
           {
-            "y": 0,
-            "__cat": "Darlehensleistungen"
+            "y": -15513.49,
+            "__cat": "Darlehensleistungen",
+            "label": "Darlehensleistungen"
           },
           {
-            "y": 0,
-            "__cat": "Darlehensleistungen"
+            "y": -14564.69,
+            "__cat": "Darlehensleistungen",
+            "label": "Darlehensleistungen"
           }
         ],
         "backgroundColor": "#10B981",
         "borderColor": "#ffffff",
         "borderWidth": 1,
-        "stack": "stack1",
-        "barPercentage": 1,
-        "categoryPercentage": 1,
-        "datalabels": {
-          "display": "function(context) {\r\n        try {\r\n          const v = context && context.dataset && context.dataset.data && typeof context.dataIndex === 'number'\r\n            ? context.dataset.data[context.dataIndex]\r\n            : (context && context.parsed ? context.parsed : 0);\r\n          return Math.abs(v || 0) > 0.5;\r\n        } catch (e) {\r\n          return false;\r\n        }\r\n      }",
-          "color": "#ffffff",
-          "font": {
-            "weight": "bold",
-            "size": 18
-          },
-          "anchor": "center",
-          "align": "center",
-          "formatter": "function(value, context) {\r\n        try {\r\n          const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';\r\n          // show category and value on same line\r\n          return (label ? label + ' ' : '') + (function(v){const n=Math.round(v); return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.');})(value) + ' €';\r\n        } catch (e) {\r\n          return Math.round(value) + ' €';\r\n        }\r\n      }"
-        }
-      },
-      {
-        "label": "Zinsen für Darlehen",
-        "data": [
-          {
-            "y": 0,
-            "__cat": "Zinsen für Darlehen"
-          },
-          {
-            "y": 15513.49,
-            "__cat": "Zinsen für Darlehen"
-          },
-          {
-            "y": 14564.69,
-            "__cat": "Zinsen für Darlehen"
-          }
-        ],
-        "backgroundColor": "#F59E0B",
-        "borderColor": "#ffffff",
-        "borderWidth": 1,
-        "stack": "stack1",
-        "barPercentage": 1,
-        "categoryPercentage": 1,
-        "datalabels": {
-          "display": "function(context) {\r\n        try {\r\n          const v = context && context.dataset && context.dataset.data && typeof context.dataIndex === 'number'\r\n            ? context.dataset.data[context.dataIndex]\r\n            : (context && context.parsed ? context.parsed : 0);\r\n          return Math.abs(v || 0) > 0.5;\r\n        } catch (e) {\r\n          return false;\r\n        }\r\n      }",
-          "color": "#ffffff",
-          "font": {
-            "weight": "bold",
-            "size": 18
-          },
-          "anchor": "center",
-          "align": "center",
-          "formatter": "function(value, context) {\r\n        try {\r\n          const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';\r\n          // show category and value on same line\r\n          return (label ? label + ' ' : '') + (function(v){const n=Math.round(v); return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.');})(value) + ' €';\r\n        } catch (e) {\r\n          return Math.round(value) + ' €';\r\n        }\r\n      }"
-        }
+        "stack": "stack1"
       },
       {
         "label": "Weiterleitung an Bund FeG",
         "data": [
           {
             "y": 8130.36,
-            "__cat": "Weiterleitung an Bund FeG"
+            "__cat": "Weiterleitung an Bund FeG",
+            "label": "Weiterleitung an Bund FeG"
           },
           {
             "y": 9004.95,
-            "__cat": "Weiterleitung an Bund FeG"
+            "__cat": "Weiterleitung an Bund FeG",
+            "label": "Weiterleitung an Bund FeG"
           },
           {
             "y": 9865.26,
-            "__cat": "Weiterleitung an Bund FeG"
+            "__cat": "Weiterleitung an Bund FeG",
+            "label": "Weiterleitung an Bund FeG"
           }
         ],
-        "backgroundColor": "#EF4444",
+        "backgroundColor": "#F59E0B",
         "borderColor": "#ffffff",
         "borderWidth": 1,
-        "stack": "stack1",
-        "barPercentage": 1,
-        "categoryPercentage": 1,
-        "datalabels": {
-          "display": "function(context) {\r\n        try {\r\n          const v = context && context.dataset && context.dataset.data && typeof context.dataIndex === 'number'\r\n            ? context.dataset.data[context.dataIndex]\r\n            : (context && context.parsed ? context.parsed : 0);\r\n          return Math.abs(v || 0) > 0.5;\r\n        } catch (e) {\r\n          return false;\r\n        }\r\n      }",
-          "color": "#ffffff",
-          "font": {
-            "weight": "bold",
-            "size": 18
-          },
-          "anchor": "center",
-          "align": "center",
-          "formatter": "function(value, context) {\r\n        try {\r\n          const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';\r\n          // show category and value on same line\r\n          return (label ? label + ' ' : '') + (function(v){const n=Math.round(v); return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.');})(value) + ' €';\r\n        } catch (e) {\r\n          return Math.round(value) + ' €';\r\n        }\r\n      }"
-        }
+        "stack": "stack1"
       },
       {
         "label": "Heizung",
         "data": [
           {
             "y": 7114.33,
-            "__cat": "Heizung"
+            "__cat": "Heizung",
+            "label": "Heizung"
           },
           {
             "y": 8084.86,
-            "__cat": "Heizung"
+            "__cat": "Heizung",
+            "label": "Heizung"
           },
           {
             "y": 6511.03,
-            "__cat": "Heizung"
+            "__cat": "Heizung",
+            "label": "Heizung"
           }
         ],
-        "backgroundColor": "#8B5CF6",
+        "backgroundColor": "#EF4444",
         "borderColor": "#ffffff",
         "borderWidth": 1,
-        "stack": "stack1",
-        "barPercentage": 1,
-        "categoryPercentage": 1,
-        "datalabels": {
-          "display": "function(context) {\r\n        try {\r\n          const v = context && context.dataset && context.dataset.data && typeof context.dataIndex === 'number'\r\n            ? context.dataset.data[context.dataIndex]\r\n            : (context && context.parsed ? context.parsed : 0);\r\n          return Math.abs(v || 0) > 0.5;\r\n        } catch (e) {\r\n          return false;\r\n        }\r\n      }",
-          "color": "#ffffff",
-          "font": {
-            "weight": "bold",
-            "size": 18
-          },
-          "anchor": "center",
-          "align": "center",
-          "formatter": "function(value, context) {\r\n        try {\r\n          const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';\r\n          // show category and value on same line\r\n          return (label ? label + ' ' : '') + (function(v){const n=Math.round(v); return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.');})(value) + ' €';\r\n        } catch (e) {\r\n          return Math.round(value) + ' €';\r\n        }\r\n      }"
-        }
+        "stack": "stack1"
       },
       {
         "label": "Reinigung",
         "data": [
           {
             "y": 7491.78,
-            "__cat": "Reinigung"
+            "__cat": "Reinigung",
+            "label": "Reinigung"
           },
           {
             "y": 7227.68,
-            "__cat": "Reinigung"
+            "__cat": "Reinigung",
+            "label": "Reinigung"
           },
           {
             "y": 6777.95,
-            "__cat": "Reinigung"
+            "__cat": "Reinigung",
+            "label": "Reinigung"
           }
         ],
-        "backgroundColor": "#EC4899",
+        "backgroundColor": "#8B5CF6",
         "borderColor": "#ffffff",
         "borderWidth": 1,
-        "stack": "stack1",
-        "barPercentage": 1,
-        "categoryPercentage": 1,
-        "datalabels": {
-          "display": "function(context) {\r\n        try {\r\n          const v = context && context.dataset && context.dataset.data && typeof context.dataIndex === 'number'\r\n            ? context.dataset.data[context.dataIndex]\r\n            : (context && context.parsed ? context.parsed : 0);\r\n          return Math.abs(v || 0) > 0.5;\r\n        } catch (e) {\r\n          return false;\r\n        }\r\n      }",
-          "color": "#ffffff",
-          "font": {
-            "weight": "bold",
-            "size": 18
-          },
-          "anchor": "center",
-          "align": "center",
-          "formatter": "function(value, context) {\r\n        try {\r\n          const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';\r\n          // show category and value on same line\r\n          return (label ? label + ' ' : '') + (function(v){const n=Math.round(v); return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.');})(value) + ' €';\r\n        } catch (e) {\r\n          return Math.round(value) + ' €';\r\n        }\r\n      }"
-        }
+        "stack": "stack1"
       },
       {
         "label": "Weiterleitung Mission",
         "data": [
           {
             "y": 5543.81,
-            "__cat": "Weiterleitung Mission"
+            "__cat": "Weiterleitung Mission",
+            "label": "Weiterleitung Mission"
           },
           {
             "y": 4810,
-            "__cat": "Weiterleitung Mission"
+            "__cat": "Weiterleitung Mission",
+            "label": "Weiterleitung Mission"
           },
           {
             "y": 4240,
-            "__cat": "Weiterleitung Mission"
+            "__cat": "Weiterleitung Mission",
+            "label": "Weiterleitung Mission"
           }
         ],
-        "backgroundColor": "#06B6D4",
+        "backgroundColor": "#EC4899",
         "borderColor": "#ffffff",
         "borderWidth": 1,
-        "stack": "stack1",
-        "barPercentage": 1,
-        "categoryPercentage": 1,
-        "datalabels": {
-          "display": "function(context) {\r\n        try {\r\n          const v = context && context.dataset && context.dataset.data && typeof context.dataIndex === 'number'\r\n            ? context.dataset.data[context.dataIndex]\r\n            : (context && context.parsed ? context.parsed : 0);\r\n          return Math.abs(v || 0) > 0.5;\r\n        } catch (e) {\r\n          return false;\r\n        }\r\n      }",
-          "color": "#ffffff",
-          "font": {
-            "weight": "bold",
-            "size": 18
-          },
-          "anchor": "center",
-          "align": "center",
-          "formatter": "function(value, context) {\r\n        try {\r\n          const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';\r\n          // show category and value on same line\r\n          return (label ? label + ' ' : '') + (function(v){const n=Math.round(v); return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.');})(value) + ' €';\r\n        } catch (e) {\r\n          return Math.round(value) + ' €';\r\n        }\r\n      }"
-        }
+        "stack": "stack1"
       },
       {
         "label": "Weiterleitung Diakonie",
         "data": [
           {
             "y": 4052.58,
-            "__cat": "Weiterleitung Diakonie"
+            "__cat": "Weiterleitung Diakonie",
+            "label": "Weiterleitung Diakonie"
           },
           {
             "y": 4330,
-            "__cat": "Weiterleitung Diakonie"
+            "__cat": "Weiterleitung Diakonie",
+            "label": "Weiterleitung Diakonie"
           },
           {
             "y": 5350,
-            "__cat": "Weiterleitung Diakonie"
+            "__cat": "Weiterleitung Diakonie",
+            "label": "Weiterleitung Diakonie"
           }
         ],
-        "backgroundColor": "#84CC16",
+        "backgroundColor": "#06B6D4",
         "borderColor": "#ffffff",
         "borderWidth": 1,
-        "stack": "stack1",
-        "barPercentage": 1,
-        "categoryPercentage": 1,
-        "datalabels": {
-          "display": "function(context) {\r\n        try {\r\n          const v = context && context.dataset && context.dataset.data && typeof context.dataIndex === 'number'\r\n            ? context.dataset.data[context.dataIndex]\r\n            : (context && context.parsed ? context.parsed : 0);\r\n          return Math.abs(v || 0) > 0.5;\r\n        } catch (e) {\r\n          return false;\r\n        }\r\n      }",
-          "color": "#ffffff",
-          "font": {
-            "weight": "bold",
-            "size": 18
-          },
-          "anchor": "center",
-          "align": "center",
-          "formatter": "function(value, context) {\r\n        try {\r\n          const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';\r\n          // show category and value on same line\r\n          return (label ? label + ' ' : '') + (function(v){const n=Math.round(v); return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.');})(value) + ' €';\r\n        } catch (e) {\r\n          return Math.round(value) + ' €';\r\n        }\r\n      }"
-        }
-      },
-      {
-        "label": "Investitionen/Anschaffungen",
-        "data": [
-          {
-            "y": 4353.42,
-            "__cat": "Investitionen/Anschaffungen"
-          },
-          {
-            "y": 3199.28,
-            "__cat": "Investitionen/Anschaffungen"
-          },
-          {
-            "y": 5283.69,
-            "__cat": "Investitionen/Anschaffungen"
-          }
-        ],
-        "backgroundColor": "#F97316",
-        "borderColor": "#ffffff",
-        "borderWidth": 1,
-        "stack": "stack1",
-        "barPercentage": 1,
-        "categoryPercentage": 1,
-        "datalabels": {
-          "display": "function(context) {\r\n        try {\r\n          const v = context && context.dataset && context.dataset.data && typeof context.dataIndex === 'number'\r\n            ? context.dataset.data[context.dataIndex]\r\n            : (context && context.parsed ? context.parsed : 0);\r\n          return Math.abs(v || 0) > 0.5;\r\n        } catch (e) {\r\n          return false;\r\n        }\r\n      }",
-          "color": "#ffffff",
-          "font": {
-            "weight": "bold",
-            "size": 18
-          },
-          "anchor": "center",
-          "align": "center",
-          "formatter": "function(value, context) {\r\n        try {\r\n          const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';\r\n          // show category and value on same line\r\n          return (label ? label + ' ' : '') + (function(v){const n=Math.round(v); return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.');})(value) + ' €';\r\n        } catch (e) {\r\n          return Math.round(value) + ' €';\r\n        }\r\n      }"
-        }
-      },
-      {
-        "label": "Gemeindefreizeit",
-        "data": [
-          {
-            "y": 0,
-            "__cat": "Gemeindefreizeit"
-          },
-          {
-            "y": 0,
-            "__cat": "Gemeindefreizeit"
-          },
-          {
-            "y": 9639.66,
-            "__cat": "Gemeindefreizeit"
-          }
-        ],
-        "backgroundColor": "#6366F1",
-        "borderColor": "#ffffff",
-        "borderWidth": 1,
-        "stack": "stack1",
-        "barPercentage": 1,
-        "categoryPercentage": 1,
-        "datalabels": {
-          "display": "function(context) {\r\n        try {\r\n          const v = context && context.dataset && context.dataset.data && typeof context.dataIndex === 'number'\r\n            ? context.dataset.data[context.dataIndex]\r\n            : (context && context.parsed ? context.parsed : 0);\r\n          return Math.abs(v || 0) > 0.5;\r\n        } catch (e) {\r\n          return false;\r\n        }\r\n      }",
-          "color": "#ffffff",
-          "font": {
-            "weight": "bold",
-            "size": 18
-          },
-          "anchor": "center",
-          "align": "center",
-          "formatter": "function(value, context) {\r\n        try {\r\n          const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';\r\n          // show category and value on same line\r\n          return (label ? label + ' ' : '') + (function(v){const n=Math.round(v); return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.');})(value) + ' €';\r\n        } catch (e) {\r\n          return Math.round(value) + ' €';\r\n        }\r\n      }"
-        }
+        "stack": "stack1"
       },
       {
         "label": "Sonstiges",
         "data": [
           {
-            "y": 25648.539999999997,
-            "__cat": "Sonstiges"
+            "y": 4353.42,
+            "__cat": "Sonstiges",
+            "label": "Sonstiges"
           },
           {
-            "y": 16458.190000000002,
-            "__cat": "Sonstiges"
+            "y": 3199.28,
+            "__cat": "Sonstiges",
+            "label": "Sonstiges"
           },
           {
-            "y": 16004.070000000002,
-            "__cat": "Sonstiges"
+            "y": 14923.349999999999,
+            "__cat": "Sonstiges",
+            "label": "Sonstiges"
           }
         ],
         "backgroundColor": "#A9A9A9",
         "borderColor": "#ffffff",
         "borderWidth": 1,
+        "stack": "stack1"
+      }
+    ]
+  },
+  "options": {
+    "indexAxis": "x",
+    "plugins": {
+      "title": {
+        "display": true,
+        "text": "Ausgaben 2025 nach Kategorien (Top 7 + Sonstiges)",
+        "font": {
+          "size": 20
+        }
+      },
+      "legend": {
+        "position": "top"
+      },
+      "datalabels": {
+        "color": "#ffffff",
+        "formatter": "function(value, context) { try { var dp = (context && context.dataset && context.dataset.data && typeof context.dataIndex === 'number') ? context.dataset.data[context.dataIndex] : null; var ds = (context && context.chart && context.chart.data && context.chart.data.datasets && typeof context.datasetIndex === 'number') ? context.chart.data.datasets[context.datasetIndex] : (context.dataset || {}); var label = (dp && (dp.__cat || dp.label)) || (ds && ds.label) || ''; var v = (dp && dp.y !== undefined) ? dp.y : ((typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0)); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + '\\n' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+        "anchor": "center",
+        "align": "center",
+        "clamp": true,
+        "font": {
+          "weight": "bold",
+          "size": 12
+        }
+      }
+    },
+    "scales": {
+      "x": {
+        "stacked": true
+      },
+      "y": {
+        "stacked": true
+      }
+    }
+  }
+}
+[charts] datasets preview:
+[
+  {
+    "label": "Pastor",
+    "data": [
+      {
+        "y": 61013.45,
+        "__cat": "Pastor",
+        "label": "Pastor"
+      },
+      {
+        "y": 63591.79,
+        "__cat": "Pastor",
+        "label": "Pastor"
+      },
+      {
+        "y": 66705.58,
+        "__cat": "Pastor",
+        "label": "Pastor"
+      }
+    ]
+  },
+  {
+    "label": "Darlehensleistungen",
+    "data": [
+      {
+        "y": -38200,
+        "__cat": "Darlehensleistungen",
+        "label": "Darlehensleistungen"
+      },
+      {
+        "y": -15513.49,
+        "__cat": "Darlehensleistungen",
+        "label": "Darlehensleistungen"
+      },
+      {
+        "y": -14564.69,
+        "__cat": "Darlehensleistungen",
+        "label": "Darlehensleistungen"
+      }
+    ]
+  },
+  {
+    "label": "Weiterleitung an Bund FeG",
+    "data": [
+      {
+        "y": 8130.36,
+        "__cat": "Weiterleitung an Bund FeG",
+        "label": "Weiterleitung an Bund FeG"
+      },
+      {
+        "y": 9004.95,
+        "__cat": "Weiterleitung an Bund FeG",
+        "label": "Weiterleitung an Bund FeG"
+      },
+      {
+        "y": 9865.26,
+        "__cat": "Weiterleitung an Bund FeG",
+        "label": "Weiterleitung an Bund FeG"
+      }
+    ]
+  },
+  {
+    "label": "Heizung",
+    "data": [
+      {
+        "y": 7114.33,
+        "__cat": "Heizung",
+        "label": "Heizung"
+      },
+      {
+        "y": 8084.86,
+        "__cat": "Heizung",
+        "label": "Heizung"
+      },
+      {
+        "y": 6511.03,
+        "__cat": "Heizung",
+        "label": "Heizung"
+      }
+    ]
+  },
+  {
+    "label": "Reinigung",
+    "data": [
+      {
+        "y": 7491.78,
+        "__cat": "Reinigung",
+        "label": "Reinigung"
+      },
+      {
+        "y": 7227.68,
+        "__cat": "Reinigung",
+        "label": "Reinigung"
+      },
+      {
+        "y": 6777.95,
+        "__cat": "Reinigung",
+        "label": "Reinigung"
+      }
+    ]
+  },
+  {
+    "label": "Weiterleitung Mission",
+    "data": [
+      {
+        "y": 5543.81,
+        "__cat": "Weiterleitung Mission",
+        "label": "Weiterleitung Mission"
+      },
+      {
+        "y": 4810,
+        "__cat": "Weiterleitung Mission",
+        "label": "Weiterleitung Mission"
+      },
+      {
+        "y": 4240,
+        "__cat": "Weiterleitung Mission",
+        "label": "Weiterleitung Mission"
+      }
+    ]
+  },
+  {
+    "label": "Weiterleitung Diakonie",
+    "data": [
+      {
+        "y": 4052.58,
+        "__cat": "Weiterleitung Diakonie",
+        "label": "Weiterleitung Diakonie"
+      },
+      {
+        "y": 4330,
+        "__cat": "Weiterleitung Diakonie",
+        "label": "Weiterleitung Diakonie"
+      },
+      {
+        "y": 5350,
+        "__cat": "Weiterleitung Diakonie",
+        "label": "Weiterleitung Diakonie"
+      }
+    ]
+  },
+  {
+    "label": "Sonstiges",
+    "data": [
+      {
+        "y": 4353.42,
+        "__cat": "Sonstiges",
+        "label": "Sonstiges"
+      },
+      {
+        "y": 3199.28,
+        "__cat": "Sonstiges",
+        "label": "Sonstiges"
+      },
+      {
+        "y": 14923.349999999999,
+        "__cat": "Sonstiges",
+        "label": "Sonstiges"
+      }
+    ]
+  }
+]
+[charts] Ausgaben PNG written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.png
+[2026-02-02T14:27:07.320Z] Ausgaben PNG erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.png
+[2026-02-02T14:27:07.344Z] Fertig!
+[2026-02-02T14:27:50.616Z] Starte Generierung der Präsentation...
+[2026-02-02T14:27:51.152Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-02T14:27:51.212Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-02T14:27:51.212Z] sortedExpensesData rows: 11
+[2026-02-02T14:27:51.212Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
+[2026-02-02T14:27:51.215Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Einnahmen JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-02T14:27:51.218Z] Einnahmen JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[charts] generateAusgabenChartFromJson called for 2025
+[charts] QuickChart config for Ausgaben_2025:
+{
+  "type": "bar",
+  "data": {
+    "labels": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "datasets": [
+      {
+        "label": "Pastor",
+        "data": [
+          61013.45,
+          63591.79,
+          66705.58
+        ],
+        "backgroundColor": "#3B82F6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Darlehensleistungen",
+        "data": [
+          -38200,
+          -15513.49,
+          -14564.69
+        ],
+        "backgroundColor": "#10B981",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Weiterleitung an Bund FeG",
+        "data": [
+          8130.36,
+          9004.95,
+          9865.26
+        ],
+        "backgroundColor": "#F59E0B",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Heizung",
+        "data": [
+          7114.33,
+          8084.86,
+          6511.03
+        ],
+        "backgroundColor": "#EF4444",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Reinigung",
+        "data": [
+          7491.78,
+          7227.68,
+          6777.95
+        ],
+        "backgroundColor": "#8B5CF6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Weiterleitung Mission",
+        "data": [
+          5543.81,
+          4810,
+          4240
+        ],
+        "backgroundColor": "#EC4899",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Weiterleitung Diakonie",
+        "data": [
+          4052.58,
+          4330,
+          5350
+        ],
+        "backgroundColor": "#06B6D4",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Sonstiges",
+        "data": [
+          4353.42,
+          3199.28,
+          14923.349999999999
+        ],
+        "backgroundColor": "#A9A9A9",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      }
+    ]
+  },
+  "options": {
+    "indexAxis": "x",
+    "plugins": {
+      "title": {
+        "display": true,
+        "text": "Ausgaben 2025 nach Kategorien (Top 7 + Sonstiges)",
+        "font": {
+          "size": 20
+        }
+      },
+      "legend": {
+        "position": "top"
+      },
+      "datalabels": {
+        "color": "#ffffff",
+        "formatter": "function(value, context) { try { var ds = (context && context.dataset) ? context.dataset : {}; var label = ds.label || ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + '\\n' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+        "anchor": "center",
+        "align": "center",
+        "clamp": true,
+        "font": {
+          "weight": "bold",
+          "size": 12
+        }
+      }
+    },
+    "scales": {
+      "x": {
+        "stacked": true
+      },
+      "y": {
+        "stacked": true
+      }
+    }
+  }
+}
+[charts] datasets preview:
+[
+  {
+    "label": "Pastor",
+    "data": [
+      61013.45,
+      63591.79,
+      66705.58
+    ]
+  },
+  {
+    "label": "Darlehensleistungen",
+    "data": [
+      -38200,
+      -15513.49,
+      -14564.69
+    ]
+  },
+  {
+    "label": "Weiterleitung an Bund FeG",
+    "data": [
+      8130.36,
+      9004.95,
+      9865.26
+    ]
+  },
+  {
+    "label": "Heizung",
+    "data": [
+      7114.33,
+      8084.86,
+      6511.03
+    ]
+  },
+  {
+    "label": "Reinigung",
+    "data": [
+      7491.78,
+      7227.68,
+      6777.95
+    ]
+  },
+  {
+    "label": "Weiterleitung Mission",
+    "data": [
+      5543.81,
+      4810,
+      4240
+    ]
+  },
+  {
+    "label": "Weiterleitung Diakonie",
+    "data": [
+      4052.58,
+      4330,
+      5350
+    ]
+  },
+  {
+    "label": "Sonstiges",
+    "data": [
+      4353.42,
+      3199.28,
+      14923.349999999999
+    ]
+  }
+]
+[charts] Ausgaben PNG written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.png
+[2026-02-02T14:27:51.669Z] Ausgaben PNG erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.png
+[2026-02-02T14:27:51.688Z] Fertig!
+[2026-02-02T14:30:16.439Z] Starte Generierung der Präsentation...
+[2026-02-02T14:30:16.996Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-02T14:30:17.061Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-02T14:30:17.061Z] sortedExpensesData rows: 11
+[2026-02-02T14:30:17.061Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
+[2026-02-02T14:30:17.064Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Einnahmen JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-02T14:30:17.067Z] Einnahmen JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[charts] generateAusgabenChartFromJson called for 2025
+[charts] QuickChart config for Ausgaben_2025:
+{
+  "type": "bar",
+  "data": {
+    "labels": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "datasets": [
+      {
+        "label": "Pastor",
+        "data": [
+          61013.45,
+          63591.79,
+          66705.58
+        ],
+        "backgroundColor": "#3B82F6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Darlehensleistungen",
+        "data": [
+          -38200,
+          -15513.49,
+          -14564.69
+        ],
+        "backgroundColor": "#10B981",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Weiterleitung an Bund FeG",
+        "data": [
+          8130.36,
+          9004.95,
+          9865.26
+        ],
+        "backgroundColor": "#F59E0B",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Heizung",
+        "data": [
+          7114.33,
+          8084.86,
+          6511.03
+        ],
+        "backgroundColor": "#EF4444",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Reinigung",
+        "data": [
+          7491.78,
+          7227.68,
+          6777.95
+        ],
+        "backgroundColor": "#8B5CF6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Weiterleitung Mission",
+        "data": [
+          5543.81,
+          4810,
+          4240
+        ],
+        "backgroundColor": "#EC4899",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Weiterleitung Diakonie",
+        "data": [
+          4052.58,
+          4330,
+          5350
+        ],
+        "backgroundColor": "#06B6D4",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Sonstiges",
+        "data": [
+          4353.42,
+          3199.28,
+          14923.349999999999
+        ],
+        "backgroundColor": "#A9A9A9",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      }
+    ]
+  },
+  "options": {
+    "indexAxis": "x",
+    "plugins": {
+      "title": {
+        "display": true,
+        "text": "Ausgaben 2025 nach Kategorien (Top 7 + Sonstiges)",
+        "font": {
+          "size": 20
+        }
+      },
+      "legend": {
+        "position": "top"
+      },
+      "datalabels": {
+        "color": "#ffffff",
+        "formatter": "function(value, context) { try { var ds = (context && context.dataset) ? context.dataset : {}; var label = ds.label || ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+        "anchor": "center",
+        "align": "center",
+        "clamp": true,
+        "font": {
+          "weight": "bold",
+          "size": 12
+        }
+      }
+    },
+    "scales": {
+      "x": {
+        "stacked": true
+      },
+      "y": {
+        "stacked": true
+      }
+    }
+  }
+}
+[charts] datasets preview:
+[
+  {
+    "label": "Pastor",
+    "data": [
+      61013.45,
+      63591.79,
+      66705.58
+    ]
+  },
+  {
+    "label": "Darlehensleistungen",
+    "data": [
+      -38200,
+      -15513.49,
+      -14564.69
+    ]
+  },
+  {
+    "label": "Weiterleitung an Bund FeG",
+    "data": [
+      8130.36,
+      9004.95,
+      9865.26
+    ]
+  },
+  {
+    "label": "Heizung",
+    "data": [
+      7114.33,
+      8084.86,
+      6511.03
+    ]
+  },
+  {
+    "label": "Reinigung",
+    "data": [
+      7491.78,
+      7227.68,
+      6777.95
+    ]
+  },
+  {
+    "label": "Weiterleitung Mission",
+    "data": [
+      5543.81,
+      4810,
+      4240
+    ]
+  },
+  {
+    "label": "Weiterleitung Diakonie",
+    "data": [
+      4052.58,
+      4330,
+      5350
+    ]
+  },
+  {
+    "label": "Sonstiges",
+    "data": [
+      4353.42,
+      3199.28,
+      14923.349999999999
+    ]
+  }
+]
+[charts] Ausgaben PNG written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.png
+[2026-02-02T14:30:19.814Z] Ausgaben PNG erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.png
+[2026-02-02T14:30:19.832Z] Fertig!
+[2026-02-02T14:31:15.704Z] Starte Generierung der Präsentation...
+[2026-02-02T14:31:16.333Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-02T14:31:16.394Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-02T14:31:16.395Z] sortedExpensesData rows: 11
+[2026-02-02T14:31:16.395Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
+[2026-02-02T14:31:16.397Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Einnahmen JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-02T14:31:16.400Z] Einnahmen JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[charts] generateAusgabenChartFromJson called for 2025
+[charts] QuickChart config for Ausgaben_2025:
+{
+  "type": "bar",
+  "data": {
+    "labels": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "datasets": [
+      {
+        "label": "Pastor",
+        "data": [
+          61013.45,
+          63591.79,
+          66705.58
+        ],
+        "backgroundColor": "#3B82F6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Darlehensleistungen",
+        "data": [
+          -38200,
+          -15513.49,
+          -14564.69
+        ],
+        "backgroundColor": "#10B981",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Weiterleitung an Bund FeG",
+        "data": [
+          8130.36,
+          9004.95,
+          9865.26
+        ],
+        "backgroundColor": "#F59E0B",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Heizung",
+        "data": [
+          7114.33,
+          8084.86,
+          6511.03
+        ],
+        "backgroundColor": "#EF4444",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Reinigung",
+        "data": [
+          7491.78,
+          7227.68,
+          6777.95
+        ],
+        "backgroundColor": "#8B5CF6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Weiterleitung Mission",
+        "data": [
+          5543.81,
+          4810,
+          4240
+        ],
+        "backgroundColor": "#EC4899",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Weiterleitung Diakonie",
+        "data": [
+          4052.58,
+          4330,
+          5350
+        ],
+        "backgroundColor": "#06B6D4",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Sonstiges",
+        "data": [
+          4353.42,
+          3199.28,
+          14923.349999999999
+        ],
+        "backgroundColor": "#A9A9A9",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      }
+    ]
+  },
+  "options": {
+    "indexAxis": "x",
+    "plugins": {
+      "title": {
+        "display": true,
+        "text": "Ausgaben 2025 nach Kategorien (Top 7 + Sonstiges)",
+        "font": {
+          "size": 20
+        }
+      },
+      "legend": {
+        "position": "top"
+      },
+      "datalabels": {
+        "color": "#ffffff",
+        "formatter": "function(value, context) { try { var label = ''; if (context && context.chart && context.chart.data && typeof context.datasetIndex === 'number') { var ds = context.chart.data.datasets[context.datasetIndex]; if (ds && ds.label) label = ds.label; } var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+        "anchor": "center",
+        "align": "center",
+        "clamp": true,
+        "font": {
+          "weight": "bold",
+          "size": 12
+        }
+      }
+    },
+    "scales": {
+      "x": {
+        "stacked": true
+      },
+      "y": {
+        "stacked": true
+      }
+    }
+  }
+}
+[charts] datasets preview:
+[
+  {
+    "label": "Pastor",
+    "data": [
+      61013.45,
+      63591.79,
+      66705.58
+    ]
+  },
+  {
+    "label": "Darlehensleistungen",
+    "data": [
+      -38200,
+      -15513.49,
+      -14564.69
+    ]
+  },
+  {
+    "label": "Weiterleitung an Bund FeG",
+    "data": [
+      8130.36,
+      9004.95,
+      9865.26
+    ]
+  },
+  {
+    "label": "Heizung",
+    "data": [
+      7114.33,
+      8084.86,
+      6511.03
+    ]
+  },
+  {
+    "label": "Reinigung",
+    "data": [
+      7491.78,
+      7227.68,
+      6777.95
+    ]
+  },
+  {
+    "label": "Weiterleitung Mission",
+    "data": [
+      5543.81,
+      4810,
+      4240
+    ]
+  },
+  {
+    "label": "Weiterleitung Diakonie",
+    "data": [
+      4052.58,
+      4330,
+      5350
+    ]
+  },
+  {
+    "label": "Sonstiges",
+    "data": [
+      4353.42,
+      3199.28,
+      14923.349999999999
+    ]
+  }
+]
+[charts] Ausgaben PNG written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.png
+[2026-02-02T14:31:17.048Z] Ausgaben PNG erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.png
+[2026-02-02T14:31:17.065Z] Fertig!
+[2026-02-02T14:31:52.699Z] Starte Generierung der Präsentation...
+[2026-02-02T14:31:53.247Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-02T14:31:53.318Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-02T14:31:53.318Z] sortedExpensesData rows: 11
+[2026-02-02T14:31:53.318Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
+[2026-02-02T14:31:53.320Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Einnahmen JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-02T14:31:53.322Z] Einnahmen JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[charts] generateAusgabenChartFromJson called for 2025
+[charts] QuickChart config for Ausgaben_2025:
+{
+  "type": "bar",
+  "data": {
+    "labels": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "datasets": [
+      {
+        "label": "Pastor",
+        "data": [
+          61013.45,
+          63591.79,
+          66705.58
+        ],
+        "backgroundColor": "#3B82F6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Darlehensleistungen",
+        "data": [
+          -38200,
+          -15513.49,
+          -14564.69
+        ],
+        "backgroundColor": "#10B981",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Weiterleitung an Bund FeG",
+        "data": [
+          8130.36,
+          9004.95,
+          9865.26
+        ],
+        "backgroundColor": "#F59E0B",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Heizung",
+        "data": [
+          7114.33,
+          8084.86,
+          6511.03
+        ],
+        "backgroundColor": "#EF4444",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Reinigung",
+        "data": [
+          7491.78,
+          7227.68,
+          6777.95
+        ],
+        "backgroundColor": "#8B5CF6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Weiterleitung Mission",
+        "data": [
+          5543.81,
+          4810,
+          4240
+        ],
+        "backgroundColor": "#EC4899",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Weiterleitung Diakonie",
+        "data": [
+          4052.58,
+          4330,
+          5350
+        ],
+        "backgroundColor": "#06B6D4",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      },
+      {
+        "label": "Sonstiges",
+        "data": [
+          4353.42,
+          3199.28,
+          14923.349999999999
+        ],
+        "backgroundColor": "#A9A9A9",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1"
+      }
+    ]
+  },
+  "options": {
+    "indexAxis": "x",
+    "plugins": {
+      "title": {
+        "display": true,
+        "text": "Ausgaben 2025 nach Kategorien (Top 7 + Sonstiges)",
+        "font": {
+          "size": 20
+        }
+      },
+      "legend": {
+        "position": "top"
+      },
+      "datalabels": {
+        "color": "#ffffff",
+        "formatter": "function(value, context) { try { var label = ''; if (context && context.chart && context.chart.data && typeof context.datasetIndex === 'number') { var ds = context.chart.data.datasets[context.datasetIndex]; if (ds && ds.label) label = ds.label; } var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+        "anchor": "center",
+        "align": "center",
+        "clamp": true,
+        "font": {
+          "weight": "bold",
+          "size": 12
+        }
+      }
+    },
+    "scales": {
+      "x": {
+        "stacked": true
+      },
+      "y": {
+        "stacked": true
+      }
+    }
+  }
+}
+[charts] datasets preview:
+[
+  {
+    "label": "Pastor",
+    "data": [
+      61013.45,
+      63591.79,
+      66705.58
+    ]
+  },
+  {
+    "label": "Darlehensleistungen",
+    "data": [
+      -38200,
+      -15513.49,
+      -14564.69
+    ]
+  },
+  {
+    "label": "Weiterleitung an Bund FeG",
+    "data": [
+      8130.36,
+      9004.95,
+      9865.26
+    ]
+  },
+  {
+    "label": "Heizung",
+    "data": [
+      7114.33,
+      8084.86,
+      6511.03
+    ]
+  },
+  {
+    "label": "Reinigung",
+    "data": [
+      7491.78,
+      7227.68,
+      6777.95
+    ]
+  },
+  {
+    "label": "Weiterleitung Mission",
+    "data": [
+      5543.81,
+      4810,
+      4240
+    ]
+  },
+  {
+    "label": "Weiterleitung Diakonie",
+    "data": [
+      4052.58,
+      4330,
+      5350
+    ]
+  },
+  {
+    "label": "Sonstiges",
+    "data": [
+      4353.42,
+      3199.28,
+      14923.349999999999
+    ]
+  }
+]
+[charts] Ausgaben PNG written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.png
+[2026-02-02T14:31:53.777Z] Ausgaben PNG erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.png
+[2026-02-02T14:31:53.795Z] Fertig!
+[2026-02-02T14:36:04.463Z] Starte Generierung der Präsentation...
+[2026-02-02T14:36:05.060Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-02T14:36:05.119Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-02T14:36:05.119Z] sortedExpensesData rows: 11
+[2026-02-02T14:36:05.120Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
+[2026-02-02T14:36:05.122Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Einnahmen JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-02T14:36:05.124Z] Einnahmen JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[charts] generateAusgabenChartFromJson called for 2025
+[charts] QuickChart config for Ausgaben_2025:
+{
+  "type": "bar",
+  "data": {
+    "labels": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "datasets": [
+      {
+        "label": "Pastor",
+        "data": [
+          61013.45,
+          63591.79,
+          66705.58
+        ],
+        "backgroundColor": "#3B82F6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
         "stack": "stack1",
-        "barPercentage": 1,
-        "categoryPercentage": 1,
         "datalabels": {
-          "display": "function(context) {\r\n        try {\r\n          const v = context && context.dataset && context.dataset.data && typeof context.dataIndex === 'number'\r\n            ? context.dataset.data[context.dataIndex]\r\n            : (context && context.parsed ? context.parsed : 0);\r\n          return Math.abs(v || 0) > 0.5;\r\n        } catch (e) {\r\n          return false;\r\n        }\r\n      }",
           "color": "#ffffff",
-          "font": {
-            "weight": "bold",
-            "size": 18
-          },
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
           "anchor": "center",
           "align": "center",
-          "formatter": "function(value, context) {\r\n        try {\r\n          const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';\r\n          // show category and value on same line\r\n          return (label ? label + ' ' : '') + (function(v){const n=Math.round(v); return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.');})(value) + ' €';\r\n        } catch (e) {\r\n          return Math.round(value) + ' €';\r\n        }\r\n      }"
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Darlehensleistungen",
+        "data": [
+          -38200,
+          -15513.49,
+          -14564.69
+        ],
+        "backgroundColor": "#10B981",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung an Bund FeG",
+        "data": [
+          8130.36,
+          9004.95,
+          9865.26
+        ],
+        "backgroundColor": "#F59E0B",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Heizung",
+        "data": [
+          7114.33,
+          8084.86,
+          6511.03
+        ],
+        "backgroundColor": "#EF4444",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Reinigung",
+        "data": [
+          7491.78,
+          7227.68,
+          6777.95
+        ],
+        "backgroundColor": "#8B5CF6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Mission",
+        "data": [
+          5543.81,
+          4810,
+          4240
+        ],
+        "backgroundColor": "#EC4899",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Diakonie",
+        "data": [
+          4052.58,
+          4330,
+          5350
+        ],
+        "backgroundColor": "#06B6D4",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Sonstiges",
+        "data": [
+          4353.42,
+          3199.28,
+          14923.349999999999
+        ],
+        "backgroundColor": "#A9A9A9",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
         }
       }
     ]
@@ -836,274 +1520,1769 @@
   "options": {
     "indexAxis": "x",
     "plugins": {
-      "datalabels": {
+      "title": {
         "display": true,
-        "color": "#ffffff",
+        "text": "Ausgaben 2025 nach Kategorien (Top 7 + Sonstiges)",
         "font": {
-          "weight": "bold",
-          "size": 18
-        },
+          "size": 20
+        }
+      },
+      "legend": {
+        "position": "top"
+      },
+      "datalabels": {
+        "color": "#ffffff",
+        "formatter": "function(value, context) { try { var label = ''; if (context && context.chart && context.chart.data && typeof context.datasetIndex === 'number') { var ds = context.chart.data.datasets[context.datasetIndex]; if (ds && ds.label) label = ds.label; } var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
         "anchor": "center",
         "align": "center",
-        "formatter": "function(value, context) {\r\n          try {\r\n            const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';\r\n              // If data point is object, use its y as value and show category and value on same line\r\n              const dp = context && context.dataset && context.dataset.data && typeof context.dataIndex === 'number' ? context.dataset.data[context.dataIndex] : null;\r\n              const v = dp && dp.y !== undefined ? dp.y : value;\r\n              const n = Math.round(v);\r\n              const numFmt = n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.');\r\n              // Display category name and value\r\n              return (label ? label + ' ' : '') + numFmt + ' €';\r\n          } catch (e) {\r\n            return Math.round(value) + ' €';\r\n          }\r\n        }"
-      }
-    },
-    "elements": {
-      "bar": {
-        "barThickness": 80,
-        "maxBarThickness": 140
+        "clamp": true,
+        "font": {
+          "weight": "bold",
+          "size": 12
+        }
       }
     },
     "scales": {
       "x": {
-        "stacked": true,
-        "title": {
-          "display": false
-        },
-        "ticks": {
-          "font": {
-            "size": 20
-          }
-        },
-        "grid": {
-          "display": true,
-          "color": "rgba(0, 0, 0, 0.1)"
-        }
+        "stacked": true
       },
       "y": {
-        "stacked": true,
-        "beginAtZero": true,
-        "ticks": {
-          "stepSize": 20000,
-          "font": {
-            "size": 20
-          },
-          "callback": "function(value) { const n = Math.round(value); return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); }"
-        },
-        "title": {
-          "display": false
-        },
-        "grid": {
-          "display": true,
-          "color": "rgba(0, 0, 0, 0.1)"
-        }
+        "stacked": true
       }
-    },
-    "responsive": false,
-    "maintainAspectRatio": false
+    }
   }
 }
-
-[2026-02-02T11:20:46.332Z] saveChartAsPNG: Ausgaben_Kuchendiagramm_2025.png - configuration:
+[charts] datasets preview:
+[
+  {
+    "label": "Pastor",
+    "data": [
+      61013.45,
+      63591.79,
+      66705.58
+    ]
+  },
+  {
+    "label": "Darlehensleistungen",
+    "data": [
+      -38200,
+      -15513.49,
+      -14564.69
+    ]
+  },
+  {
+    "label": "Weiterleitung an Bund FeG",
+    "data": [
+      8130.36,
+      9004.95,
+      9865.26
+    ]
+  },
+  {
+    "label": "Heizung",
+    "data": [
+      7114.33,
+      8084.86,
+      6511.03
+    ]
+  },
+  {
+    "label": "Reinigung",
+    "data": [
+      7491.78,
+      7227.68,
+      6777.95
+    ]
+  },
+  {
+    "label": "Weiterleitung Mission",
+    "data": [
+      5543.81,
+      4810,
+      4240
+    ]
+  },
+  {
+    "label": "Weiterleitung Diakonie",
+    "data": [
+      4052.58,
+      4330,
+      5350
+    ]
+  },
+  {
+    "label": "Sonstiges",
+    "data": [
+      4353.42,
+      3199.28,
+      14923.349999999999
+    ]
+  }
+]
+[charts] Ausgaben PNG written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.png
+[2026-02-02T14:36:05.692Z] Ausgaben PNG erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.png
+[2026-02-02T14:36:05.710Z] Fertig!
+[2026-02-02T14:36:51.305Z] Starte Generierung der Präsentation...
+[2026-02-02T14:36:51.803Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-02T14:36:51.862Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-02T14:36:51.863Z] sortedExpensesData rows: 11
+[2026-02-02T14:36:51.863Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
+[2026-02-02T14:36:51.865Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Einnahmen JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-02T14:36:51.867Z] Einnahmen JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[charts] generateAusgabenChartFromJson called for 2025
+[charts] QuickChart config for Ausgaben_2025:
 {
-  "type": "pie",
+  "type": "bar",
   "data": {
     "labels": [
-      "Pastor",
-      "Zinsen für Darlehen",
-      "Weiterleitung an Bund FeG",
-      "Gemeindefreizeit",
-      "Reinigung",
-      "Heizung",
-      "Weiterleitung Diakonie",
-      "Investitionen/Anschaffungen",
-      "Weiterleitung Mission",
-      "Versicherungen",
-      "Veranstaltungen",
-      "Strom",
-      "Grundbesitzabgaben",
-      "Kontoführung/Verwaltung",
-      "Gastprediger",
-      "Werbung/Gemeindebrief",
-      "Telefon",
-      "Schulungen",
-      "Wasser",
-      "Weiterleitung an Rheinischer Kreis",
-      "Reparaturen",
-      "Geschenke",
-      "Fahrtkosten",
-      "Büro",
-      "Arbeit mit Kindern und Jugendlichen"
+      "2023",
+      "2024",
+      "2025"
     ],
     "datasets": [
       {
+        "label": "Pastor",
         "data": [
-          66705.58,
-          14564.69,
-          9865.26,
-          9639.66,
-          6777.95,
-          6511.03,
-          5350,
-          5283.69,
-          4240,
-          3569.28,
-          2798.43,
-          2561.49,
-          1607.75,
-          1236.1,
-          902.7,
-          896.36,
-          480.59,
-          425,
-          379.58,
-          350,
-          291.82,
-          225.88,
-          137.18,
-          114.76,
-          27.15
+          61013.45,
+          63591.79,
+          66705.58
         ],
-        "backgroundColor": [
-          "#3B82F6",
-          "#10B981",
-          "#F59E0B",
-          "#EF4444",
-          "#8B5CF6",
-          "#EC4899",
-          "#06B6D4",
-          "#84CC16",
-          "#F97316",
-          "#6366F1",
-          "#14B8A6",
-          "#A855F7",
-          "#F43F5E",
-          "#0EA5E9",
-          "#22C55E",
-          "#3B82F6",
-          "#10B981",
-          "#F59E0B",
-          "#EF4444",
-          "#8B5CF6",
-          "#EC4899",
-          "#06B6D4",
-          "#84CC16",
-          "#F97316",
-          "#6366F1"
-        ],
+        "backgroundColor": "#3B82F6",
         "borderColor": "#ffffff",
-        "borderWidth": 2
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Darlehensleistungen",
+        "data": [
+          -38200,
+          -15513.49,
+          -14564.69
+        ],
+        "backgroundColor": "#10B981",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung an Bund FeG",
+        "data": [
+          8130.36,
+          9004.95,
+          9865.26
+        ],
+        "backgroundColor": "#F59E0B",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Heizung",
+        "data": [
+          7114.33,
+          8084.86,
+          6511.03
+        ],
+        "backgroundColor": "#EF4444",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Reinigung",
+        "data": [
+          7491.78,
+          7227.68,
+          6777.95
+        ],
+        "backgroundColor": "#8B5CF6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Mission",
+        "data": [
+          5543.81,
+          4810,
+          4240
+        ],
+        "backgroundColor": "#EC4899",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Diakonie",
+        "data": [
+          4052.58,
+          4330,
+          5350
+        ],
+        "backgroundColor": "#06B6D4",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Sonstiges",
+        "data": [
+          4353.42,
+          3199.28,
+          14923.349999999999
+        ],
+        "backgroundColor": "#A9A9A9",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
       }
     ]
   },
   "options": {
+    "indexAxis": "x",
     "plugins": {
       "title": {
         "display": true,
-        "text": "Ausgaben nach Kategorien (2025)",
+        "text": "Ausgaben 2025 nach Kategorien (Top 7 + Sonstiges)",
         "font": {
-          "size": 20,
-          "weight": "bold"
-        },
-        "padding": {
-          "top": 10,
-          "bottom": 20
+          "size": 20
         }
       },
       "legend": {
-        "display": true,
-        "position": "right",
-        "labels": {
-          "boxWidth": 15,
-          "padding": 8,
-          "font": {
-            "size": 10
-          }
-        }
+        "position": "top"
       },
-      "tooltip": {
-        "callbacks": {
-          "label": "function(context) {\r\n              const label = context.label || '';\r\n              const value = context.parsed || 0;\r\n              const total = context.dataset.data.reduce((a, b) => a + b, 0);\r\n              const percentage = ((value / total) * 100).toFixed(1);\r\n              return `${label}: ${formatGermanNumber(value)} € (${percentage}%)`;\r\n            }"
+      "datalabels": {
+        "color": "#ffffff",
+        "formatter": "function(value, context) { try { var label = ''; if (context && context.chart && context.chart.data && typeof context.datasetIndex === 'number') { var ds = context.chart.data.datasets[context.datasetIndex]; if (ds && ds.label) label = ds.label; } var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+        "anchor": "center",
+        "align": "center",
+        "clamp": true,
+        "font": {
+          "weight": "bold",
+          "size": 12
         }
       }
     },
-    "responsive": false,
-    "maintainAspectRatio": false
+    "scales": {
+      "x": {
+        "stacked": true
+      },
+      "y": {
+        "stacked": true
+      }
+    }
   }
 }
-
-[2026-02-02T11:20:46.878Z] Fertig!
-[2026-02-02T11:36:01.463Z] Starte Generierung der Präsentation...
-[2026-02-02T11:36:02.107Z] Gefundene Jahre: 2023, 2024, 2025
-[2026-02-02T11:36:02.164Z] Fehler: TypeError: createCharts is not a function
-[2026-02-02T11:37:27.529Z] Starte Generierung der Präsentation...
-[2026-02-02T11:37:28.002Z] Gefundene Jahre: 2023, 2024, 2025
-[2026-02-02T11:37:28.064Z] Fehler: TypeError: createCharts is not a function
-[2026-02-02T11:38:13.759Z] Starte Generierung der Präsentation...
-[2026-02-02T11:38:14.229Z] Gefundene Jahre: 2023, 2024, 2025
-[2026-02-02T11:38:14.294Z] Fehler: TypeError: createCharts is not a function
-[2026-02-02T11:38:48.530Z] Starte Generierung der Präsentation...
-[2026-02-02T11:38:49.041Z] Gefundene Jahre: 2023, 2024, 2025
-[2026-02-02T11:38:49.104Z] Fehler: TypeError: createCharts is not a function
-[2026-02-02T11:39:38.652Z] Starte Generierung der Präsentation...
-[2026-02-02T11:39:39.147Z] Gefundene Jahre: 2023, 2024, 2025
-[2026-02-02T11:39:39.214Z] Fehler: TypeError: createCharts is not a function
-[2026-02-02T11:40:27.224Z] Starte Generierung der Präsentation...
-[2026-02-02T11:40:27.727Z] Gefundene Jahre: 2023, 2024, 2025
-[2026-02-02T11:40:27.797Z] Fehler: TypeError: createCharts is not a function
-[2026-02-02T12:56:42.856Z] Starte Generierung der Präsentation...
-[2026-02-02T12:56:43.578Z] Gefundene Jahre: 2023, 2024, 2025
-[2026-02-02T12:56:43.638Z] Fehler: TypeError: createCharts is not a function
-[2026-02-02T12:57:55.863Z] Starte Generierung der Präsentation...
-[2026-02-02T12:57:56.350Z] Gefundene Jahre: 2023, 2024, 2025
-[2026-02-02T12:57:56.419Z] Fehler: TypeError: createCharts is not a function
-[2026-02-02T13:01:31.117Z] Starte Generierung der Präsentation...
-[2026-02-02T13:01:31.625Z] Gefundene Jahre: 2023, 2024, 2025
-[2026-02-02T13:01:31.687Z] Fehler: ReferenceError: __dirname is not defined
-[2026-02-02T13:02:41.912Z] Starte Generierung der Präsentation...
-[2026-02-02T13:02:42.411Z] Gefundene Jahre: 2023, 2024, 2025
-[2026-02-02T13:02:42.505Z] Fertig!
-[2026-02-02T13:23:30.956Z] Starte Generierung der Präsentation...
-[2026-02-02T13:23:31.446Z] Gefundene Jahre: 2023, 2024, 2025
-[2026-02-02T13:23:31.506Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
-[2026-02-02T13:23:31.506Z] sortedExpensesData rows: 11
-[2026-02-02T13:23:31.507Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
-[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
-[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
-[2026-02-02T13:23:31.509Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
-[2026-02-02T13:23:31.560Z] Fertig!
-[2026-02-02T13:31:38.718Z] Starte Generierung der Präsentation...
-[2026-02-02T13:31:39.196Z] Gefundene Jahre: 2023, 2024, 2025
-[2026-02-02T13:31:39.257Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
-[2026-02-02T13:31:39.258Z] sortedExpensesData rows: 11
-[2026-02-02T13:31:39.258Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
-[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
-[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
-[2026-02-02T13:31:39.261Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
-[2026-02-02T13:31:39.290Z] Fertig!
-[2026-02-02T13:33:28.128Z] Starte Generierung der Präsentation...
-[2026-02-02T13:33:28.662Z] Gefundene Jahre: 2023, 2024, 2025
-[2026-02-02T13:33:28.731Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
-[2026-02-02T13:33:28.732Z] sortedExpensesData rows: 11
-[2026-02-02T13:33:28.732Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
-[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
-[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
-[2026-02-02T13:33:28.734Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
-[2026-02-02T13:33:28.768Z] Fertig!
-[2026-02-02T13:37:51.990Z] Starte Generierung der Präsentation...
-[2026-02-02T13:37:52.495Z] Gefundene Jahre: 2023, 2024, 2025
-[2026-02-02T13:37:52.555Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
-[2026-02-02T13:37:52.556Z] sortedExpensesData rows: 11
-[2026-02-02T13:37:52.556Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
-[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
-[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
-[2026-02-02T13:37:52.558Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
-[charts] Einnahmen JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
-[2026-02-02T13:37:52.560Z] Einnahmen JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
-[2026-02-02T13:37:52.582Z] Fertig!
-[charts] generateAusgabenChartFromJson called for 2025
+[charts] datasets preview:
+[
+  {
+    "label": "Pastor",
+    "data": [
+      61013.45,
+      63591.79,
+      66705.58
+    ]
+  },
+  {
+    "label": "Darlehensleistungen",
+    "data": [
+      -38200,
+      -15513.49,
+      -14564.69
+    ]
+  },
+  {
+    "label": "Weiterleitung an Bund FeG",
+    "data": [
+      8130.36,
+      9004.95,
+      9865.26
+    ]
+  },
+  {
+    "label": "Heizung",
+    "data": [
+      7114.33,
+      8084.86,
+      6511.03
+    ]
+  },
+  {
+    "label": "Reinigung",
+    "data": [
+      7491.78,
+      7227.68,
+      6777.95
+    ]
+  },
+  {
+    "label": "Weiterleitung Mission",
+    "data": [
+      5543.81,
+      4810,
+      4240
+    ]
+  },
+  {
+    "label": "Weiterleitung Diakonie",
+    "data": [
+      4052.58,
+      4330,
+      5350
+    ]
+  },
+  {
+    "label": "Sonstiges",
+    "data": [
+      4353.42,
+      3199.28,
+      14923.349999999999
+    ]
+  }
+]
 [charts] Ausgaben PNG written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.png
-[2026-02-02T13:52:22.521Z] Starte Generierung der Präsentation...
-[2026-02-02T13:52:23.020Z] Gefundene Jahre: 2023, 2024, 2025
-[2026-02-02T13:52:23.116Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
-[2026-02-02T13:52:23.117Z] sortedExpensesData rows: 11
-[2026-02-02T13:52:23.117Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[2026-02-02T14:36:52.612Z] Ausgaben PNG erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.png
+[2026-02-02T14:36:52.629Z] Fertig!
+[2026-02-02T14:44:17.704Z] Starte Generierung der Präsentation...
+[2026-02-02T14:44:18.242Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-02T14:44:18.300Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-02T14:44:18.300Z] sortedExpensesData rows: 11
+[2026-02-02T14:44:18.301Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
 [charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
 [charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
-[2026-02-02T13:52:23.120Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[2026-02-02T14:44:18.303Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
 [charts] Einnahmen JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
-[2026-02-02T13:52:23.123Z] Einnahmen JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-02T14:44:18.306Z] Einnahmen JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
 [charts] generateAusgabenChartFromJson called for 2025
+[charts] QuickChart config for Ausgaben_2025:
+{
+  "type": "bar",
+  "data": {
+    "labels": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "datasets": [
+      {
+        "label": "Pastor",
+        "data": [
+          61013.45,
+          63591.79,
+          66705.58
+        ],
+        "backgroundColor": "#3B82F6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Darlehensleistungen",
+        "data": [
+          -38200,
+          -15513.49,
+          -14564.69
+        ],
+        "backgroundColor": "#10B981",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung an Bund FeG",
+        "data": [
+          8130.36,
+          9004.95,
+          9865.26
+        ],
+        "backgroundColor": "#F59E0B",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Heizung",
+        "data": [
+          7114.33,
+          8084.86,
+          6511.03
+        ],
+        "backgroundColor": "#EF4444",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Reinigung",
+        "data": [
+          7491.78,
+          7227.68,
+          6777.95
+        ],
+        "backgroundColor": "#8B5CF6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Mission",
+        "data": [
+          5543.81,
+          4810,
+          4240
+        ],
+        "backgroundColor": "#EC4899",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Diakonie",
+        "data": [
+          4052.58,
+          4330,
+          5350
+        ],
+        "backgroundColor": "#06B6D4",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Sonstiges",
+        "data": [
+          4353.42,
+          3199.28,
+          14923.349999999999
+        ],
+        "backgroundColor": "#A9A9A9",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      }
+    ]
+  },
+  "options": {
+    "indexAxis": "x",
+    "plugins": {
+      "title": {
+        "display": true,
+        "text": "Ausgaben 2025 nach Kategorien (Top 7 + Sonstiges)",
+        "font": {
+          "size": 20
+        }
+      },
+      "legend": {
+        "position": "top"
+      },
+      "datalabels": {
+        "color": "#ffffff",
+        "formatter": "function(value, context) { try { var label = ''; if (context && context.chart && context.chart.data && typeof context.datasetIndex === 'number') { var ds = context.chart.data.datasets[context.datasetIndex]; if (ds && ds.label) label = ds.label; } var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+        "anchor": "center",
+        "align": "center",
+        "clamp": true,
+        "font": {
+          "weight": "bold",
+          "size": 12
+        }
+      },
+      "annotation": {
+        "annotations": {
+          "ann_0_0": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 30506.725,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Pastor 61.013.45 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_1": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": -19100,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Darlehensleistungen 38.200.00 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_2": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 65078.63,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung an Bund FeG 8.130.36 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_3": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 72700.975,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Heizung 7.114.33 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_4": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 80004.03,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Reinigung 7.491.78 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_5": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 86521.825,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Mission 5.543.81 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_6": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 91320.01999999999,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Diakonie 4.052.58 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_7": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 95523.01999999999,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Sonstiges 4.353.42 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_0": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 31795.895,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Pastor 63.591.79 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_1": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": -7756.745,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Darlehensleistungen 15.513.49 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_2": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 68094.265,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung an Bund FeG 9.004.95 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_3": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 76639.17000000001,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Heizung 8.084.86 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_4": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 84295.44,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Reinigung 7.227.68 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_5": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 90314.28,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Mission 4.810.00 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_6": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 94884.28,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Diakonie 4.330.00 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_7": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 98648.92,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Sonstiges 3.199.28 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_0": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 33352.79,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Pastor 66.705.58 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_1": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": -7282.345,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Darlehensleistungen 14.564.69 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_2": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 71638.20999999999,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung an Bund FeG 9.865.26 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_3": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 79826.355,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Heizung 6.511.03 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_4": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 86470.845,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Reinigung 6.777.95 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_5": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 91979.81999999999,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Mission 4.240.00 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_6": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 96774.81999999999,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Diakonie 5.350.00 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_7": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 106911.495,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Sonstiges 14.923.35 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          }
+        }
+      }
+    },
+    "scales": {
+      "x": {
+        "stacked": true
+      },
+      "y": {
+        "stacked": true
+      }
+    }
+  }
+}
+[charts] datasets preview:
+[
+  {
+    "label": "Pastor",
+    "data": [
+      61013.45,
+      63591.79,
+      66705.58
+    ]
+  },
+  {
+    "label": "Darlehensleistungen",
+    "data": [
+      -38200,
+      -15513.49,
+      -14564.69
+    ]
+  },
+  {
+    "label": "Weiterleitung an Bund FeG",
+    "data": [
+      8130.36,
+      9004.95,
+      9865.26
+    ]
+  },
+  {
+    "label": "Heizung",
+    "data": [
+      7114.33,
+      8084.86,
+      6511.03
+    ]
+  },
+  {
+    "label": "Reinigung",
+    "data": [
+      7491.78,
+      7227.68,
+      6777.95
+    ]
+  },
+  {
+    "label": "Weiterleitung Mission",
+    "data": [
+      5543.81,
+      4810,
+      4240
+    ]
+  },
+  {
+    "label": "Weiterleitung Diakonie",
+    "data": [
+      4052.58,
+      4330,
+      5350
+    ]
+  },
+  {
+    "label": "Sonstiges",
+    "data": [
+      4353.42,
+      3199.28,
+      14923.349999999999
+    ]
+  }
+]
 [charts] Ausgaben PNG written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.png
-[2026-02-02T13:52:23.570Z] Ausgaben PNG erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.png
-[2026-02-02T13:52:23.591Z] Fertig!
+[2026-02-02T14:44:18.840Z] Ausgaben PNG erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.png
+[2026-02-02T14:44:18.858Z] Fertig!
+[2026-02-02T14:44:40.783Z] Starte Generierung der Präsentation...
+[2026-02-02T14:44:41.318Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-02T14:44:41.374Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-02T14:44:41.374Z] sortedExpensesData rows: 11
+[2026-02-02T14:44:41.375Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
+[2026-02-02T14:44:41.377Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Einnahmen JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-02T14:44:41.379Z] Einnahmen JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[charts] generateAusgabenChartFromJson called for 2025
+[charts] QuickChart config for Ausgaben_2025:
+{
+  "type": "bar",
+  "data": {
+    "labels": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "datasets": [
+      {
+        "label": "Pastor",
+        "data": [
+          61013.45,
+          63591.79,
+          66705.58
+        ],
+        "backgroundColor": "#3B82F6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Darlehensleistungen",
+        "data": [
+          -38200,
+          -15513.49,
+          -14564.69
+        ],
+        "backgroundColor": "#10B981",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung an Bund FeG",
+        "data": [
+          8130.36,
+          9004.95,
+          9865.26
+        ],
+        "backgroundColor": "#F59E0B",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Heizung",
+        "data": [
+          7114.33,
+          8084.86,
+          6511.03
+        ],
+        "backgroundColor": "#EF4444",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Reinigung",
+        "data": [
+          7491.78,
+          7227.68,
+          6777.95
+        ],
+        "backgroundColor": "#8B5CF6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Mission",
+        "data": [
+          5543.81,
+          4810,
+          4240
+        ],
+        "backgroundColor": "#EC4899",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Diakonie",
+        "data": [
+          4052.58,
+          4330,
+          5350
+        ],
+        "backgroundColor": "#06B6D4",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Sonstiges",
+        "data": [
+          4353.42,
+          3199.28,
+          14923.349999999999
+        ],
+        "backgroundColor": "#A9A9A9",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      }
+    ]
+  },
+  "options": {
+    "indexAxis": "x",
+    "plugins": {
+      "title": {
+        "display": true,
+        "text": "Ausgaben 2025 nach Kategorien (Top 7 + Sonstiges)",
+        "font": {
+          "size": 20
+        }
+      },
+      "legend": {
+        "position": "top"
+      },
+      "datalabels": {
+        "color": "#ffffff",
+        "formatter": "function(value, context) { try { var label = ''; if (context && context.chart && context.chart.data && typeof context.datasetIndex === 'number') { var ds = context.chart.data.datasets[context.datasetIndex]; if (ds && ds.label) label = ds.label; } var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+        "anchor": "center",
+        "align": "center",
+        "clamp": true,
+        "font": {
+          "weight": "bold",
+          "size": 12
+        }
+      },
+      "annotation": {
+        "annotations": {
+          "ann_0_0": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 30506.725,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Pastor 61.013.45 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_1": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": -19100,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Darlehensleistungen 38.200.00 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_2": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 65078.63,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung an Bund FeG 8.130.36 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_3": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 72700.975,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Heizung 7.114.33 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_4": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 80004.03,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Reinigung 7.491.78 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_5": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 86521.825,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Mission 5.543.81 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_6": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 91320.01999999999,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Diakonie 4.052.58 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_7": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 95523.01999999999,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Sonstiges 4.353.42 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_0": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 31795.895,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Pastor 63.591.79 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_1": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": -7756.745,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Darlehensleistungen 15.513.49 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_2": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 68094.265,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung an Bund FeG 9.004.95 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_3": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 76639.17000000001,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Heizung 8.084.86 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_4": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 84295.44,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Reinigung 7.227.68 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_5": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 90314.28,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Mission 4.810.00 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_6": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 94884.28,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Diakonie 4.330.00 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_7": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 98648.92,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Sonstiges 3.199.28 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_0": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 33352.79,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Pastor 66.705.58 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_1": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": -7282.345,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Darlehensleistungen 14.564.69 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_2": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 71638.20999999999,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung an Bund FeG 9.865.26 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_3": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 79826.355,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Heizung 6.511.03 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_4": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 86470.845,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Reinigung 6.777.95 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_5": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 91979.81999999999,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Mission 4.240.00 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_6": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 96774.81999999999,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Diakonie 5.350.00 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_7": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 106911.495,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Sonstiges 14.923.35 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          }
+        }
+      }
+    },
+    "scales": {
+      "x": {
+        "stacked": true
+      },
+      "y": {
+        "stacked": true
+      }
+    }
+  }
+}
+[charts] datasets preview:
+[
+  {
+    "label": "Pastor",
+    "data": [
+      61013.45,
+      63591.79,
+      66705.58
+    ]
+  },
+  {
+    "label": "Darlehensleistungen",
+    "data": [
+      -38200,
+      -15513.49,
+      -14564.69
+    ]
+  },
+  {
+    "label": "Weiterleitung an Bund FeG",
+    "data": [
+      8130.36,
+      9004.95,
+      9865.26
+    ]
+  },
+  {
+    "label": "Heizung",
+    "data": [
+      7114.33,
+      8084.86,
+      6511.03
+    ]
+  },
+  {
+    "label": "Reinigung",
+    "data": [
+      7491.78,
+      7227.68,
+      6777.95
+    ]
+  },
+  {
+    "label": "Weiterleitung Mission",
+    "data": [
+      5543.81,
+      4810,
+      4240
+    ]
+  },
+  {
+    "label": "Weiterleitung Diakonie",
+    "data": [
+      4052.58,
+      4330,
+      5350
+    ]
+  },
+  {
+    "label": "Sonstiges",
+    "data": [
+      4353.42,
+      3199.28,
+      14923.349999999999
+    ]
+  }
+]
+[charts] Ausgaben PNG written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.png
+[2026-02-02T14:44:41.885Z] Ausgaben PNG erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.png
+[2026-02-02T14:44:41.903Z] Fertig!
