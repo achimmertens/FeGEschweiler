@@ -1,4 +1,19 @@
 import { updateEntwicklungCSV } from './lib/utils.js';
+import fs from 'fs';
+import path from 'path';
+
+const logFilePath = path.join(process.cwd(), 'debug.log');
+
+function logToFile(message) {
+  const timestamp = new Date().toISOString();
+  const logMessage = `[${timestamp}] ${message}\n`;
+  
+  // Log to console
+  console.log(message);
+  
+  // Log to file
+  fs.appendFileSync(logFilePath, logMessage, 'utf8');
+}
 
 /**
  * Erstellt Slide für Ausgaben mit sortierten Daten
@@ -34,6 +49,9 @@ function createExpensesSlide(pres, years) {
     });
   });
   
+  // Log chartData before it's used
+  logToFile('chartData before chart creation: ' + JSON.stringify(chartData, null, 2));
+  
   // Erstelle gestapeltes Balkendiagramm
   slide.addChart(pres.ChartType.bar, chartData, {
     x: 0.5,
@@ -45,7 +63,25 @@ function createExpensesSlide(pres, years) {
     valAxisTitle: 'Betrag (EUR)',
     showLegend: true,
     legendPos: 'b',
-    chartColors: COLORS.chartColors
+    chartColors: COLORS.chartColors,
+    datalabels: {
+      display: true, // Enable datalabels globally, per-dataset config will take precedence
+      formatter: function(value, context) {
+        // Log context for debugging
+        logToFile('Datalabels formatter context: ' + JSON.stringify({
+          value: value,
+          datasetLabel: context.dataset.label,
+          parsed: context.parsed,
+          dataIndex: context.dataIndex
+        }, null, 2));
+        try {
+          const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';
+          return label + ' ' + formatGermanInteger(value) + ' €';
+        } catch (e) {
+          return (context && context.dataset && context.dataset.label ? context.dataset.label + ' ' : '') + Math.round(value) + ' €';
+        }
+      }
+    }
   });
   
   // Füge Zahlenwerte als Tabelle hinzu
@@ -57,7 +93,7 @@ function createExpensesSlide(pres, years) {
     const item = sortedExpensesData.data.find(d => d.category === category);
     const row = [category];
     years.forEach(year => {
-      row.push(formatGermanNumber(item ? item[year] : 0) + ' €');
+      row.push(category + ' ' + formatGermanNumber(item ? item[year] : 0) + ' €');
     });
     tableData.push(row);
   });
@@ -122,7 +158,10 @@ function createExpensesPieChartSlide(pres, years) {
     h: 4.5,
     showLegend: true,
     legendPos: 'r',
-    chartColors: COLORS.chartColors
+    chartColors: COLORS.chartColors,
+    datalabels: {
+      display: true // Enable datalabels globally, per-dataset config will take precedence
+    }
   });
   
   // Füge Tabelle mit Details hinzu
@@ -213,7 +252,10 @@ function createDevelopmentSlide(pres) {
     valAxisTitle: 'Betrag (EUR)',
     showLegend: true,
     legendPos: 'b',
-    chartColors: COLORS.chartColors
+    chartColors: COLORS.chartColors,
+    datalabels: {
+      display: true // Enable datalabels globally, per-dataset config will take precedence
+    }
   });
   
   // Erstelle Tabelle mit Kontoständen
@@ -277,11 +319,11 @@ async function createPresentation() {
   const profitLossReports = readProfitLossReports();
   const years = Object.keys(profitLossReports).sort();
   if (years.length === 0) {
-    console.log('Keine Gewinn-Verlust-Berichte gefunden.');
+    logToFile('Keine Gewinn-Verlust-Berichte gefunden.');
     return;
   }
 
-  console.log(`Gefundene Jahre: ${years.join(', ')}`);
+  logToFile(`Gefundene Jahre: ${years.join(', ')}`);
 
   // Erstelle Excel (liefert sortierte Daten für PPT zurück)
   const excelResult = await createExcelFile(profitLossReports, years);
@@ -295,7 +337,7 @@ async function createPresentation() {
 // Hauptfunktion
 async function main() {
   try {
-    console.log('Starte Generierung der Präsentation...');
+    logToFile('Starte Generierung der Präsentation...');
     
     // Aktualisiere Entwicklung.csv
     updateEntwicklungCSV();
@@ -303,9 +345,9 @@ async function main() {
     // Erstelle PowerPoint-Präsentation (erstellt auch Excel-Datei)
     await createPresentation();
     
-    console.log('Fertig!');
+    logToFile('Fertig!');
   } catch (error) {
-    console.error('Fehler:', error);
+    logToFile('Fehler: ' + error);
     process.exit(1);
   }
 }
