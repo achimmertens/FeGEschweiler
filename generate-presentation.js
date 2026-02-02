@@ -359,19 +359,22 @@ async function createPresentation() {
     logToFile('Error logging sortedExpensesData: ' + e.message);
   }
 
-  // Prefer generating JSON from the sorted expenses data returned by createExcelFile
-  if (chartsModule.generateAusgabenJsonFromSorted) {
-    if (excelResult.sortedExpensesData && Array.isArray(excelResult.sortedExpensesData.data) && excelResult.sortedExpensesData.data.length > 0) {
-      const outPath = chartsModule.generateAusgabenJsonFromSorted(excelResult.sortedExpensesData, years, currentYear);
-      logToFile(`Ausgaben JSON erstellt: ${outPath}`);
-    } else {
-      logToFile('sortedExpensesData empty — falling back to raw reports method');
-      await chartsModule.generateAusgabenJson(currentYear);
-      logToFile('Ausgaben JSON erstellt (fallback raw reports)');
-    }
+  // Generate Ausgaben JSON
+  if (chartsModule.generateAusgabenJsonFromSorted && excelResult.sortedExpensesData && Array.isArray(excelResult.sortedExpensesData.data) && excelResult.sortedExpensesData.data.length > 0) {
+    const outPath = chartsModule.generateAusgabenJsonFromSorted(excelResult.sortedExpensesData, years, currentYear);
+    logToFile(`Ausgaben JSON erstellt: ${outPath}`);
   } else if (chartsModule.generateAusgabenJson) {
     await chartsModule.generateAusgabenJson(currentYear);
-    logToFile(`Ausgaben JSON erstellt (fallback)`);
+    logToFile('Ausgaben JSON erstellt (fallback raw reports)');
+  }
+
+  // Generate Einnahmen JSON (analog)
+  if (chartsModule.generateEinnahmenJsonFromSorted && excelResult.sortedIncomeData && Array.isArray(excelResult.sortedIncomeData.data) && excelResult.sortedIncomeData.data.length > 0) {
+    const outPathInc = chartsModule.generateEinnahmenJsonFromSorted(excelResult.sortedIncomeData, years, currentYear);
+    logToFile(`Einnahmen JSON erstellt: ${outPathInc}`);
+  } else if (chartsModule.generateEinnahmenJson) {
+    await chartsModule.generateEinnahmenJson(currentYear);
+    logToFile('Einnahmen JSON erstellt (fallback raw reports)');
   }
   await createPPT(excelResult.sortedIncomeData, excelResult.sortedExpensesData, excelResult.sortedPieData);
 }
