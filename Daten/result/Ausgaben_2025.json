@@ -2,8 +2,7 @@
   "2023": {
     "Pastor": 61013.45,
     "Sonstiges": 4353.42,
-    "Darlehensleistungen": 38200,
-    "Zinsen für Darlehen": 0,
+    "Darlehensleistungen": -38200,
     "Weiterleitung an Bund FeG": 8130.36,
     "Heizung": 7114.33,
     "Reinigung": 7491.78,
@@ -13,8 +12,7 @@
   "2024": {
     "Pastor": 63591.79,
     "Sonstiges": 3199.28,
-    "Darlehensleistungen": 0,
-    "Zinsen für Darlehen": 15513.49,
+    "Darlehensleistungen": -15513.49,
     "Weiterleitung an Bund FeG": 9004.95,
     "Heizung": 8084.86,
     "Reinigung": 7227.68,
@@ -24,8 +22,7 @@
   "2025": {
     "Pastor": 66705.58,
     "Sonstiges": 14923.349999999999,
-    "Darlehensleistungen": 0,
-    "Zinsen für Darlehen": 14564.69,
+    "Darlehensleistungen": -14564.69,
     "Weiterleitung an Bund FeG": 9865.26,
     "Heizung": 6511.03,
     "Reinigung": 6777.95,

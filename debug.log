@@ -1062,3 +1062,21 @@
 [charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
 [2026-02-02T13:23:31.509Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
 [2026-02-02T13:23:31.560Z] Fertig!
+[2026-02-02T13:31:38.718Z] Starte Generierung der Präsentation...
+[2026-02-02T13:31:39.196Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-02T13:31:39.257Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-02T13:31:39.258Z] sortedExpensesData rows: 11
+[2026-02-02T13:31:39.258Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
+[2026-02-02T13:31:39.261Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[2026-02-02T13:31:39.290Z] Fertig!
+[2026-02-02T13:33:28.128Z] Starte Generierung der Präsentation...
+[2026-02-02T13:33:28.662Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-02T13:33:28.731Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-02T13:33:28.732Z] sortedExpensesData rows: 11
+[2026-02-02T13:33:28.732Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
+[2026-02-02T13:33:28.734Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[2026-02-02T13:33:28.768Z] Fertig!
