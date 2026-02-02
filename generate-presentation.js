@@ -376,12 +376,15 @@ async function createPresentation() {
     await chartsModule.generateEinnahmenJson(currentYear);
     logToFile('Einnahmen JSON erstellt (fallback raw reports)');
   }
-  // Generate Ausgaben PNG from JSON
+  // Generate Ausgaben PNG from JSON using Playwright renderer if available
   try {
     const reportYear = currentYear - 1;
-    if (chartsModule.generateAusgabenChartFromJson) {
+    if (chartsModule.generateAusgabenChartPlaywright) {
+      const pngPath = await chartsModule.generateAusgabenChartPlaywright(reportYear);
+      logToFile(`Ausgaben PNG erstellt (Playwright): ${pngPath}`);
+    } else if (chartsModule.generateAusgabenChartFromJson) {
       const pngPath = await chartsModule.generateAusgabenChartFromJson(reportYear);
-      logToFile(`Ausgaben PNG erstellt: ${pngPath}`);
+      logToFile(`Ausgaben PNG erstellt (QuickChart): ${pngPath}`);
     }
   } catch (e) {
     logToFile('Fehler beim Erzeugen Ausgaben-PNG: ' + e.message);

@@ -3286,3 +3286,2034 @@
 [charts] Ausgaben PNG written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.png
 [2026-02-02T14:44:41.885Z] Ausgaben PNG erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.png
 [2026-02-02T14:44:41.903Z] Fertig!
+[2026-02-02T15:18:17.989Z] Starte Generierung der Präsentation...
+[2026-02-02T15:18:18.013Z] Fehler: Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'exceljs' imported from D:\Users\User\git\FeGEschweiler\lib\excel.js
+[2026-02-02T15:18:44.442Z] Starte Generierung der Präsentation...
+[2026-02-02T15:18:54.128Z] Fehler: Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'pptxgenjs' imported from D:\Users\User\git\FeGEschweiler\lib\ppt.js
+[2026-02-02T15:19:11.752Z] Starte Generierung der Präsentation...
+[2026-02-02T15:19:12.266Z] Fehler: Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'quickchart-js' imported from D:\Users\User\git\FeGEschweiler\lib\charts.js
+[2026-02-02T15:19:33.177Z] Starte Generierung der Präsentation...
+[2026-02-02T15:19:33.785Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-02T15:19:33.843Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-02T15:19:33.844Z] sortedExpensesData rows: 11
+[2026-02-02T15:19:33.844Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
+[2026-02-02T15:19:33.846Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Einnahmen JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-02T15:19:33.848Z] Einnahmen JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[charts] generateAusgabenChartFromJson called for 2025
+[charts] QuickChart config for Ausgaben_2025:
+{
+  "type": "bar",
+  "data": {
+    "labels": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "datasets": [
+      {
+        "label": "Pastor",
+        "data": [
+          61013.45,
+          63591.79,
+          66705.58
+        ],
+        "backgroundColor": "#3B82F6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Darlehensleistungen",
+        "data": [
+          -38200,
+          -15513.49,
+          -14564.69
+        ],
+        "backgroundColor": "#10B981",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung an Bund FeG",
+        "data": [
+          8130.36,
+          9004.95,
+          9865.26
+        ],
+        "backgroundColor": "#F59E0B",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Heizung",
+        "data": [
+          7114.33,
+          8084.86,
+          6511.03
+        ],
+        "backgroundColor": "#EF4444",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Reinigung",
+        "data": [
+          7491.78,
+          7227.68,
+          6777.95
+        ],
+        "backgroundColor": "#8B5CF6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Mission",
+        "data": [
+          5543.81,
+          4810,
+          4240
+        ],
+        "backgroundColor": "#EC4899",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Diakonie",
+        "data": [
+          4052.58,
+          4330,
+          5350
+        ],
+        "backgroundColor": "#06B6D4",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Sonstiges",
+        "data": [
+          4353.42,
+          3199.28,
+          14923.349999999999
+        ],
+        "backgroundColor": "#A9A9A9",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      }
+    ]
+  },
+  "options": {
+    "indexAxis": "x",
+    "plugins": {
+      "title": {
+        "display": true,
+        "text": "Ausgaben 2025 nach Kategorien (Top 7 + Sonstiges)",
+        "font": {
+          "size": 20
+        }
+      },
+      "legend": {
+        "position": "top"
+      },
+      "datalabels": {
+        "color": "#ffffff",
+        "formatter": "function(value, context) { try { var label = ''; if (context && context.chart && context.chart.data && typeof context.datasetIndex === 'number') { var ds = context.chart.data.datasets[context.datasetIndex]; if (ds && ds.label) label = ds.label; } var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+        "anchor": "center",
+        "align": "center",
+        "clamp": true,
+        "font": {
+          "weight": "bold",
+          "size": 12
+        }
+      },
+      "annotation": {
+        "annotations": {
+          "ann_0_0": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 30506.725,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Pastor 61.013.45 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_1": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": -19100,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Darlehensleistungen 38.200.00 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_2": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 65078.63,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung an Bund FeG 8.130.36 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_3": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 72700.975,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Heizung 7.114.33 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_4": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 80004.03,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Reinigung 7.491.78 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_5": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 86521.825,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Mission 5.543.81 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_6": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 91320.01999999999,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Diakonie 4.052.58 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_7": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 95523.01999999999,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Sonstiges 4.353.42 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_0": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 31795.895,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Pastor 63.591.79 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_1": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": -7756.745,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Darlehensleistungen 15.513.49 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_2": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 68094.265,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung an Bund FeG 9.004.95 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_3": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 76639.17000000001,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Heizung 8.084.86 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_4": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 84295.44,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Reinigung 7.227.68 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_5": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 90314.28,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Mission 4.810.00 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_6": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 94884.28,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Diakonie 4.330.00 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_7": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 98648.92,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Sonstiges 3.199.28 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_0": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 33352.79,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Pastor 66.705.58 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_1": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": -7282.345,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Darlehensleistungen 14.564.69 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_2": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 71638.20999999999,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung an Bund FeG 9.865.26 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_3": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 79826.355,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Heizung 6.511.03 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_4": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 86470.845,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Reinigung 6.777.95 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_5": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 91979.81999999999,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Mission 4.240.00 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_6": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 96774.81999999999,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Diakonie 5.350.00 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_7": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 106911.495,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Sonstiges 14.923.35 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          }
+        }
+      }
+    },
+    "scales": {
+      "x": {
+        "stacked": true
+      },
+      "y": {
+        "stacked": true
+      }
+    }
+  }
+}
+[charts] datasets preview:
+[
+  {
+    "label": "Pastor",
+    "data": [
+      61013.45,
+      63591.79,
+      66705.58
+    ]
+  },
+  {
+    "label": "Darlehensleistungen",
+    "data": [
+      -38200,
+      -15513.49,
+      -14564.69
+    ]
+  },
+  {
+    "label": "Weiterleitung an Bund FeG",
+    "data": [
+      8130.36,
+      9004.95,
+      9865.26
+    ]
+  },
+  {
+    "label": "Heizung",
+    "data": [
+      7114.33,
+      8084.86,
+      6511.03
+    ]
+  },
+  {
+    "label": "Reinigung",
+    "data": [
+      7491.78,
+      7227.68,
+      6777.95
+    ]
+  },
+  {
+    "label": "Weiterleitung Mission",
+    "data": [
+      5543.81,
+      4810,
+      4240
+    ]
+  },
+  {
+    "label": "Weiterleitung Diakonie",
+    "data": [
+      4052.58,
+      4330,
+      5350
+    ]
+  },
+  {
+    "label": "Sonstiges",
+    "data": [
+      4353.42,
+      3199.28,
+      14923.349999999999
+    ]
+  }
+]
+[2026-02-02T15:19:33.861Z] Fehler beim Erzeugen Ausgaben-PNG: require is not defined
+[2026-02-02T15:19:33.884Z] Fertig!
+[2026-02-02T15:24:34.791Z] Starte Generierung der Präsentation...
+[2026-02-02T15:24:35.252Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-02T15:24:35.311Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-02T15:24:35.311Z] sortedExpensesData rows: 11
+[2026-02-02T15:24:35.312Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
+[2026-02-02T15:24:35.313Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Einnahmen JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-02T15:24:35.315Z] Einnahmen JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[charts] generateAusgabenChartFromJson called for 2025
+[charts] QuickChart config for Ausgaben_2025:
+{
+  "type": "bar",
+  "data": {
+    "labels": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "datasets": [
+      {
+        "label": "Pastor",
+        "data": [
+          61013.45,
+          63591.79,
+          66705.58
+        ],
+        "backgroundColor": "#3B82F6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Darlehensleistungen",
+        "data": [
+          -38200,
+          -15513.49,
+          -14564.69
+        ],
+        "backgroundColor": "#10B981",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung an Bund FeG",
+        "data": [
+          8130.36,
+          9004.95,
+          9865.26
+        ],
+        "backgroundColor": "#F59E0B",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Heizung",
+        "data": [
+          7114.33,
+          8084.86,
+          6511.03
+        ],
+        "backgroundColor": "#EF4444",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Reinigung",
+        "data": [
+          7491.78,
+          7227.68,
+          6777.95
+        ],
+        "backgroundColor": "#8B5CF6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Mission",
+        "data": [
+          5543.81,
+          4810,
+          4240
+        ],
+        "backgroundColor": "#EC4899",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Diakonie",
+        "data": [
+          4052.58,
+          4330,
+          5350
+        ],
+        "backgroundColor": "#06B6D4",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Sonstiges",
+        "data": [
+          4353.42,
+          3199.28,
+          14923.349999999999
+        ],
+        "backgroundColor": "#A9A9A9",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      }
+    ]
+  },
+  "options": {
+    "indexAxis": "x",
+    "plugins": {
+      "title": {
+        "display": true,
+        "text": "Ausgaben 2025 nach Kategorien (Top 7 + Sonstiges)",
+        "font": {
+          "size": 20
+        }
+      },
+      "legend": {
+        "position": "top"
+      },
+      "datalabels": {
+        "color": "#ffffff",
+        "formatter": "function(value, context) { try { var label = ''; if (context && context.chart && context.chart.data && typeof context.datasetIndex === 'number') { var ds = context.chart.data.datasets[context.datasetIndex]; if (ds && ds.label) label = ds.label; } var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+        "anchor": "center",
+        "align": "center",
+        "clamp": true,
+        "font": {
+          "weight": "bold",
+          "size": 12
+        }
+      },
+      "annotation": {
+        "annotations": {
+          "ann_0_0": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 30506.725,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Pastor 61.013.45 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_1": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": -19100,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Darlehensleistungen 38.200.00 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_2": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 65078.63,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung an Bund FeG 8.130.36 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_3": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 72700.975,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Heizung 7.114.33 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_4": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 80004.03,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Reinigung 7.491.78 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_5": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 86521.825,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Mission 5.543.81 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_6": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 91320.01999999999,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Diakonie 4.052.58 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_7": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 95523.01999999999,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Sonstiges 4.353.42 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_0": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 31795.895,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Pastor 63.591.79 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_1": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": -7756.745,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Darlehensleistungen 15.513.49 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_2": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 68094.265,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung an Bund FeG 9.004.95 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_3": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 76639.17000000001,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Heizung 8.084.86 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_4": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 84295.44,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Reinigung 7.227.68 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_5": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 90314.28,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Mission 4.810.00 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_6": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 94884.28,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Diakonie 4.330.00 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_7": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 98648.92,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Sonstiges 3.199.28 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_0": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 33352.79,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Pastor 66.705.58 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_1": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": -7282.345,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Darlehensleistungen 14.564.69 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_2": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 71638.20999999999,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung an Bund FeG 9.865.26 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_3": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 79826.355,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Heizung 6.511.03 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_4": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 86470.845,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Reinigung 6.777.95 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_5": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 91979.81999999999,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Mission 4.240.00 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_6": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 96774.81999999999,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Diakonie 5.350.00 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_7": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 106911.495,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Sonstiges 14.923.35 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          }
+        }
+      }
+    },
+    "scales": {
+      "x": {
+        "stacked": true
+      },
+      "y": {
+        "stacked": true
+      }
+    }
+  }
+}
+[charts] datasets preview:
+[
+  {
+    "label": "Pastor",
+    "data": [
+      61013.45,
+      63591.79,
+      66705.58
+    ]
+  },
+  {
+    "label": "Darlehensleistungen",
+    "data": [
+      -38200,
+      -15513.49,
+      -14564.69
+    ]
+  },
+  {
+    "label": "Weiterleitung an Bund FeG",
+    "data": [
+      8130.36,
+      9004.95,
+      9865.26
+    ]
+  },
+  {
+    "label": "Heizung",
+    "data": [
+      7114.33,
+      8084.86,
+      6511.03
+    ]
+  },
+  {
+    "label": "Reinigung",
+    "data": [
+      7491.78,
+      7227.68,
+      6777.95
+    ]
+  },
+  {
+    "label": "Weiterleitung Mission",
+    "data": [
+      5543.81,
+      4810,
+      4240
+    ]
+  },
+  {
+    "label": "Weiterleitung Diakonie",
+    "data": [
+      4052.58,
+      4330,
+      5350
+    ]
+  },
+  {
+    "label": "Sonstiges",
+    "data": [
+      4353.42,
+      3199.28,
+      14923.349999999999
+    ]
+  }
+]
+[2026-02-02T15:24:35.321Z] Fehler beim Erzeugen Ausgaben-PNG: require is not defined
+[2026-02-02T15:24:35.342Z] Fertig!
+[2026-02-02T15:25:00.375Z] Starte Generierung der Präsentation...
+[2026-02-02T15:25:00.824Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-02T15:25:00.883Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-02T15:25:00.883Z] sortedExpensesData rows: 11
+[2026-02-02T15:25:00.884Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
+[2026-02-02T15:25:00.886Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Einnahmen JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-02T15:25:00.887Z] Einnahmen JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[charts] generateAusgabenChartFromJson called for 2025
+[charts] QuickChart config for Ausgaben_2025:
+{
+  "type": "bar",
+  "data": {
+    "labels": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "datasets": [
+      {
+        "label": "Pastor",
+        "data": [
+          61013.45,
+          63591.79,
+          66705.58
+        ],
+        "backgroundColor": "#3B82F6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Darlehensleistungen",
+        "data": [
+          -38200,
+          -15513.49,
+          -14564.69
+        ],
+        "backgroundColor": "#10B981",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung an Bund FeG",
+        "data": [
+          8130.36,
+          9004.95,
+          9865.26
+        ],
+        "backgroundColor": "#F59E0B",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Heizung",
+        "data": [
+          7114.33,
+          8084.86,
+          6511.03
+        ],
+        "backgroundColor": "#EF4444",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Reinigung",
+        "data": [
+          7491.78,
+          7227.68,
+          6777.95
+        ],
+        "backgroundColor": "#8B5CF6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Mission",
+        "data": [
+          5543.81,
+          4810,
+          4240
+        ],
+        "backgroundColor": "#EC4899",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Diakonie",
+        "data": [
+          4052.58,
+          4330,
+          5350
+        ],
+        "backgroundColor": "#06B6D4",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Sonstiges",
+        "data": [
+          4353.42,
+          3199.28,
+          14923.349999999999
+        ],
+        "backgroundColor": "#A9A9A9",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "center",
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      }
+    ]
+  },
+  "options": {
+    "indexAxis": "x",
+    "plugins": {
+      "title": {
+        "display": true,
+        "text": "Ausgaben 2025 nach Kategorien (Top 7 + Sonstiges)",
+        "font": {
+          "size": 20
+        }
+      },
+      "legend": {
+        "position": "top"
+      },
+      "datalabels": {
+        "color": "#ffffff",
+        "formatter": "function(value, context) { try { var label = ''; if (context && context.chart && context.chart.data && typeof context.datasetIndex === 'number') { var ds = context.chart.data.datasets[context.datasetIndex]; if (ds && ds.label) label = ds.label; } var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.abs(Number(v) || 0); var parts = n.toFixed(2).split('.'); parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.'); return (label ? label + ' ' : '') + parts.join('.') + ' €'; } catch (e) { return '' + value; } }",
+        "anchor": "center",
+        "align": "center",
+        "clamp": true,
+        "font": {
+          "weight": "bold",
+          "size": 12
+        }
+      },
+      "annotation": {
+        "annotations": {
+          "ann_0_0": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 30506.725,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Pastor 61.013.45 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_1": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": -19100,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Darlehensleistungen 38.200.00 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_2": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 65078.63,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung an Bund FeG 8.130.36 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_3": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 72700.975,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Heizung 7.114.33 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_4": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 80004.03,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Reinigung 7.491.78 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_5": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 86521.825,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Mission 5.543.81 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_6": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 91320.01999999999,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Diakonie 4.052.58 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_0_7": {
+            "type": "label",
+            "xValue": "2023",
+            "yValue": 95523.01999999999,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Sonstiges 4.353.42 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_0": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 31795.895,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Pastor 63.591.79 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_1": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": -7756.745,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Darlehensleistungen 15.513.49 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_2": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 68094.265,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung an Bund FeG 9.004.95 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_3": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 76639.17000000001,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Heizung 8.084.86 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_4": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 84295.44,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Reinigung 7.227.68 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_5": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 90314.28,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Mission 4.810.00 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_6": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 94884.28,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Diakonie 4.330.00 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_1_7": {
+            "type": "label",
+            "xValue": "2024",
+            "yValue": 98648.92,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Sonstiges 3.199.28 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_0": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 33352.79,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Pastor 66.705.58 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_1": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": -7282.345,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Darlehensleistungen 14.564.69 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_2": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 71638.20999999999,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung an Bund FeG 9.865.26 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_3": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 79826.355,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Heizung 6.511.03 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_4": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 86470.845,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Reinigung 6.777.95 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_5": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 91979.81999999999,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Mission 4.240.00 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_6": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 96774.81999999999,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Weiterleitung Diakonie 5.350.00 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          },
+          "ann_2_7": {
+            "type": "label",
+            "xValue": "2025",
+            "yValue": 106911.495,
+            "backgroundColor": "rgba(0,0,0,0)",
+            "content": [
+              "Sonstiges 14.923.35 €"
+            ],
+            "color": "#ffffff",
+            "font": {
+              "size": 12,
+              "weight": "bold"
+            },
+            "position": "center"
+          }
+        }
+      }
+    },
+    "scales": {
+      "x": {
+        "stacked": true
+      },
+      "y": {
+        "stacked": true
+      }
+    }
+  }
+}
+[charts] datasets preview:
+[
+  {
+    "label": "Pastor",
+    "data": [
+      61013.45,
+      63591.79,
+      66705.58
+    ]
+  },
+  {
+    "label": "Darlehensleistungen",
+    "data": [
+      -38200,
+      -15513.49,
+      -14564.69
+    ]
+  },
+  {
+    "label": "Weiterleitung an Bund FeG",
+    "data": [
+      8130.36,
+      9004.95,
+      9865.26
+    ]
+  },
+  {
+    "label": "Heizung",
+    "data": [
+      7114.33,
+      8084.86,
+      6511.03
+    ]
+  },
+  {
+    "label": "Reinigung",
+    "data": [
+      7491.78,
+      7227.68,
+      6777.95
+    ]
+  },
+  {
+    "label": "Weiterleitung Mission",
+    "data": [
+      5543.81,
+      4810,
+      4240
+    ]
+  },
+  {
+    "label": "Weiterleitung Diakonie",
+    "data": [
+      4052.58,
+      4330,
+      5350
+    ]
+  },
+  {
+    "label": "Sonstiges",
+    "data": [
+      4353.42,
+      3199.28,
+      14923.349999999999
+    ]
+  }
+]
+[2026-02-02T15:25:00.893Z] Fehler beim Erzeugen Ausgaben-PNG: require is not defined
+[2026-02-02T15:25:00.915Z] Fertig!
