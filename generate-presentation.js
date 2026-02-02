@@ -376,6 +376,16 @@ async function createPresentation() {
     await chartsModule.generateEinnahmenJson(currentYear);
     logToFile('Einnahmen JSON erstellt (fallback raw reports)');
   }
+  // Generate Ausgaben PNG from JSON
+  try {
+    const reportYear = currentYear - 1;
+    if (chartsModule.generateAusgabenChartFromJson) {
+      const pngPath = await chartsModule.generateAusgabenChartFromJson(reportYear);
+      logToFile(`Ausgaben PNG erstellt: ${pngPath}`);
+    }
+  } catch (e) {
+    logToFile('Fehler beim Erzeugen Ausgaben-PNG: ' + e.message);
+  }
   await createPPT(excelResult.sortedIncomeData, excelResult.sortedExpensesData, excelResult.sortedPieData);
 }
 
