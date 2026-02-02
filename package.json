@@ -1,19 +1,21 @@
 {
-  "name": "feg-eschweiler-presentation",
+  "name": "fe-geschweiler",
   "version": "1.0.0",
-  "description": "Generiert PowerPoint-Präsentationen für die Finanzlage der FeG Eschweiler",
+  "description": "",
   "main": "generate-presentation.js",
   "type": "module",
   "scripts": {
-    "start": "node generate-presentation.js"
+    "start": "node generate-presentation.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-    "pptxgenjs": "^3.12.0",
-    "csv-parse": "^5.5.2",
-    "csv-stringify": "^6.4.4",
-    "exceljs": "^4.4.0",
-    "quickchart-js": "^1.1.1"
-  },
+  "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "chartjs-node-canvas": "^4.1.0",
+    "csv-parse": "^5.5.6",
+    "csv-stringify": "^5.7.0",
+    "pdfmake": "^0.2.10"
+  },
+  "devDependencies": {}
 }

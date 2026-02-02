@@ -1,6 +1,7 @@
 import { updateEntwicklungCSV } from './lib/utils.js';
 import fs from 'fs';
 import path from 'path';
+// charts helper will be imported dynamically in createPresentation
 
 const logFilePath = path.join(process.cwd(), 'debug.log');
 
@@ -33,6 +34,18 @@ function createExpensesSlide(pres, years) {
     align: 'center'
   });
   
+  // Call the new JSON generation function
+  // JSON generation is performed in createPresentation(), do not call here.
+
+  // Remove the old image placeholder as we are now generating JSON
+  // slide.addImage({
+  //   path: chartImagePath,
+  //   x: 0.5,
+  //   y: 1.2,
+  //   w: 9,
+  //   h: 4.5,
+  // });
+
   if (!sortedExpensesData) return;
   
   // Bereite Daten für gestapeltes Balkendiagramm vor
@@ -52,33 +65,29 @@ function createExpensesSlide(pres, years) {
   // Log chartData before it's used
   logToFile('chartData before chart creation: ' + JSON.stringify(chartData, null, 2));
   
-  // Erstelle gestapeltes Balkendiagramm
-  slide.addChart(pres.ChartType.bar, chartData, {
-    x: 0.5,
-    y: 1.2,
-    w: 9,
-    h: 4.5,
-    barGrouping: 'stacked',
-    catAxisTitle: 'Jahr',
-    valAxisTitle: 'Betrag (EUR)',
-    showLegend: true,
-    legendPos: 'b',
-    chartColors: COLORS.chartColors,
-    datalabels: {
-      display: true, // Enable datalabels globally, per-dataset config will take precedence
-      formatter: function(value, context) {
-        // Log context for debugging
-        logToFile('Datalabels formatter context: ' + JSON.stringify({
-          value: value,
-          datasetLabel: context.dataset.label,
-          parsed: context.parsed,
-          dataIndex: context.dataIndex
-        }, null, 2));
-        try {
-          const label = context && context.dataset && context.dataset.label ? context.dataset.label : '';
-          return label + ' ' + formatGermanInteger(value) + ' €';
-        } catch (e) {
-          return (context && context.dataset && context.dataset.label ? context.dataset.label + ' ' : '') + Math.round(value) + ' €';
+// Erstelle gestapeltes Balkendiagramm für Einnahmen
+      slide.addChart(pres.ChartType.bar, incomeChartData, {
+        x: 0.5,
+        y: 1.2,
+        w: 9,
+        h: 4.5,
+        barGrouping: 'stacked',
+        catAxisTitle: 'Jahr',
+        valAxisTitle: 'Betrag (EUR)',
+        showLegend: true,
+        legendPos: 'b',
+        chartColors: COLORS.chartColors,
+        datalabels: {
+          display: true,
+          formatter: function(value, context) {
+            try {
+              // Access category from the data point
+              const dataPoint = context.dataset.data[context.dataIndex];
+              const category = dataPoint.__cat;
+              const formattedValue = formatGermanInteger(value);
+              return category + ': ' + formattedValue + ' €';
+            } catch (e) {
+              return formatGermanInteger(value) + ' €';
         }
       }
     }
@@ -314,7 +323,7 @@ async function createPresentation() {
   const { readProfitLossReports } = await import('./lib/utils.js');
   const { createExcelFile } = await import('./lib/excel.js');
   const { createPPT } = await import('./lib/ppt.js');
-  const { createCharts } = await import('./lib/charts.js');
+  const chartsModule = await import('./lib/charts.js');
 
   const profitLossReports = readProfitLossReports();
   const years = Object.keys(profitLossReports).sort();
@@ -328,9 +337,42 @@ async function createPresentation() {
   // Erstelle Excel (liefert sortierte Daten für PPT zurück)
   const excelResult = await createExcelFile(profitLossReports, years);
 
-  // Erstelle PNG-Charts (als Dateien) und PPT aus den Ergebnissen
-  // Stelle sicher, dass PNGs gespeichert werden bevor PPT erstellt
-  await createCharts(excelResult.sortedIncomeData, excelResult.sortedExpensesData, excelResult.sortedPieData, years);
+  // Debug dump of sortedExpensesData to help diagnose empty JSON output
+  try {
+    const debugOut = path.join(process.cwd(), 'Daten', 'result', 'debug_sortedExpensesData.json');
+    fs.writeFileSync(debugOut, JSON.stringify(excelResult.sortedExpensesData || {}, null, 2), 'utf8');
+    logToFile(`Wrote debug file: ${debugOut}`);
+  } catch (e) {
+    logToFile('Fehler beim Schreiben debug_sortedExpensesData: ' + e.message);
+  }
+
+  // Erstelle JSON-Datei für Ausgaben (Top 9 + Sonstiges) und PPT aus den Ergebnissen
+  // current year used for naming the Ausgaben_YYYY.json (YYYY = currentYear - 1)
+  const currentYear = new Date().getFullYear();
+  // Debug: inspect sortedExpensesData
+  try {
+    logToFile('sortedExpensesData rows: ' + ((excelResult.sortedExpensesData && excelResult.sortedExpensesData.data) ? excelResult.sortedExpensesData.data.length : 0));
+    if (excelResult.sortedExpensesData && excelResult.sortedExpensesData.data && excelResult.sortedExpensesData.data.length > 0) {
+      logToFile('sortedExpensesData sample row: ' + JSON.stringify(excelResult.sortedExpensesData.data[0]));
+    }
+  } catch (e) {
+    logToFile('Error logging sortedExpensesData: ' + e.message);
+  }
+
+  // Prefer generating JSON from the sorted expenses data returned by createExcelFile
+  if (chartsModule.generateAusgabenJsonFromSorted) {
+    if (excelResult.sortedExpensesData && Array.isArray(excelResult.sortedExpensesData.data) && excelResult.sortedExpensesData.data.length > 0) {
+      const outPath = chartsModule.generateAusgabenJsonFromSorted(excelResult.sortedExpensesData, years, currentYear);
+      logToFile(`Ausgaben JSON erstellt: ${outPath}`);
+    } else {
+      logToFile('sortedExpensesData empty — falling back to raw reports method');
+      await chartsModule.generateAusgabenJson(currentYear);
+      logToFile('Ausgaben JSON erstellt (fallback raw reports)');
+    }
+  } else if (chartsModule.generateAusgabenJson) {
+    await chartsModule.generateAusgabenJson(currentYear);
+    logToFile(`Ausgaben JSON erstellt (fallback)`);
+  }
   await createPPT(excelResult.sortedIncomeData, excelResult.sortedExpensesData, excelResult.sortedPieData);
 }
 
