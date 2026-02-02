@@ -272,6 +272,7 @@ async function createPresentation() {
   const { readProfitLossReports } = await import('./lib/utils.js');
   const { createExcelFile } = await import('./lib/excel.js');
   const { createPPT } = await import('./lib/ppt.js');
+  const { createCharts } = await import('./lib/charts.js');
 
   const profitLossReports = readProfitLossReports();
   const years = Object.keys(profitLossReports).sort();
@@ -285,7 +286,9 @@ async function createPresentation() {
   // Erstelle Excel (liefert sortierte Daten für PPT zurück)
   const excelResult = await createExcelFile(profitLossReports, years);
 
-  // Erstelle PPT aus den Ergebnissen
+  // Erstelle PNG-Charts (als Dateien) und PPT aus den Ergebnissen
+  // Stelle sicher, dass PNGs gespeichert werden bevor PPT erstellt
+  await createCharts(excelResult.sortedIncomeData, excelResult.sortedExpensesData, excelResult.sortedPieData, years);
   await createPPT(excelResult.sortedIncomeData, excelResult.sortedExpensesData, excelResult.sortedPieData);
 }
 
