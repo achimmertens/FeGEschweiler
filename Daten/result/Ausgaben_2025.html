@@ -126,7 +126,7 @@
   "display": true,
   "text": "Ausgaben 2025 nach Kategorien",
   "font": {
-    "size": 20
+    "size": 30
   }
 },
       "legend": {
@@ -137,20 +137,21 @@
       "anchor": "center",
       "align": "start",
       "padding": { "left": 6 },
-      "font": { "weight": "bold", "size": 12 },
+      "font": { "weight": "bold", "size": 18 },
       "formatter": function(value, context) {
               try {
                 const label = context.dataset && context.dataset.label ? context.dataset.label : '';
                 const v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : value);
-                const formattedValue = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                return label + ': ' + formattedValue;
+              // Format number to integer and append Euro symbol
+              const formattedValue = Math.round(Number(value) || 0).toLocaleString('de-DE');
+              return (label ? label + ': ' : '') + formattedValue + ' €';
               } catch (e) { return '' + value; }
             }
     }
     },
     "scales": { "x": { "stacked": true }, "y": { "stacked": true } },
     "responsive": false,
-    "maintainAspectRatio": false
+    "maintainAspectRatio": true
   }
     };
     // register plugin

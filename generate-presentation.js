@@ -403,6 +403,9 @@ async function main() {
     // Erstelle PowerPoint-Präsentation (erstellt auch Excel-Datei)
     await createPresentation();
     
+    // Run the chart generation script
+    await import('./scripts/run-chart.js');
+    
     logToFile('Fertig!');
   } catch (error) {
     logToFile('Fehler: ' + error);
