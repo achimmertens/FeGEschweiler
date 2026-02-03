@@ -509,6 +509,34 @@ async function createPresentation() {
       const outHtml = path.join(process.cwd(), 'Daten', 'result', `Entwicklung_${devYears[devYears.length-1]}.html`);
       fs.writeFileSync(outHtml, html, 'utf8');
       logToFile(`Entwicklung HTML erstellt: ${outHtml}`);
+      // Try to render the HTML to a PNG using Playwright (if available)
+      try {
+        const pw = await import('playwright');
+        const browser = await pw.chromium.launch({ headless: true });
+        const page = await browser.newPage({ viewport: { width: 1200, height: 800 } });
+        // Use file:// URL to load the generated HTML
+        const fileUrl = 'file://' + outHtml.replace(/\\/g, '/');
+        await page.goto(fileUrl, { waitUntil: 'networkidle' }).catch(()=>{});
+        // wait a short moment for Chart.js to render
+        await page.waitForSelector('canvas', { timeout: 2000 }).catch(()=>{});
+        await page.waitForTimeout(500);
+        const canvas = await page.$('canvas#chart') || await page.$('canvas');
+        const outPng = path.join(process.cwd(), 'Daten', 'result', `Entwicklung_${devYears[devYears.length-1]}.png`);
+        if (canvas) {
+          const box = await canvas.boundingBox();
+          if (box && box.width > 0 && box.height > 0) {
+            await page.screenshot({ path: outPng, clip: { x: Math.max(0, Math.floor(box.x)), y: Math.max(0, Math.floor(box.y)), width: Math.ceil(box.width), height: Math.ceil(box.height) } });
+          } else {
+            await page.screenshot({ path: outPng, fullPage: true });
+          }
+        } else {
+          await page.screenshot({ path: outPng, fullPage: true });
+        }
+        await browser.close();
+        logToFile(`Entwicklung PNG erstellt (Playwright): ${outPng}`);
+      } catch (e) {
+        logToFile('Playwright-Render für Entwicklung-PNG fehlgeschlagen: ' + (e && e.message ? e.message : String(e)));
+      }
     }
   } catch (e) { logToFile('Fehler beim Erzeugen Entwicklung-HTML: ' + e.message); }
   // Generate Entwicklung chart (based on Entwicklung.csv) as PNG via QuickChart
