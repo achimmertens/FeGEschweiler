@@ -353,6 +353,24 @@ async function createPresentation() {
   // Erstelle JSON-Datei für Ausgaben (Top 9 + Sonstiges) und PPT aus den Ergebnissen
   // current year used for naming the Ausgaben_YYYY.json (YYYY = currentYear - 1)
   const currentYear = new Date().getFullYear();
+  // Also try to parse the latest Budgets_YYYY.txt in the Daten folder and save as CSV in result
+  try {
+    const dataDir = path.join(process.cwd(), 'Daten');
+    const files = fs.existsSync(dataDir) ? fs.readdirSync(dataDir) : [];
+    const budgetFiles = files.map(f => {
+      const m = f.match(/^Budgets_(\d{4})\.txt$/);
+      return m ? { file: path.join(dataDir, f), year: Number(m[1]) } : null;
+    }).filter(Boolean).sort((a,b) => b.year - a.year);
+    if (budgetFiles.length > 0) {
+      const best = budgetFiles[0];
+      const { parseBudgetFile, saveBudgetAsCSV } = await import('./lib/utils.js');
+      const parsed = parseBudgetFile(best.file);
+      const outCsv = saveBudgetAsCSV(parsed, best.year);
+      logToFile(`Budget CSV erstellt aus ${best.file}: ${outCsv}`);
+    } else {
+      logToFile('Keine Budgets_YYYY.txt Datei im Daten-Ordner gefunden.');
+    }
+  } catch (e) { logToFile('Fehler beim Verarbeiten Budget-Datei: ' + (e && e.message ? e.message : String(e))); }
   // Debug: inspect sortedExpensesData
   try {
     logToFile('sortedExpensesData rows: ' + ((excelResult.sortedExpensesData && excelResult.sortedExpensesData.data) ? excelResult.sortedExpensesData.data.length : 0));
