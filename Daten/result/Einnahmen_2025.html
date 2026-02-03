@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { margin: 0; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+  <canvas id="chart" width="1200" height="800"></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <script>
+    const cfg = { "type": "bar", "data": {
+  "labels": [
+    "2023",
+    "2024",
+    "2025"
+  ],
+  "datasets": [
+    {
+      "label": "Spende von Mitgliedern",
+      "data": [
+        134808.58,
+        143404.88,
+        139829.89
+      ],
+      "backgroundColor": "#3B82F6",
+      "borderColor": "#ffffff",
+      "borderWidth": 1,
+      "stack": "stack1"
+    },
+    {
+      "label": "Kollekte Eigenbedarf",
+      "data": [
+        9681.44,
+        12041.66,
+        12585.3
+      ],
+      "backgroundColor": "#10B981",
+      "borderColor": "#ffffff",
+      "borderWidth": 1,
+      "stack": "stack1"
+    },
+    {
+      "label": "Freizeitbeträge Teilnehmer",
+      "data": [
+        5440.5,
+        780,
+        10100
+      ],
+      "backgroundColor": "#F59E0B",
+      "borderColor": "#ffffff",
+      "borderWidth": 1,
+      "stack": "stack1"
+    },
+    {
+      "label": "Spende von Freunden",
+      "data": [
+        2093.38,
+        5590,
+        6130
+      ],
+      "backgroundColor": "#EF4444",
+      "borderColor": "#ffffff",
+      "borderWidth": 1,
+      "stack": "stack1"
+    },
+    {
+      "label": "Spende für Allianz-Mission",
+      "data": [
+        2200,
+        3720,
+        3730
+      ],
+      "backgroundColor": "#8B5CF6",
+      "borderColor": "#ffffff",
+      "borderWidth": 1,
+      "stack": "stack1"
+    },
+    {
+      "label": "Vermietung",
+      "data": [
+        1785,
+        2940,
+        4292
+      ],
+      "backgroundColor": "#EC4899",
+      "borderColor": "#ffffff",
+      "borderWidth": 1,
+      "stack": "stack1"
+    },
+    {
+      "label": "Kollekte zur Weiterleitung",
+      "data": [
+        2576.62,
+        1997.45,
+        1113.15
+      ],
+      "backgroundColor": "#06B6D4",
+      "borderColor": "#ffffff",
+      "borderWidth": 1,
+      "stack": "stack1"
+    },
+    {
+      "label": "Sonstige Einnahmen",
+      "data": [
+        3126.19,
+        102,
+        600
+      ],
+      "backgroundColor": "#84CC16",
+      "borderColor": "#ffffff",
+      "borderWidth": 1,
+      "stack": "stack1"
+    },
+    {
+      "label": "Sonstiges",
+      "data": [
+        1374.33,
+        2379.21,
+        1713.23
+      ],
+      "backgroundColor": "#A9A9A9",
+      "borderColor": "#ffffff",
+      "borderWidth": 1,
+      "stack": "stack1"
+    }
+  ]
+}, "options": {
+    "indexAxis": "x",
+    "plugins": {
+      "title": {
+  "display": true,
+  "text": "Einnahmen 2025",
+  "font": {
+    "size": 30
+  }
+},
+      "legend": {
+  "position": "top"
+},
+      "datalabels": {
+    "color": "#ffffff",
+    "anchor": "center",
+    "align": "center",
+    "padding": { "left": 6 },
+    "font": { "weight": "bold", "size": 18 },
+    "formatter": function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.round(Number(v) || 0); var parts = n.toString().split('.'); return (label ? label + ': ' : '') + n.toLocaleString('de-DE') + ' €'; } catch (e) { return '' + value; } }
+  }
+    },
+    "scales": { "x": { "stacked": true }, "y": { "stacked": true } },
+    "responsive": false,
+    "maintainAspectRatio": true
+  } };
+    Chart.register(ChartDataLabels);
+    const ctx = document.getElementById('chart').getContext('2d');
+    const chart = new Chart(ctx, cfg);
+    window.__chart_ready = true;
+  </script>
+</body>
+</html>

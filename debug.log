@@ -11739,3 +11739,761 @@
 ]
 [2026-02-03T07:18:10.580Z] Fehler beim Erzeugen Ausgaben-PNG: require is not defined
 [2026-02-03T07:18:10.642Z] Fertig!
+[2026-02-03T07:25:55.185Z] Starte Generierung der Präsentation...
+[2026-02-03T07:25:55.655Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T07:25:55.716Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T07:25:55.716Z] sortedExpensesData rows: 11
+[2026-02-03T07:25:55.716Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
+[2026-02-03T07:25:55.718Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Einnahmen JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-03T07:25:55.720Z] Einnahmen JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[charts] generateAusgabenChartFromJson called for 2025
+[charts] QuickChart config for Ausgaben_2025:
+{
+  "type": "bar",
+  "data": {
+    "labels": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "datasets": [
+      {
+        "label": "Pastor",
+        "data": [
+          61013.45,
+          63591.79,
+          66705.58
+        ],
+        "backgroundColor": "#3B82F6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Darlehensleistungen",
+        "data": [
+          -38200,
+          -15513.49,
+          -14564.69
+        ],
+        "backgroundColor": "#10B981",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung an Bund FeG",
+        "data": [
+          8130.36,
+          9004.95,
+          9865.26
+        ],
+        "backgroundColor": "#F59E0B",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Heizung",
+        "data": [
+          7114.33,
+          8084.86,
+          6511.03
+        ],
+        "backgroundColor": "#EF4444",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Reinigung",
+        "data": [
+          7491.78,
+          7227.68,
+          6777.95
+        ],
+        "backgroundColor": "#8B5CF6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Mission",
+        "data": [
+          5543.81,
+          4810,
+          4240
+        ],
+        "backgroundColor": "#EC4899",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Diakonie",
+        "data": [
+          4052.58,
+          4330,
+          5350
+        ],
+        "backgroundColor": "#06B6D4",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Sonstiges",
+        "data": [
+          4353.42,
+          3199.28,
+          14923.349999999999
+        ],
+        "backgroundColor": "#A9A9A9",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      }
+    ]
+  },
+  "options": {
+    "indexAxis": "x",
+    "plugins": {
+      "title": {
+        "display": true,
+        "text": "Ausgaben 2025 nach Kategorien (Top 7 + Sonstiges)",
+        "font": {
+          "size": 20
+        }
+      },
+      "legend": {
+        "position": "top"
+      },
+      "datalabels": {
+        "color": "#ffffff",
+        "formatter": "function(value, context) { try { var label = ''; if (context && context.chart && context.chart.data && typeof context.datasetIndex === 'number') { var ds = context.chart.data.datasets[context.datasetIndex]; if (ds && ds.label) label = ds.label; } var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+        "anchor": "center",
+        "align": "start",
+        "padding": {
+          "left": 6
+        },
+        "clamp": true,
+        "font": {
+          "weight": "bold",
+          "size": 12
+        }
+      }
+    },
+    "scales": {
+      "x": {
+        "stacked": true
+      },
+      "y": {
+        "stacked": true
+      }
+    }
+  }
+}
+[charts] datasets preview:
+[
+  {
+    "label": "Pastor",
+    "data": [
+      61013.45,
+      63591.79,
+      66705.58
+    ]
+  },
+  {
+    "label": "Darlehensleistungen",
+    "data": [
+      -38200,
+      -15513.49,
+      -14564.69
+    ]
+  },
+  {
+    "label": "Weiterleitung an Bund FeG",
+    "data": [
+      8130.36,
+      9004.95,
+      9865.26
+    ]
+  },
+  {
+    "label": "Heizung",
+    "data": [
+      7114.33,
+      8084.86,
+      6511.03
+    ]
+  },
+  {
+    "label": "Reinigung",
+    "data": [
+      7491.78,
+      7227.68,
+      6777.95
+    ]
+  },
+  {
+    "label": "Weiterleitung Mission",
+    "data": [
+      5543.81,
+      4810,
+      4240
+    ]
+  },
+  {
+    "label": "Weiterleitung Diakonie",
+    "data": [
+      4052.58,
+      4330,
+      5350
+    ]
+  },
+  {
+    "label": "Sonstiges",
+    "data": [
+      4353.42,
+      3199.28,
+      14923.349999999999
+    ]
+  }
+]
+[2026-02-03T07:25:55.725Z] Fehler beim Erzeugen Ausgaben-PNG: require is not defined
+[2026-02-03T07:25:55.856Z] Fertig!
+[2026-02-03T07:31:57.137Z] Starte Generierung der Präsentation...
+[2026-02-03T07:31:57.623Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T07:31:57.684Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T07:31:57.684Z] sortedExpensesData rows: 11
+[2026-02-03T07:31:57.685Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
+[2026-02-03T07:31:57.688Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Einnahmen JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-03T07:31:57.690Z] Einnahmen JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[charts] generateAusgabenChartFromJson called for 2025
+[charts] QuickChart config for Ausgaben_2025:
+{
+  "type": "bar",
+  "data": {
+    "labels": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "datasets": [
+      {
+        "label": "Pastor",
+        "data": [
+          61013.45,
+          63591.79,
+          66705.58
+        ],
+        "backgroundColor": "#3B82F6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Darlehensleistungen",
+        "data": [
+          -38200,
+          -15513.49,
+          -14564.69
+        ],
+        "backgroundColor": "#10B981",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung an Bund FeG",
+        "data": [
+          8130.36,
+          9004.95,
+          9865.26
+        ],
+        "backgroundColor": "#F59E0B",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Heizung",
+        "data": [
+          7114.33,
+          8084.86,
+          6511.03
+        ],
+        "backgroundColor": "#EF4444",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Reinigung",
+        "data": [
+          7491.78,
+          7227.68,
+          6777.95
+        ],
+        "backgroundColor": "#8B5CF6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Mission",
+        "data": [
+          5543.81,
+          4810,
+          4240
+        ],
+        "backgroundColor": "#EC4899",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Diakonie",
+        "data": [
+          4052.58,
+          4330,
+          5350
+        ],
+        "backgroundColor": "#06B6D4",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Sonstiges",
+        "data": [
+          4353.42,
+          3199.28,
+          14923.349999999999
+        ],
+        "backgroundColor": "#A9A9A9",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      }
+    ]
+  },
+  "options": {
+    "indexAxis": "x",
+    "plugins": {
+      "title": {
+        "display": true,
+        "text": "Ausgaben 2025 nach Kategorien (Top 7 + Sonstiges)",
+        "font": {
+          "size": 20
+        }
+      },
+      "legend": {
+        "position": "top"
+      },
+      "datalabels": {
+        "color": "#ffffff",
+        "formatter": "function(value, context) { try { var label = ''; if (context && context.chart && context.chart.data && typeof context.datasetIndex === 'number') { var ds = context.chart.data.datasets[context.datasetIndex]; if (ds && ds.label) label = ds.label; } var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+        "anchor": "center",
+        "align": "start",
+        "padding": {
+          "left": 6
+        },
+        "clamp": true,
+        "font": {
+          "weight": "bold",
+          "size": 12
+        }
+      }
+    },
+    "scales": {
+      "x": {
+        "stacked": true
+      },
+      "y": {
+        "stacked": true
+      }
+    }
+  }
+}
+[charts] datasets preview:
+[
+  {
+    "label": "Pastor",
+    "data": [
+      61013.45,
+      63591.79,
+      66705.58
+    ]
+  },
+  {
+    "label": "Darlehensleistungen",
+    "data": [
+      -38200,
+      -15513.49,
+      -14564.69
+    ]
+  },
+  {
+    "label": "Weiterleitung an Bund FeG",
+    "data": [
+      8130.36,
+      9004.95,
+      9865.26
+    ]
+  },
+  {
+    "label": "Heizung",
+    "data": [
+      7114.33,
+      8084.86,
+      6511.03
+    ]
+  },
+  {
+    "label": "Reinigung",
+    "data": [
+      7491.78,
+      7227.68,
+      6777.95
+    ]
+  },
+  {
+    "label": "Weiterleitung Mission",
+    "data": [
+      5543.81,
+      4810,
+      4240
+    ]
+  },
+  {
+    "label": "Weiterleitung Diakonie",
+    "data": [
+      4052.58,
+      4330,
+      5350
+    ]
+  },
+  {
+    "label": "Sonstiges",
+    "data": [
+      4353.42,
+      3199.28,
+      14923.349999999999
+    ]
+  }
+]
+[2026-02-03T07:31:57.695Z] Fehler beim Erzeugen Ausgaben-PNG: require is not defined
+[2026-02-03T07:31:57.721Z] Fehler: SyntaxError: Unexpected identifier 'Einnahmen'
+[2026-02-03T07:32:25.978Z] Starte Generierung der Präsentation...
+[2026-02-03T07:32:26.418Z] Fehler: SyntaxError: Unexpected identifier 'Einnahmen'
+[2026-02-03T07:33:15.377Z] Starte Generierung der Präsentation...
+[2026-02-03T07:33:15.826Z] Fehler: SyntaxError: Unexpected identifier 'Einnahmen'
+[2026-02-03T07:34:28.818Z] Starte Generierung der Präsentation...
+[2026-02-03T07:34:29.263Z] Fehler: SyntaxError: Unexpected identifier 'Einnahmen'
+[2026-02-03T07:35:23.793Z] Starte Generierung der Präsentation...
+[2026-02-03T07:35:24.225Z] Fehler: SyntaxError: Unexpected identifier 'Einnahmen'
+[2026-02-03T07:38:15.423Z] Starte Generierung der Präsentation...
+[2026-02-03T07:38:15.859Z] Fehler: SyntaxError: Unexpected identifier 'Einnahmen'
+[2026-02-03T07:41:30.105Z] Starte Generierung der Präsentation...
+[2026-02-03T07:41:30.568Z] Fehler: SyntaxError: Unexpected identifier 'Einnahmen'
+[2026-02-03T07:52:19.333Z] Starte Generierung der Präsentation...
+[2026-02-03T07:52:25.543Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T07:52:25.602Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T07:52:25.602Z] sortedExpensesData rows: 11
+[2026-02-03T07:52:25.602Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[2026-02-03T07:52:30.049Z] Ausgaben PNG erstellt (Playwright): [object Object]
+[2026-02-03T07:52:30.185Z] Fehler beim Erzeugen Einnahmen-PNG: resultDir is not defined
+[2026-02-03T07:52:30.217Z] Fertig!
+[2026-02-03T07:56:57.757Z] Starte Generierung der Präsentation...
+[2026-02-03T07:56:58.244Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T07:56:58.304Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T07:56:58.304Z] sortedExpensesData rows: 11
+[2026-02-03T07:56:58.304Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[2026-02-03T07:56:59.933Z] Ausgaben PNG erstellt (Playwright): [object Object]
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chart.js, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chart.js, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[income-chart-playwright][pageerror] ReferenceError: reportYear is not defined
+    at about:blank:18:63
+[2026-02-03T07:57:30.805Z] Fehler beim Erzeugen Einnahmen-PNG: Page errors: reportYear is not defined
+[2026-02-03T07:57:30.835Z] Fertig!
+[2026-02-03T08:00:29.148Z] Starte Generierung der Präsentation...
+[2026-02-03T08:00:29.611Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T08:00:29.670Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T08:00:29.670Z] sortedExpensesData rows: 11
+[2026-02-03T08:00:29.670Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[2026-02-03T08:00:31.293Z] Ausgaben PNG erstellt (Playwright): [object Object]
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chart.js, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chart.js, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[2026-02-03T08:00:32.225Z] Einnahmen PNG erstellt (Playwright): [object Object]
+[2026-02-03T08:00:32.255Z] Fertig!
+[2026-02-03T08:00:53.628Z] Starte Generierung der Präsentation...
+[2026-02-03T08:00:54.086Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T08:00:54.146Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T08:00:54.147Z] sortedExpensesData rows: 11
+[2026-02-03T08:00:54.148Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[2026-02-03T08:00:55.725Z] Ausgaben PNG erstellt (Playwright): [object Object]
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chart.js, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chart.js, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[2026-02-03T08:00:56.644Z] Einnahmen PNG erstellt (Playwright): [object Object]
+[2026-02-03T08:00:56.672Z] Fertig!
+[2026-02-03T08:31:02.140Z] Starte Generierung der Präsentation...
+[2026-02-03T08:31:02.621Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T08:31:02.682Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T08:31:02.682Z] sortedExpensesData rows: 11
+[2026-02-03T08:31:02.682Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[2026-02-03T08:31:06.880Z] Ausgaben PNG erstellt (Playwright): [object Object]
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chart.js, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chart.js, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[2026-02-03T08:31:08.018Z] Einnahmen PNG erstellt (Playwright): [object Object]
+[2026-02-03T08:31:08.049Z] Fertig!
+[2026-02-03T08:32:39.985Z] Starte Generierung der Präsentation...
+[2026-02-03T08:32:40.559Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T08:32:40.621Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T08:32:40.621Z] sortedExpensesData rows: 11
+[2026-02-03T08:32:40.622Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[2026-02-03T08:32:43.049Z] Ausgaben PNG erstellt (Playwright): [object Object]
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chart.js, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chart.js, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[2026-02-03T08:32:44.060Z] Einnahmen PNG erstellt (Playwright): [object Object]
+[2026-02-03T08:32:44.094Z] Fertig!

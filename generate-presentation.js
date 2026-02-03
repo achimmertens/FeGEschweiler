@@ -323,7 +323,7 @@ async function createPresentation() {
   const { readProfitLossReports } = await import('./lib/utils.js');
   const { createExcelFile } = await import('./lib/excel.js');
   const { createPPT } = await import('./lib/ppt.js');
-  const chartsModule = await import('./lib/charts.js');
+  const chartsModule = await import('./lib/chart-playwright.js');
 
   const profitLossReports = readProfitLossReports();
   const years = Object.keys(profitLossReports).sort();
@@ -388,6 +388,16 @@ async function createPresentation() {
     }
   } catch (e) {
     logToFile('Fehler beim Erzeugen Ausgaben-PNG: ' + e.message);
+  }
+  // Generate Einnahmen PNG from JSON using Playwright renderer
+  try {
+    const reportYear = currentYear - 1;
+    if (chartsModule.generateEinnahmenChartPlaywright) {
+      const pngPath = await chartsModule.generateEinnahmenChartPlaywright(reportYear);
+      logToFile(`Einnahmen PNG erstellt (Playwright): ${pngPath}`);
+    }
+  } catch (e) {
+    logToFile('Fehler beim Erzeugen Einnahmen-PNG: ' + e.message);
   }
   await createPPT(excelResult.sortedIncomeData, excelResult.sortedExpensesData, excelResult.sortedPieData);
 }
