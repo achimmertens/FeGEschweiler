@@ -1,11 +1,14 @@
-import { generateAusgabenChartPlaywright } from '../lib/chart-playwright.js';
+import * as ausgabenMod from '../lib/generate-ausgaben-chart.js';
+import * as einnahmenMod from '../lib/generate-einnahmen-chart.js';
 
 (async () => {
   try {
-    const res = await generateAusgabenChartPlaywright(undefined, { headless: false });
-    console.log('Result:', res);
+    const resA = await ausgabenMod.generateAusgabenChartPlaywright(undefined, { headless: false });
+    console.log('Ausgaben Result:', resA);
+    const resE = await einnahmenMod.generateEinnahmenChartPlaywright(undefined, { headless: false });
+    console.log('Einnahmen Result:', resE);
   } catch (e) {
-    console.error('Error running chart-playwright:', e);
+    console.error('Error running charts:', e);
     process.exit(1);
   }
 })();

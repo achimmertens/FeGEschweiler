@@ -1,18 +1,4 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <style>
-    body { margin: 0; }
-    canvas { display: block; }
-  </style>
-</head>
-<body>
-  <canvas id="chart" width="1200" height="800"></canvas>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-  <script>
-    const cfg = { "type": "bar", "data": {
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0}canvas{display:block}</style></head><body><canvas id="chart" width="1200" height="800"></canvas><script src="https://cdn.jsdelivr.net/npm/chart.js"></script><script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script><script>const cfg = {"type":"bar","data":{
   "labels": [
     "2023",
     "2024",
@@ -128,36 +114,12 @@
       "stack": "stack1"
     }
   ]
-}, "options": {
-    "indexAxis": "x",
-    "plugins": {
-      "title": {
+},"options":{"indexAxis":"x","plugins":{"title":{
   "display": true,
   "text": "Einnahmen 2025",
   "font": {
     "size": 30
   }
-},
-      "legend": {
+},"legend":{
   "position": "top"
-},
-      "datalabels": {
-    "color": "#ffffff",
-    "anchor": "center",
-    "align": "center",
-    "padding": { "left": 6 },
-    "font": { "weight": "bold", "size": 18 },
-    "formatter": function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.round(Number(v) || 0); var parts = n.toString().split('.'); return (label ? label + ': ' : '') + n.toLocaleString('de-DE') + ' €'; } catch (e) { return '' + value; } }
-  }
-    },
-    "scales": { "x": { "stacked": true }, "y": { "stacked": true } },
-    "responsive": false,
-    "maintainAspectRatio": true
-  } };
-    Chart.register(ChartDataLabels);
-    const ctx = document.getElementById('chart').getContext('2d');
-    const chart = new Chart(ctx, cfg);
-    window.__chart_ready = true;
-  </script>
-</body>
-</html>
+},"datalabels":{"color":"#ffffff","anchor":"center","align":"center","padding":{"left":6},"font":{"weight":"bold","size":16},"formatter":function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.round(Number(v) || 0); return (label ? label + ': ' : '') + n.toLocaleString('de-DE') + ' €'; } catch (e) { return '' + value; } }}},"scales":{"x":{"stacked":true},"y":{"stacked":true}},"responsive":false,"maintainAspectRatio":true}};Chart.register(ChartDataLabels);const ctx=document.getElementById('chart').getContext('2d');const chart=new Chart(ctx,cfg);window.__chart_ready=true;</script></body></html>

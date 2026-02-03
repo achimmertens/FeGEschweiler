@@ -12497,3 +12497,43 @@
 [income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
 [2026-02-03T08:32:44.060Z] Einnahmen PNG erstellt (Playwright): [object Object]
 [2026-02-03T08:32:44.094Z] Fertig!
+[2026-02-03T08:34:00.037Z] Starte Generierung der Präsentation...
+[2026-02-03T08:34:00.530Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T08:34:00.592Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T08:34:00.592Z] sortedExpensesData rows: 11
+[2026-02-03T08:34:00.593Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[2026-02-03T08:34:02.289Z] Ausgaben PNG erstellt (Playwright): [object Object]
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chart.js, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chart.js, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[2026-02-03T08:34:03.500Z] Einnahmen PNG erstellt (Playwright): [object Object]
+[2026-02-03T08:34:03.531Z] Fertig!
+[2026-02-03T08:35:16.845Z] Starte Generierung der Präsentation...
+[2026-02-03T08:35:17.272Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T08:35:17.331Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T08:35:17.332Z] sortedExpensesData rows: 11
+[2026-02-03T08:35:17.332Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[2026-02-03T08:35:19.180Z] Ausgaben PNG erstellt (Playwright): [object Object]
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chart.js, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chart.js, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[income-chart-playwright][console] warning: A parser-blocking, cross site (i.e. different eTLD+1) script, https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details.
+[2026-02-03T08:35:20.105Z] Einnahmen PNG erstellt (Playwright): [object Object]
+[2026-02-03T08:35:20.133Z] Fertig!
+[2026-02-03T08:43:44.441Z] Starte Generierung der Präsentation...
+[2026-02-03T08:43:45.546Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T08:43:45.627Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T08:43:45.628Z] sortedExpensesData rows: 11
+[2026-02-03T08:43:45.628Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[2026-02-03T08:43:47.566Z] Ausgaben PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.png"}
+[2026-02-03T08:43:48.996Z] Einnahmen PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.png"}
+[2026-02-03T08:43:49.062Z] Fehler: SyntaxError: The requested module '../lib/chart-playwright.js' does not provide an export named 'generateAusgabenChartPlaywright'
+[2026-02-03T08:45:54.862Z] Starte Generierung der Präsentation...
+[2026-02-03T08:45:55.863Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T08:45:55.925Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T08:45:55.926Z] sortedExpensesData rows: 11
+[2026-02-03T08:45:55.926Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[2026-02-03T08:45:57.705Z] Ausgaben PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.png"}
+[2026-02-03T08:45:59.154Z] Einnahmen PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.png"}
+[2026-02-03T08:45:59.191Z] Fertig!

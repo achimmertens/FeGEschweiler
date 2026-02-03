@@ -323,7 +323,10 @@ async function createPresentation() {
   const { readProfitLossReports } = await import('./lib/utils.js');
   const { createExcelFile } = await import('./lib/excel.js');
   const { createPPT } = await import('./lib/ppt.js');
-  const chartsModule = await import('./lib/chart-playwright.js');
+  // import both chart modules
+  const chartsModule = {};
+  chartsModule.ausgaben = await import('./lib/generate-ausgaben-chart.js');
+  chartsModule.einnahmen = await import('./lib/generate-einnahmen-chart.js');
 
   const profitLossReports = readProfitLossReports();
   const years = Object.keys(profitLossReports).sort();
@@ -379,23 +382,23 @@ async function createPresentation() {
   // Generate Ausgaben PNG from JSON using Playwright renderer if available
   try {
     const reportYear = currentYear - 1;
-    if (chartsModule.generateAusgabenChartPlaywright) {
-      const pngPath = await chartsModule.generateAusgabenChartPlaywright(reportYear);
-      logToFile(`Ausgaben PNG erstellt (Playwright): ${pngPath}`);
-    } else if (chartsModule.generateAusgabenChartFromJson) {
-      const pngPath = await chartsModule.generateAusgabenChartFromJson(reportYear);
-      logToFile(`Ausgaben PNG erstellt (QuickChart): ${pngPath}`);
-    }
+      if (chartsModule.ausgaben && chartsModule.ausgaben.generateAusgabenChartPlaywright) {
+        const pngPath = await chartsModule.ausgaben.generateAusgabenChartPlaywright(reportYear);
+        logToFile(`Ausgaben PNG erstellt (Playwright): ${JSON.stringify(pngPath)}`);
+      } else if (chartsModule.generateAusgabenChartFromJson) {
+        const pngPath = await chartsModule.generateAusgabenChartFromJson(reportYear);
+        logToFile(`Ausgaben PNG erstellt (QuickChart): ${pngPath}`);
+      }
   } catch (e) {
     logToFile('Fehler beim Erzeugen Ausgaben-PNG: ' + e.message);
   }
   // Generate Einnahmen PNG from JSON using Playwright renderer
   try {
     const reportYear = currentYear - 1;
-    if (chartsModule.generateEinnahmenChartPlaywright) {
-      const pngPath = await chartsModule.generateEinnahmenChartPlaywright(reportYear);
-      logToFile(`Einnahmen PNG erstellt (Playwright): ${pngPath}`);
-    }
+    if (chartsModule.einnahmen && chartsModule.einnahmen.generateEinnahmenChartPlaywright) {
+        const pngPath = await chartsModule.einnahmen.generateEinnahmenChartPlaywright(reportYear);
+        logToFile(`Einnahmen PNG erstellt (Playwright): ${JSON.stringify(pngPath)}`);
+      }
   } catch (e) {
     logToFile('Fehler beim Erzeugen Einnahmen-PNG: ' + e.message);
   }
