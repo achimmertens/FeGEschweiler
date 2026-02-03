@@ -366,6 +366,33 @@ async function createPresentation() {
   if (chartsModule.generateAusgabenJsonFromSorted && excelResult.sortedExpensesData && Array.isArray(excelResult.sortedExpensesData.data) && excelResult.sortedExpensesData.data.length > 0) {
     const outPath = chartsModule.generateAusgabenJsonFromSorted(excelResult.sortedExpensesData, years, currentYear);
     logToFile(`Ausgaben JSON erstellt: ${outPath}`);
+    // Insert Schuldenabbau into the generated Ausgaben JSON using Bilanzberichte
+    try {
+      const { readBalanceReports, extractAccountBalances } = await import('./lib/utils.js');
+      const balanceReports = readBalanceReports();
+      const jsonPath = outPath;
+      if (jsonPath && fs.existsSync(jsonPath)) {
+        const j = JSON.parse(fs.readFileSync(jsonPath, 'utf8')) || {};
+        const yrs = Object.keys(j).sort();
+        let prevSum = null;
+        for (const y of yrs) {
+          const bal = extractAccountBalances(balanceReports[y] || []);
+          let dsum = 0;
+          Object.entries(bal || {}).forEach(([k,v]) => {
+            const key = String(k || '').toLowerCase();
+            if (key.includes('darleh') || key.includes('privatdarlehen') || key.includes('privat')) dsum += Math.abs(Number(v) || 0);
+          });
+          if (prevSum === null) {
+            j[y]['Schuldenabbau'] = 0;
+          } else {
+            j[y]['Schuldenabbau'] = Number((dsum - prevSum).toFixed(2));
+          }
+          prevSum = dsum;
+        }
+        fs.writeFileSync(jsonPath, JSON.stringify(j, null, 2), 'utf8');
+        logToFile(`Schuldenabbau in ${jsonPath} eingetragen`);
+      }
+    } catch (e) { logToFile('Fehler beim Eintragen Schuldenabbau: ' + e.message); }
   } else if (chartsModule.generateAusgabenJson) {
     await chartsModule.generateAusgabenJson(currentYear);
     logToFile('Ausgaben JSON erstellt (fallback raw reports)');
