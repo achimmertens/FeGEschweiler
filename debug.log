@@ -13013,3 +13013,16 @@
 [2026-02-03T14:36:10.623Z] Entwicklung PNG erstellt (Playwright): D:\Users\User\git\FeGEschweiler\Daten\result\Entwicklung_2025.png
 [2026-02-03T14:36:10.628Z] Fehler beim Erzeugen Entwicklung-PNG: require is not defined
 [2026-02-03T14:36:10.648Z] Fertig!
+[2026-02-03T14:39:20.498Z] Starte Generierung der Präsentation...
+[2026-02-03T14:39:21.479Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T14:39:21.541Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T14:39:21.544Z] Budget CSV erstellt aus D:\Users\User\git\FeGEschweiler\Daten\Budgets_2025.txt: D:\Users\User\git\FeGEschweiler\Daten\result\Budget_2025.csv
+[2026-02-03T14:39:21.547Z] Budget HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Budget_2025.html
+[2026-02-03T14:39:21.548Z] sortedExpensesData rows: 11
+[2026-02-03T14:39:21.548Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[2026-02-03T14:39:23.050Z] Ausgaben PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.png"}
+[2026-02-03T14:39:24.496Z] Einnahmen PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.png"}
+[2026-02-03T14:39:24.497Z] Entwicklung HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Entwicklung_2025.html
+[2026-02-03T14:39:25.939Z] Entwicklung PNG erstellt (Playwright): D:\Users\User\git\FeGEschweiler\Daten\result\Entwicklung_2025.png
+[2026-02-03T14:39:25.944Z] Fehler beim Erzeugen Entwicklung-PNG: require is not defined
+[2026-02-03T14:39:25.964Z] Fertig!
