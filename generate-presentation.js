@@ -416,8 +416,7 @@ async function main() {
     // Erstelle PowerPoint-Präsentation (erstellt auch Excel-Datei)
     await createPresentation();
     
-    // Run the chart generation script
-    await import('./scripts/run-chart.js');
+    // charts are generated inside createPresentation(), no need to run scripts/run-chart.js here
     
     logToFile('Fertig!');
   } catch (error) {
