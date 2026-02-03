@@ -12537,3 +12537,35 @@
 [2026-02-03T08:45:57.705Z] Ausgaben PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.png"}
 [2026-02-03T08:45:59.154Z] Einnahmen PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.png"}
 [2026-02-03T08:45:59.191Z] Fertig!
+[2026-02-03T08:54:54.950Z] Starte Generierung der Präsentation...
+[2026-02-03T08:54:55.992Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T08:54:56.049Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T08:54:56.049Z] sortedExpensesData rows: 11
+[2026-02-03T08:54:56.050Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[2026-02-03T08:54:57.593Z] Ausgaben PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.png"}
+[2026-02-03T08:54:59.112Z] Einnahmen PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.png"}
+[2026-02-03T08:54:59.134Z] Fertig!
+[2026-02-03T08:55:43.543Z] Starte Generierung der Präsentation...
+[2026-02-03T08:55:44.543Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T08:55:44.602Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T08:55:44.602Z] sortedExpensesData rows: 11
+[2026-02-03T08:55:44.603Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[2026-02-03T08:55:46.193Z] Ausgaben PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.png"}
+[2026-02-03T08:55:47.563Z] Einnahmen PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.png"}
+[2026-02-03T08:55:47.587Z] Fertig!
+[2026-02-03T08:56:30.594Z] Starte Generierung der Präsentation...
+[2026-02-03T08:56:31.603Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T08:56:31.661Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T08:56:31.661Z] sortedExpensesData rows: 11
+[2026-02-03T08:56:31.662Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[2026-02-03T08:56:37.218Z] Ausgaben PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.png"}
+[2026-02-03T08:56:39.533Z] Einnahmen PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.png"}
+[2026-02-03T08:56:39.556Z] Fertig!
+[2026-02-03T08:58:24.085Z] Starte Generierung der Präsentation...
+[2026-02-03T08:58:25.477Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T08:58:25.536Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T08:58:25.537Z] sortedExpensesData rows: 11
+[2026-02-03T08:58:25.537Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[2026-02-03T08:58:26.982Z] Ausgaben PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.png"}
+[2026-02-03T08:58:28.362Z] Einnahmen PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.png"}
+[2026-02-03T08:58:28.391Z] Fertig!
