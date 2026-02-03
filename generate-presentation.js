@@ -1,6 +1,7 @@
-import { updateEntwicklungCSV } from './lib/utils.js';
+import { updateEntwicklungCSV, formatGermanInteger, parseGermanNumber, readCSV } from './lib/utils.js';
 import fs from 'fs';
 import path from 'path';
+import QuickChart from 'quickchart-js';
 // charts helper will be imported dynamically in createPresentation
 
 const logFilePath = path.join(process.cwd(), 'debug.log');
@@ -429,6 +430,117 @@ async function createPresentation() {
   } catch (e) {
     logToFile('Fehler beim Erzeugen Einnahmen-PNG: ' + e.message);
   }
+  // Generate Entwicklung HTML (fallback) and PNG preview optional
+  try {
+    // read Entwicklung.csv produced by updateEntwicklungCSV
+    const entwicklungPath = path.join(process.cwd(), 'Daten', 'Entwicklung.csv');
+    if (fs.existsSync(entwicklungPath)) {
+      const entwicklung = readCSV(entwicklungPath);
+      const firstRow = entwicklung[0] || {};
+      const devYears = Object.keys(firstRow).filter(k => k !== 'Position' && /^\d{4}$/.test(k)).sort();
+      const accounts = ['Girokonto SKB 001','Sparkonto SKB 003','Freizeitkonto SKB 000','Darlehenskonto SKB 004','Privatdarlehen 006'];
+      const datasets = accounts.map((account, idx) => {
+        const row = entwicklung.find(r => r.Position === account) || {};
+        // parse values as numbers (keep sign as in CSV)
+        const vals = devYears.map(y => parseGermanNumber(row[y] || '0'));
+        const colors = ['#3B82F6','#10B981','#F59E0B','#EF4444','#8B5CF6'];
+        return { label: account, data: vals, color: colors[idx % colors.length] };
+      });
+
+      // Build a nicely formatted HTML matching the requested template
+      const labelsJSON = JSON.stringify(devYears, null, 4);
+      const datasetsForHtml = datasets.map(d => ({ label: d.label, data: d.data, backgroundColor: d.color, stack: 'stack1' }));
+      const datasetsJSON = JSON.stringify(datasetsForHtml, null, 4);
+
+      const html = `<!doctype html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Entwicklung Kontostände ${devYears[devYears.length-1]}</title>
+        <style>
+            body { margin: 0; font-family: Arial, sans-serif; background: #fff; }
+            .container { padding: 12px; }
+            canvas { display: block; }
+            h1 { font-size: 18px; margin: 0 0 8px 0; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Entwicklung Kontostände (bis ${devYears[devYears.length-1]})</h1>
+            <canvas id="chart" width="1200" height="800"></canvas>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            const labels = ${labelsJSON};
+            const datasets = ${datasetsJSON};
+
+            const config = {
+                type: 'bar',
+                data: { labels, datasets },
+                options: {
+                    indexAxis: 'x',
+                    plugins: {
+                        title: { display: true, text: 'Entwicklung der Kontostände', font: { size: 20 } },
+                        legend: { position: 'top' }
+                    },
+                    scales: {
+                        x: { stacked: true },
+                        y: {
+                            stacked: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, '.');
+                                }
+                            }
+                        }
+                    },
+                    responsive: false,
+                    maintainAspectRatio: false
+                }
+            };
+
+            const ctx = document.getElementById('chart').getContext('2d');
+            new Chart(ctx, config);
+        </script>
+    </body>
+</html>`;
+      const outHtml = path.join(process.cwd(), 'Daten', 'result', `Entwicklung_${devYears[devYears.length-1]}.html`);
+      fs.writeFileSync(outHtml, html, 'utf8');
+      logToFile(`Entwicklung HTML erstellt: ${outHtml}`);
+    }
+  } catch (e) { logToFile('Fehler beim Erzeugen Entwicklung-HTML: ' + e.message); }
+  // Generate Entwicklung chart (based on Entwicklung.csv) as PNG via QuickChart
+  try {
+    const balanceReports = await import('./lib/utils.js');
+    const balanceYears = Object.keys(balanceReports.readBalanceReports()).sort();
+    const latestYear = balanceYears[balanceYears.length - 1];
+    if (latestYear) {
+      // read Entwicklung.csv and prepare datasets
+      const entwicklungPath = path.join(process.cwd(), 'Daten', 'Entwicklung.csv');
+      if (fs.existsSync(entwicklungPath)) {
+        const entwicklung = (await import('./lib/utils.js')).readCSV(entwicklungPath);
+        const firstRow = entwicklung[0] || {};
+        const devYears = Object.keys(firstRow).filter(k => k !== 'Position' && /^\d{4}$/.test(k)).sort();
+        const accounts = ['Girokonto SKB 001','Sparkonto SKB 003','Freizeitkonto SKB 000','Darlehenskonto SKB 004','Privatdarlehen 006'];
+        const datasets = accounts.map((account, idx) => {
+          const row = entwicklung.find(r => r.Position === account) || {};
+          const vals = devYears.map(y => parseGermanNumber(row[y] || '0'));
+          return { label: account, data: vals };
+        });
+        const configuration = {
+          type: 'bar',
+          data: { labels: devYears, datasets: datasets.map((d, i) => ({ label: d.label, data: d.data, backgroundColor: ['#3B82F6','#10B981','#F59E0B','#EF4444','#8B5CF6'][i%5], stack: 'stack1' })) },
+          options: { indexAxis: 'x', plugins: { title: { display: true, text: `Entwicklung ${latestYear}`, font: { size: 20 } } }, scales: { x: { stacked: true }, y: { stacked: true, ticks: { callback: function(v){ return formatGermanInteger(v); } } } }, responsive: false, maintainAspectRatio: false }
+        };
+        const qc = new QuickChart(); qc.setConfig(configuration); qc.setWidth(1200); qc.setHeight(800); qc.setFormat('png'); qc.setBackgroundColor('white');
+        const outDev = path.join(process.cwd(), 'Daten', 'result', `Entwicklung_${latestYear}.png`);
+        await qc.toFile(outDev);
+        logToFile(`Entwicklung PNG erstellt: ${outDev}`);
+      }
+    }
+  } catch (e) { logToFile('Fehler beim Erzeugen Entwicklung-PNG: ' + e.message); }
   await createPPT(excelResult.sortedIncomeData, excelResult.sortedExpensesData, excelResult.sortedPieData);
 }
 
