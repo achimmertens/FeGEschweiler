@@ -9373,3 +9373,2369 @@
 ]
 [2026-02-03T06:18:55.630Z] Fehler beim Erzeugen Ausgaben-PNG: require is not defined
 [2026-02-03T06:18:55.689Z] Fertig!
+[2026-02-03T06:34:00.376Z] Starte Generierung der Präsentation...
+[2026-02-03T06:34:01.012Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T06:34:01.072Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T06:34:01.073Z] sortedExpensesData rows: 11
+[2026-02-03T06:34:01.073Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
+[2026-02-03T06:34:01.075Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Einnahmen JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-03T06:34:01.077Z] Einnahmen JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[charts] generateAusgabenChartFromJson called for 2025
+[charts] QuickChart config for Ausgaben_2025:
+{
+  "type": "bar",
+  "data": {
+    "labels": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "datasets": [
+      {
+        "label": "Pastor",
+        "data": [
+          61013.45,
+          63591.79,
+          66705.58
+        ],
+        "backgroundColor": "#3B82F6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Darlehensleistungen",
+        "data": [
+          -38200,
+          -15513.49,
+          -14564.69
+        ],
+        "backgroundColor": "#10B981",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung an Bund FeG",
+        "data": [
+          8130.36,
+          9004.95,
+          9865.26
+        ],
+        "backgroundColor": "#F59E0B",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Heizung",
+        "data": [
+          7114.33,
+          8084.86,
+          6511.03
+        ],
+        "backgroundColor": "#EF4444",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Reinigung",
+        "data": [
+          7491.78,
+          7227.68,
+          6777.95
+        ],
+        "backgroundColor": "#8B5CF6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Mission",
+        "data": [
+          5543.81,
+          4810,
+          4240
+        ],
+        "backgroundColor": "#EC4899",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Diakonie",
+        "data": [
+          4052.58,
+          4330,
+          5350
+        ],
+        "backgroundColor": "#06B6D4",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Sonstiges",
+        "data": [
+          4353.42,
+          3199.28,
+          14923.349999999999
+        ],
+        "backgroundColor": "#A9A9A9",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      }
+    ]
+  },
+  "options": {
+    "indexAxis": "x",
+    "plugins": {
+      "title": {
+        "display": true,
+        "text": "Ausgaben 2025 nach Kategorien (Top 7 + Sonstiges)",
+        "font": {
+          "size": 20
+        }
+      },
+      "legend": {
+        "position": "top"
+      },
+      "datalabels": {
+        "color": "#ffffff",
+        "formatter": "function(value, context) { try { var label = ''; if (context && context.chart && context.chart.data && typeof context.datasetIndex === 'number') { var ds = context.chart.data.datasets[context.datasetIndex]; if (ds && ds.label) label = ds.label; } var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+        "anchor": "center",
+        "align": "start",
+        "padding": {
+          "left": 6
+        },
+        "clamp": true,
+        "font": {
+          "weight": "bold",
+          "size": 12
+        }
+      }
+    },
+    "scales": {
+      "x": {
+        "stacked": true
+      },
+      "y": {
+        "stacked": true
+      }
+    }
+  }
+}
+[charts] datasets preview:
+[
+  {
+    "label": "Pastor",
+    "data": [
+      61013.45,
+      63591.79,
+      66705.58
+    ]
+  },
+  {
+    "label": "Darlehensleistungen",
+    "data": [
+      -38200,
+      -15513.49,
+      -14564.69
+    ]
+  },
+  {
+    "label": "Weiterleitung an Bund FeG",
+    "data": [
+      8130.36,
+      9004.95,
+      9865.26
+    ]
+  },
+  {
+    "label": "Heizung",
+    "data": [
+      7114.33,
+      8084.86,
+      6511.03
+    ]
+  },
+  {
+    "label": "Reinigung",
+    "data": [
+      7491.78,
+      7227.68,
+      6777.95
+    ]
+  },
+  {
+    "label": "Weiterleitung Mission",
+    "data": [
+      5543.81,
+      4810,
+      4240
+    ]
+  },
+  {
+    "label": "Weiterleitung Diakonie",
+    "data": [
+      4052.58,
+      4330,
+      5350
+    ]
+  },
+  {
+    "label": "Sonstiges",
+    "data": [
+      4353.42,
+      3199.28,
+      14923.349999999999
+    ]
+  }
+]
+[2026-02-03T06:34:01.090Z] Fehler beim Erzeugen Ausgaben-PNG: require is not defined
+[2026-02-03T06:34:01.121Z] Fertig!
+[2026-02-03T06:35:56.279Z] Starte Generierung der Präsentation...
+[2026-02-03T06:35:56.741Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T06:35:56.802Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T06:35:56.802Z] sortedExpensesData rows: 11
+[2026-02-03T06:35:56.802Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
+[2026-02-03T06:35:56.805Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Einnahmen JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-03T06:35:56.808Z] Einnahmen JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[charts] generateAusgabenChartFromJson called for 2025
+[charts] QuickChart config for Ausgaben_2025:
+{
+  "type": "bar",
+  "data": {
+    "labels": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "datasets": [
+      {
+        "label": "Pastor",
+        "data": [
+          61013.45,
+          63591.79,
+          66705.58
+        ],
+        "backgroundColor": "#3B82F6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Darlehensleistungen",
+        "data": [
+          -38200,
+          -15513.49,
+          -14564.69
+        ],
+        "backgroundColor": "#10B981",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung an Bund FeG",
+        "data": [
+          8130.36,
+          9004.95,
+          9865.26
+        ],
+        "backgroundColor": "#F59E0B",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Heizung",
+        "data": [
+          7114.33,
+          8084.86,
+          6511.03
+        ],
+        "backgroundColor": "#EF4444",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Reinigung",
+        "data": [
+          7491.78,
+          7227.68,
+          6777.95
+        ],
+        "backgroundColor": "#8B5CF6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Mission",
+        "data": [
+          5543.81,
+          4810,
+          4240
+        ],
+        "backgroundColor": "#EC4899",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Diakonie",
+        "data": [
+          4052.58,
+          4330,
+          5350
+        ],
+        "backgroundColor": "#06B6D4",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Sonstiges",
+        "data": [
+          4353.42,
+          3199.28,
+          14923.349999999999
+        ],
+        "backgroundColor": "#A9A9A9",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      }
+    ]
+  },
+  "options": {
+    "indexAxis": "x",
+    "plugins": {
+      "title": {
+        "display": true,
+        "text": "Ausgaben 2025 nach Kategorien (Top 7 + Sonstiges)",
+        "font": {
+          "size": 20
+        }
+      },
+      "legend": {
+        "position": "top"
+      },
+      "datalabels": {
+        "color": "#ffffff",
+        "formatter": "function(value, context) { try { var label = ''; if (context && context.chart && context.chart.data && typeof context.datasetIndex === 'number') { var ds = context.chart.data.datasets[context.datasetIndex]; if (ds && ds.label) label = ds.label; } var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+        "anchor": "center",
+        "align": "start",
+        "padding": {
+          "left": 6
+        },
+        "clamp": true,
+        "font": {
+          "weight": "bold",
+          "size": 12
+        }
+      }
+    },
+    "scales": {
+      "x": {
+        "stacked": true
+      },
+      "y": {
+        "stacked": true
+      }
+    }
+  }
+}
+[charts] datasets preview:
+[
+  {
+    "label": "Pastor",
+    "data": [
+      61013.45,
+      63591.79,
+      66705.58
+    ]
+  },
+  {
+    "label": "Darlehensleistungen",
+    "data": [
+      -38200,
+      -15513.49,
+      -14564.69
+    ]
+  },
+  {
+    "label": "Weiterleitung an Bund FeG",
+    "data": [
+      8130.36,
+      9004.95,
+      9865.26
+    ]
+  },
+  {
+    "label": "Heizung",
+    "data": [
+      7114.33,
+      8084.86,
+      6511.03
+    ]
+  },
+  {
+    "label": "Reinigung",
+    "data": [
+      7491.78,
+      7227.68,
+      6777.95
+    ]
+  },
+  {
+    "label": "Weiterleitung Mission",
+    "data": [
+      5543.81,
+      4810,
+      4240
+    ]
+  },
+  {
+    "label": "Weiterleitung Diakonie",
+    "data": [
+      4052.58,
+      4330,
+      5350
+    ]
+  },
+  {
+    "label": "Sonstiges",
+    "data": [
+      4353.42,
+      3199.28,
+      14923.349999999999
+    ]
+  }
+]
+[2026-02-03T06:35:56.811Z] Fehler beim Erzeugen Ausgaben-PNG: require is not defined
+[2026-02-03T06:35:56.841Z] Fertig!
+[2026-02-03T06:36:38.947Z] Starte Generierung der Präsentation...
+[2026-02-03T06:36:39.465Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T06:36:39.528Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T06:36:39.529Z] sortedExpensesData rows: 11
+[2026-02-03T06:36:39.529Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
+[2026-02-03T06:36:39.531Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Einnahmen JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-03T06:36:39.533Z] Einnahmen JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[charts] generateAusgabenChartFromJson called for 2025
+[charts] QuickChart config for Ausgaben_2025:
+{
+  "type": "bar",
+  "data": {
+    "labels": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "datasets": [
+      {
+        "label": "Pastor",
+        "data": [
+          61013.45,
+          63591.79,
+          66705.58
+        ],
+        "backgroundColor": "#3B82F6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Darlehensleistungen",
+        "data": [
+          -38200,
+          -15513.49,
+          -14564.69
+        ],
+        "backgroundColor": "#10B981",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung an Bund FeG",
+        "data": [
+          8130.36,
+          9004.95,
+          9865.26
+        ],
+        "backgroundColor": "#F59E0B",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Heizung",
+        "data": [
+          7114.33,
+          8084.86,
+          6511.03
+        ],
+        "backgroundColor": "#EF4444",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Reinigung",
+        "data": [
+          7491.78,
+          7227.68,
+          6777.95
+        ],
+        "backgroundColor": "#8B5CF6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Mission",
+        "data": [
+          5543.81,
+          4810,
+          4240
+        ],
+        "backgroundColor": "#EC4899",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Diakonie",
+        "data": [
+          4052.58,
+          4330,
+          5350
+        ],
+        "backgroundColor": "#06B6D4",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Sonstiges",
+        "data": [
+          4353.42,
+          3199.28,
+          14923.349999999999
+        ],
+        "backgroundColor": "#A9A9A9",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      }
+    ]
+  },
+  "options": {
+    "indexAxis": "x",
+    "plugins": {
+      "title": {
+        "display": true,
+        "text": "Ausgaben 2025 nach Kategorien (Top 7 + Sonstiges)",
+        "font": {
+          "size": 20
+        }
+      },
+      "legend": {
+        "position": "top"
+      },
+      "datalabels": {
+        "color": "#ffffff",
+        "formatter": "function(value, context) { try { var label = ''; if (context && context.chart && context.chart.data && typeof context.datasetIndex === 'number') { var ds = context.chart.data.datasets[context.datasetIndex]; if (ds && ds.label) label = ds.label; } var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+        "anchor": "center",
+        "align": "start",
+        "padding": {
+          "left": 6
+        },
+        "clamp": true,
+        "font": {
+          "weight": "bold",
+          "size": 12
+        }
+      }
+    },
+    "scales": {
+      "x": {
+        "stacked": true
+      },
+      "y": {
+        "stacked": true
+      }
+    }
+  }
+}
+[charts] datasets preview:
+[
+  {
+    "label": "Pastor",
+    "data": [
+      61013.45,
+      63591.79,
+      66705.58
+    ]
+  },
+  {
+    "label": "Darlehensleistungen",
+    "data": [
+      -38200,
+      -15513.49,
+      -14564.69
+    ]
+  },
+  {
+    "label": "Weiterleitung an Bund FeG",
+    "data": [
+      8130.36,
+      9004.95,
+      9865.26
+    ]
+  },
+  {
+    "label": "Heizung",
+    "data": [
+      7114.33,
+      8084.86,
+      6511.03
+    ]
+  },
+  {
+    "label": "Reinigung",
+    "data": [
+      7491.78,
+      7227.68,
+      6777.95
+    ]
+  },
+  {
+    "label": "Weiterleitung Mission",
+    "data": [
+      5543.81,
+      4810,
+      4240
+    ]
+  },
+  {
+    "label": "Weiterleitung Diakonie",
+    "data": [
+      4052.58,
+      4330,
+      5350
+    ]
+  },
+  {
+    "label": "Sonstiges",
+    "data": [
+      4353.42,
+      3199.28,
+      14923.349999999999
+    ]
+  }
+]
+[2026-02-03T06:36:39.538Z] Fehler beim Erzeugen Ausgaben-PNG: require is not defined
+[2026-02-03T06:36:39.571Z] Fertig!
+[2026-02-03T06:40:15.911Z] Starte Generierung der Präsentation...
+[2026-02-03T06:40:16.358Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T06:40:16.421Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T06:40:16.421Z] sortedExpensesData rows: 11
+[2026-02-03T06:40:16.422Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
+[2026-02-03T06:40:16.424Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Einnahmen JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-03T06:40:16.426Z] Einnahmen JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[charts] generateAusgabenChartFromJson called for 2025
+[charts] QuickChart config for Ausgaben_2025:
+{
+  "type": "bar",
+  "data": {
+    "labels": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "datasets": [
+      {
+        "label": "Pastor",
+        "data": [
+          61013.45,
+          63591.79,
+          66705.58
+        ],
+        "backgroundColor": "#3B82F6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Darlehensleistungen",
+        "data": [
+          -38200,
+          -15513.49,
+          -14564.69
+        ],
+        "backgroundColor": "#10B981",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung an Bund FeG",
+        "data": [
+          8130.36,
+          9004.95,
+          9865.26
+        ],
+        "backgroundColor": "#F59E0B",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Heizung",
+        "data": [
+          7114.33,
+          8084.86,
+          6511.03
+        ],
+        "backgroundColor": "#EF4444",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Reinigung",
+        "data": [
+          7491.78,
+          7227.68,
+          6777.95
+        ],
+        "backgroundColor": "#8B5CF6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Mission",
+        "data": [
+          5543.81,
+          4810,
+          4240
+        ],
+        "backgroundColor": "#EC4899",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Diakonie",
+        "data": [
+          4052.58,
+          4330,
+          5350
+        ],
+        "backgroundColor": "#06B6D4",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Sonstiges",
+        "data": [
+          4353.42,
+          3199.28,
+          14923.349999999999
+        ],
+        "backgroundColor": "#A9A9A9",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      }
+    ]
+  },
+  "options": {
+    "indexAxis": "x",
+    "plugins": {
+      "title": {
+        "display": true,
+        "text": "Ausgaben 2025 nach Kategorien (Top 7 + Sonstiges)",
+        "font": {
+          "size": 20
+        }
+      },
+      "legend": {
+        "position": "top"
+      },
+      "datalabels": {
+        "color": "#ffffff",
+        "formatter": "function(value, context) { try { var label = ''; if (context && context.chart && context.chart.data && typeof context.datasetIndex === 'number') { var ds = context.chart.data.datasets[context.datasetIndex]; if (ds && ds.label) label = ds.label; } var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+        "anchor": "center",
+        "align": "start",
+        "padding": {
+          "left": 6
+        },
+        "clamp": true,
+        "font": {
+          "weight": "bold",
+          "size": 12
+        }
+      }
+    },
+    "scales": {
+      "x": {
+        "stacked": true
+      },
+      "y": {
+        "stacked": true
+      }
+    }
+  }
+}
+[charts] datasets preview:
+[
+  {
+    "label": "Pastor",
+    "data": [
+      61013.45,
+      63591.79,
+      66705.58
+    ]
+  },
+  {
+    "label": "Darlehensleistungen",
+    "data": [
+      -38200,
+      -15513.49,
+      -14564.69
+    ]
+  },
+  {
+    "label": "Weiterleitung an Bund FeG",
+    "data": [
+      8130.36,
+      9004.95,
+      9865.26
+    ]
+  },
+  {
+    "label": "Heizung",
+    "data": [
+      7114.33,
+      8084.86,
+      6511.03
+    ]
+  },
+  {
+    "label": "Reinigung",
+    "data": [
+      7491.78,
+      7227.68,
+      6777.95
+    ]
+  },
+  {
+    "label": "Weiterleitung Mission",
+    "data": [
+      5543.81,
+      4810,
+      4240
+    ]
+  },
+  {
+    "label": "Weiterleitung Diakonie",
+    "data": [
+      4052.58,
+      4330,
+      5350
+    ]
+  },
+  {
+    "label": "Sonstiges",
+    "data": [
+      4353.42,
+      3199.28,
+      14923.349999999999
+    ]
+  }
+]
+[2026-02-03T06:40:16.429Z] Fehler beim Erzeugen Ausgaben-PNG: require is not defined
+[2026-02-03T06:40:16.458Z] Fertig!
+[2026-02-03T07:16:47.325Z] Starte Generierung der Präsentation...
+[2026-02-03T07:16:48.053Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T07:16:48.112Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T07:16:48.113Z] sortedExpensesData rows: 11
+[2026-02-03T07:16:48.113Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
+[2026-02-03T07:16:48.115Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Einnahmen JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-03T07:16:48.117Z] Einnahmen JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[charts] generateAusgabenChartFromJson called for 2025
+[charts] QuickChart config for Ausgaben_2025:
+{
+  "type": "bar",
+  "data": {
+    "labels": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "datasets": [
+      {
+        "label": "Pastor",
+        "data": [
+          61013.45,
+          63591.79,
+          66705.58
+        ],
+        "backgroundColor": "#3B82F6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Darlehensleistungen",
+        "data": [
+          -38200,
+          -15513.49,
+          -14564.69
+        ],
+        "backgroundColor": "#10B981",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung an Bund FeG",
+        "data": [
+          8130.36,
+          9004.95,
+          9865.26
+        ],
+        "backgroundColor": "#F59E0B",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Heizung",
+        "data": [
+          7114.33,
+          8084.86,
+          6511.03
+        ],
+        "backgroundColor": "#EF4444",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Reinigung",
+        "data": [
+          7491.78,
+          7227.68,
+          6777.95
+        ],
+        "backgroundColor": "#8B5CF6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Mission",
+        "data": [
+          5543.81,
+          4810,
+          4240
+        ],
+        "backgroundColor": "#EC4899",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Diakonie",
+        "data": [
+          4052.58,
+          4330,
+          5350
+        ],
+        "backgroundColor": "#06B6D4",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Sonstiges",
+        "data": [
+          4353.42,
+          3199.28,
+          14923.349999999999
+        ],
+        "backgroundColor": "#A9A9A9",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      }
+    ]
+  },
+  "options": {
+    "indexAxis": "x",
+    "plugins": {
+      "title": {
+        "display": true,
+        "text": "Ausgaben 2025 nach Kategorien (Top 7 + Sonstiges)",
+        "font": {
+          "size": 20
+        }
+      },
+      "legend": {
+        "position": "top"
+      },
+      "datalabels": {
+        "color": "#ffffff",
+        "formatter": "function(value, context) { try { var label = ''; if (context && context.chart && context.chart.data && typeof context.datasetIndex === 'number') { var ds = context.chart.data.datasets[context.datasetIndex]; if (ds && ds.label) label = ds.label; } var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+        "anchor": "center",
+        "align": "start",
+        "padding": {
+          "left": 6
+        },
+        "clamp": true,
+        "font": {
+          "weight": "bold",
+          "size": 12
+        }
+      }
+    },
+    "scales": {
+      "x": {
+        "stacked": true
+      },
+      "y": {
+        "stacked": true
+      }
+    }
+  }
+}
+[charts] datasets preview:
+[
+  {
+    "label": "Pastor",
+    "data": [
+      61013.45,
+      63591.79,
+      66705.58
+    ]
+  },
+  {
+    "label": "Darlehensleistungen",
+    "data": [
+      -38200,
+      -15513.49,
+      -14564.69
+    ]
+  },
+  {
+    "label": "Weiterleitung an Bund FeG",
+    "data": [
+      8130.36,
+      9004.95,
+      9865.26
+    ]
+  },
+  {
+    "label": "Heizung",
+    "data": [
+      7114.33,
+      8084.86,
+      6511.03
+    ]
+  },
+  {
+    "label": "Reinigung",
+    "data": [
+      7491.78,
+      7227.68,
+      6777.95
+    ]
+  },
+  {
+    "label": "Weiterleitung Mission",
+    "data": [
+      5543.81,
+      4810,
+      4240
+    ]
+  },
+  {
+    "label": "Weiterleitung Diakonie",
+    "data": [
+      4052.58,
+      4330,
+      5350
+    ]
+  },
+  {
+    "label": "Sonstiges",
+    "data": [
+      4353.42,
+      3199.28,
+      14923.349999999999
+    ]
+  }
+]
+[2026-02-03T07:16:48.122Z] Fehler beim Erzeugen Ausgaben-PNG: require is not defined
+[2026-02-03T07:16:48.153Z] Fertig!
+[2026-02-03T07:17:46.180Z] Starte Generierung der Präsentation...
+[2026-02-03T07:17:46.714Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T07:17:46.773Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T07:17:46.773Z] sortedExpensesData rows: 11
+[2026-02-03T07:17:46.774Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
+[2026-02-03T07:17:46.803Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Einnahmen JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-03T07:17:46.804Z] Einnahmen JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[charts] generateAusgabenChartFromJson called for 2025
+[charts] QuickChart config for Ausgaben_2025:
+{
+  "type": "bar",
+  "data": {
+    "labels": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "datasets": [
+      {
+        "label": "Pastor",
+        "data": [
+          61013.45,
+          63591.79,
+          66705.58
+        ],
+        "backgroundColor": "#3B82F6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Darlehensleistungen",
+        "data": [
+          -38200,
+          -15513.49,
+          -14564.69
+        ],
+        "backgroundColor": "#10B981",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung an Bund FeG",
+        "data": [
+          8130.36,
+          9004.95,
+          9865.26
+        ],
+        "backgroundColor": "#F59E0B",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Heizung",
+        "data": [
+          7114.33,
+          8084.86,
+          6511.03
+        ],
+        "backgroundColor": "#EF4444",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Reinigung",
+        "data": [
+          7491.78,
+          7227.68,
+          6777.95
+        ],
+        "backgroundColor": "#8B5CF6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Mission",
+        "data": [
+          5543.81,
+          4810,
+          4240
+        ],
+        "backgroundColor": "#EC4899",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Diakonie",
+        "data": [
+          4052.58,
+          4330,
+          5350
+        ],
+        "backgroundColor": "#06B6D4",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Sonstiges",
+        "data": [
+          4353.42,
+          3199.28,
+          14923.349999999999
+        ],
+        "backgroundColor": "#A9A9A9",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      }
+    ]
+  },
+  "options": {
+    "indexAxis": "x",
+    "plugins": {
+      "title": {
+        "display": true,
+        "text": "Ausgaben 2025 nach Kategorien (Top 7 + Sonstiges)",
+        "font": {
+          "size": 20
+        }
+      },
+      "legend": {
+        "position": "top"
+      },
+      "datalabels": {
+        "color": "#ffffff",
+        "formatter": "function(value, context) { try { var label = ''; if (context && context.chart && context.chart.data && typeof context.datasetIndex === 'number') { var ds = context.chart.data.datasets[context.datasetIndex]; if (ds && ds.label) label = ds.label; } var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+        "anchor": "center",
+        "align": "start",
+        "padding": {
+          "left": 6
+        },
+        "clamp": true,
+        "font": {
+          "weight": "bold",
+          "size": 12
+        }
+      }
+    },
+    "scales": {
+      "x": {
+        "stacked": true
+      },
+      "y": {
+        "stacked": true
+      }
+    }
+  }
+}
+[charts] datasets preview:
+[
+  {
+    "label": "Pastor",
+    "data": [
+      61013.45,
+      63591.79,
+      66705.58
+    ]
+  },
+  {
+    "label": "Darlehensleistungen",
+    "data": [
+      -38200,
+      -15513.49,
+      -14564.69
+    ]
+  },
+  {
+    "label": "Weiterleitung an Bund FeG",
+    "data": [
+      8130.36,
+      9004.95,
+      9865.26
+    ]
+  },
+  {
+    "label": "Heizung",
+    "data": [
+      7114.33,
+      8084.86,
+      6511.03
+    ]
+  },
+  {
+    "label": "Reinigung",
+    "data": [
+      7491.78,
+      7227.68,
+      6777.95
+    ]
+  },
+  {
+    "label": "Weiterleitung Mission",
+    "data": [
+      5543.81,
+      4810,
+      4240
+    ]
+  },
+  {
+    "label": "Weiterleitung Diakonie",
+    "data": [
+      4052.58,
+      4330,
+      5350
+    ]
+  },
+  {
+    "label": "Sonstiges",
+    "data": [
+      4353.42,
+      3199.28,
+      14923.349999999999
+    ]
+  }
+]
+[2026-02-03T07:17:46.808Z] Fehler beim Erzeugen Ausgaben-PNG: require is not defined
+[2026-02-03T07:17:46.900Z] Fertig!
+[2026-02-03T07:18:10.054Z] Starte Generierung der Präsentation...
+[2026-02-03T07:18:10.512Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T07:18:10.571Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T07:18:10.571Z] sortedExpensesData rows: 11
+[2026-02-03T07:18:10.571Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
+[2026-02-03T07:18:10.573Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Einnahmen JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-03T07:18:10.575Z] Einnahmen JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[charts] generateAusgabenChartFromJson called for 2025
+[charts] QuickChart config for Ausgaben_2025:
+{
+  "type": "bar",
+  "data": {
+    "labels": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "datasets": [
+      {
+        "label": "Pastor",
+        "data": [
+          61013.45,
+          63591.79,
+          66705.58
+        ],
+        "backgroundColor": "#3B82F6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Darlehensleistungen",
+        "data": [
+          -38200,
+          -15513.49,
+          -14564.69
+        ],
+        "backgroundColor": "#10B981",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung an Bund FeG",
+        "data": [
+          8130.36,
+          9004.95,
+          9865.26
+        ],
+        "backgroundColor": "#F59E0B",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Heizung",
+        "data": [
+          7114.33,
+          8084.86,
+          6511.03
+        ],
+        "backgroundColor": "#EF4444",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Reinigung",
+        "data": [
+          7491.78,
+          7227.68,
+          6777.95
+        ],
+        "backgroundColor": "#8B5CF6",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Mission",
+        "data": [
+          5543.81,
+          4810,
+          4240
+        ],
+        "backgroundColor": "#EC4899",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Weiterleitung Diakonie",
+        "data": [
+          4052.58,
+          4330,
+          5350
+        ],
+        "backgroundColor": "#06B6D4",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      },
+      {
+        "label": "Sonstiges",
+        "data": [
+          4353.42,
+          3199.28,
+          14923.349999999999
+        ],
+        "backgroundColor": "#A9A9A9",
+        "borderColor": "#ffffff",
+        "borderWidth": 1,
+        "stack": "stack1",
+        "datalabels": {
+          "color": "#ffffff",
+          "formatter": "function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+          "anchor": "center",
+          "align": "start",
+          "padding": {
+            "left": 6
+          },
+          "font": {
+            "weight": "bold",
+            "size": 12
+          },
+          "display": "function(value, context) { try { var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); return Math.abs(v || 0) > 0.5; } catch (e) { return false; } }"
+        }
+      }
+    ]
+  },
+  "options": {
+    "indexAxis": "x",
+    "plugins": {
+      "title": {
+        "display": true,
+        "text": "Ausgaben 2025 nach Kategorien (Top 7 + Sonstiges)",
+        "font": {
+          "size": 20
+        }
+      },
+      "legend": {
+        "position": "top"
+      },
+      "datalabels": {
+        "color": "#ffffff",
+        "formatter": "function(value, context) { try { var label = ''; if (context && context.chart && context.chart.data && typeof context.datasetIndex === 'number') { var ds = context.chart.data.datasets[context.datasetIndex]; if (ds && ds.label) label = ds.label; } var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var formatted = Number(v).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return (label ? label + ': ' : '') + formatted; } catch (e) { return '' + value; } }",
+        "anchor": "center",
+        "align": "start",
+        "padding": {
+          "left": 6
+        },
+        "clamp": true,
+        "font": {
+          "weight": "bold",
+          "size": 12
+        }
+      }
+    },
+    "scales": {
+      "x": {
+        "stacked": true
+      },
+      "y": {
+        "stacked": true
+      }
+    }
+  }
+}
+[charts] datasets preview:
+[
+  {
+    "label": "Pastor",
+    "data": [
+      61013.45,
+      63591.79,
+      66705.58
+    ]
+  },
+  {
+    "label": "Darlehensleistungen",
+    "data": [
+      -38200,
+      -15513.49,
+      -14564.69
+    ]
+  },
+  {
+    "label": "Weiterleitung an Bund FeG",
+    "data": [
+      8130.36,
+      9004.95,
+      9865.26
+    ]
+  },
+  {
+    "label": "Heizung",
+    "data": [
+      7114.33,
+      8084.86,
+      6511.03
+    ]
+  },
+  {
+    "label": "Reinigung",
+    "data": [
+      7491.78,
+      7227.68,
+      6777.95
+    ]
+  },
+  {
+    "label": "Weiterleitung Mission",
+    "data": [
+      5543.81,
+      4810,
+      4240
+    ]
+  },
+  {
+    "label": "Weiterleitung Diakonie",
+    "data": [
+      4052.58,
+      4330,
+      5350
+    ]
+  },
+  {
+    "label": "Sonstiges",
+    "data": [
+      4353.42,
+      3199.28,
+      14923.349999999999
+    ]
+  }
+]
+[2026-02-03T07:18:10.580Z] Fehler beim Erzeugen Ausgaben-PNG: require is not defined
+[2026-02-03T07:18:10.642Z] Fertig!

@@ -13,10 +13,10 @@
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
   <script>
     const cfg = {
-      "type": "bar",
-      "data": {
-        "labels": ["2023", "2024", "2025"],
-        "datasets": [
+      type: "bar",
+      data: {
+        labels: ["2023", "2024", "2025"],
+        datasets: [
           {"label":"Pastor","data":[61013.45,63591.79,66705.58],"backgroundColor":"#3B82F6","borderColor":"#ffffff","borderWidth":1,"stack":"stack1"},
           {"label":"Darlehensleistungen","data":[-38200,-15513.49,-14564.69],"backgroundColor":"#10B981","borderColor":"#ffffff","borderWidth":1,"stack":"stack1"},
           {"label":"Weiterleitung an Bund FeG","data":[8130.36,9004.95,9865.26],"backgroundColor":"#F59E0B","borderColor":"#ffffff","borderWidth":1,"stack":"stack1"},
@@ -27,49 +27,52 @@
           {"label":"Sonstiges","data":[4353.42,3199.28,14923.35],"backgroundColor":"#A9A9A9","borderColor":"#ffffff","borderWidth":1,"stack":"stack1"}
         ]
       },
-      "options": {
-        "indexAxis": "x",
-        "plugins": {
-          "title": {
-            "display": true,
-            "text": "Ausgaben undefined nach Kategorien",
-            "font": { "size": 20 }
+      options: {
+        indexAxis: "x",
+        plugins: {
+          title: {
+            display: true,
+            text: "Ausgaben undefined nach Kategorien",
+            font: { size: 20 }
           },
-          "legend": {
-            "position": "top"
+          legend: {
+            position: "top"
           },
-          "datalabels": {
-            "color": "#ffffff",
-            "anchor": "center",
-            "align": "start",
-            "padding": { "left": 6 },
-            "font": { "weight": "bold", "size": 12 },
-            // HIER: Kategorie + Wert anzeigen
-            "formatter": function(value, context) {
-              const label = context.dataset.label || '';
-              // Zahl ggf. formatieren (z. B. mit zwei Nachkommastellen)
-              const formattedValue = value.toLocaleString('de-DE', {
+          datalabels: {
+            color: "#ffffff",
+            anchor: "center",
+            align: "start",
+            padding: { left: 6 },
+            font: { weight: "bold", size: 12 },
+            formatter: function (value, context) {
+              const label = context.dataset.label || "";
+              const formattedValue = value.toLocaleString("de-DE", {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2
               });
-              return label + ': ' + formattedValue;
+              return label + ": " + formattedValue;
             }
           }
         },
-        "scales": {
-          "x": { "stacked": true },
-          "y": { "stacked": true }
+        scales: {
+          x: {
+            stacked: true,
+            // 95 % der verfügbaren Breite nutzen
+            categoryPercentage: 0.95,
+            barPercentage: 0.95
+          },
+          y: {
+            stacked: true
+          }
         },
-        "responsive": false,
-        "maintainAspectRatio": false
+        responsive: false,
+        maintainAspectRatio: false
       }
     };
 
-    // register plugin
     Chart.register(ChartDataLabels);
     const ctx = document.getElementById('chart').getContext('2d');
     const chart = new Chart(ctx, cfg);
-    // signal ready
     window.__chart_ready = true;
   </script>
 </body>
