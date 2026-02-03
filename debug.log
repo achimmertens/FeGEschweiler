@@ -12721,3 +12721,75 @@
 [2026-02-03T11:09:19.568Z] Ausgaben PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.png"}
 [2026-02-03T11:09:20.916Z] Einnahmen PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.png"}
 [2026-02-03T11:09:20.937Z] Fertig!
+[2026-02-03T11:18:26.922Z] Starte Generierung der Präsentation...
+[2026-02-03T11:18:27.953Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T11:18:28.012Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T11:18:28.013Z] sortedExpensesData rows: 11
+[2026-02-03T11:18:28.013Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[2026-02-03T11:18:29.489Z] Ausgaben PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.png"}
+[2026-02-03T11:18:30.884Z] Einnahmen PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.png"}
+[2026-02-03T11:18:30.906Z] Fertig!
+[2026-02-03T11:21:53.342Z] Starte Generierung der Präsentation...
+[2026-02-03T11:21:54.326Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T11:21:54.382Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T11:21:54.382Z] sortedExpensesData rows: 11
+[2026-02-03T11:21:54.382Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[2026-02-03T11:21:55.788Z] Ausgaben PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.png"}
+[2026-02-03T11:21:57.074Z] Einnahmen PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.png"}
+[2026-02-03T11:21:57.096Z] Fertig!
+[2026-02-03T11:22:18.091Z] Starte Generierung der Präsentation...
+[2026-02-03T11:22:19.064Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T11:22:19.119Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T11:22:19.120Z] sortedExpensesData rows: 11
+[2026-02-03T11:22:19.120Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[2026-02-03T11:22:20.513Z] Ausgaben PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.png"}
+[2026-02-03T11:22:21.900Z] Einnahmen PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.png"}
+[2026-02-03T11:22:21.922Z] Fertig!
+[2026-02-03T11:25:25.768Z] Starte Generierung der Präsentation...
+[2026-02-03T11:25:26.754Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T11:25:26.816Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T11:25:26.816Z] sortedExpensesData rows: 11
+[2026-02-03T11:25:26.816Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[2026-02-03T11:25:28.225Z] Ausgaben PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.png"}
+[2026-02-03T11:25:29.519Z] Einnahmen PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.png"}
+[2026-02-03T11:25:29.541Z] Fertig!
+[2026-02-03T11:27:54.292Z] Starte Generierung der Präsentation...
+[2026-02-03T11:27:55.275Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T11:27:55.330Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T11:27:55.330Z] sortedExpensesData rows: 11
+[2026-02-03T11:27:55.331Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[2026-02-03T11:27:56.682Z] Ausgaben PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.png"}
+[2026-02-03T11:27:57.983Z] Einnahmen PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.png"}
+[2026-02-03T11:27:58.005Z] Fertig!
+[2026-02-03T11:31:13.692Z] Starte Generierung der Präsentation...
+[2026-02-03T11:31:14.697Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T11:31:14.756Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T11:31:14.756Z] sortedExpensesData rows: 11
+[2026-02-03T11:31:14.756Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[2026-02-03T11:31:16.392Z] Ausgaben PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.png"}
+[2026-02-03T11:31:17.794Z] Einnahmen PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.png"}
+[2026-02-03T11:31:17.816Z] Fertig!
+[2026-02-03T11:33:36.017Z] Starte Generierung der Präsentation...
+[2026-02-03T11:33:37.003Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T11:33:37.060Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T11:33:37.060Z] sortedExpensesData rows: 11
+[2026-02-03T11:33:37.060Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[2026-02-03T11:33:38.544Z] Ausgaben PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.png"}
+[2026-02-03T11:33:39.911Z] Einnahmen PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.png"}
+[2026-02-03T11:33:39.933Z] Fertig!
+[2026-02-03T11:37:23.381Z] Starte Generierung der Präsentation...
+[2026-02-03T11:37:24.366Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T11:37:24.423Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T11:37:24.423Z] sortedExpensesData rows: 11
+[2026-02-03T11:37:24.423Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[2026-02-03T11:37:25.775Z] Ausgaben PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.png"}
+[2026-02-03T11:37:27.910Z] Einnahmen PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.png"}
+[2026-02-03T11:37:27.931Z] Fertig!
+[2026-02-03T11:40:35.141Z] Starte Generierung der Präsentation...
+[2026-02-03T11:40:36.172Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-03T11:40:36.230Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-03T11:40:36.231Z] sortedExpensesData rows: 11
+[2026-02-03T11:40:36.231Z] sortedExpensesData sample row: {"2023":61013.45,"2024":63591.79,"2025":66705.58,"category":"Pastor"}
+[2026-02-03T11:40:37.677Z] Ausgaben PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.png"}
+[2026-02-03T11:40:39.125Z] Einnahmen PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.png"}
+[2026-02-03T11:40:39.147Z] Fertig!
