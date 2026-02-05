@@ -328,6 +328,17 @@ async function createPresentation() {
   const chartsModule = {};
   chartsModule.ausgaben = await import('./lib/generate-ausgaben-chart.js');
   chartsModule.einnahmen = await import('./lib/generate-einnahmen-chart.js');
+  // also import shared charts utilities (generates JSON from sorted data)
+  try {
+    const chartsLib = await import('./lib/charts.js');
+    // attach helpers if available so existing calls work
+    if (chartsLib.generateAusgabenJsonFromSorted) chartsModule.generateAusgabenJsonFromSorted = chartsLib.generateAusgabenJsonFromSorted;
+    if (chartsLib.generateEinnahmenJsonFromSorted) chartsModule.generateEinnahmenJsonFromSorted = chartsLib.generateEinnahmenJsonFromSorted;
+    if (chartsLib.generateAusgabenJson) chartsModule.generateAusgabenJson = chartsLib.generateAusgabenJson;
+    if (chartsLib.generateEinnahmenJson) chartsModule.generateEinnahmenJson = chartsLib.generateEinnahmenJson;
+  } catch (e) {
+    logToFile('Warnung: lib/charts.js konnte nicht geladen werden: ' + (e && e.message ? e.message : String(e)));
+  }
 
   const profitLossReports = readProfitLossReports();
   const years = Object.keys(profitLossReports).sort();
@@ -393,49 +404,46 @@ async function createPresentation() {
     logToFile('Error logging sortedExpensesData: ' + e.message);
   }
 
-    // Generate Ausgaben JSON
+  // Generate Ausgaben JSON
   if (chartsModule.generateAusgabenJsonFromSorted && excelResult.sortedExpensesData && Array.isArray(excelResult.sortedExpensesData.data) && excelResult.sortedExpensesData.data.length > 0) {
-    const outPath = chartsModule.generateAusgabenJsonFromSorted(excelResult.sortedExpensesData, years, currentYear);
-    logToFile(`Ausgaben JSON erstellt: ${outPath}`);
-    // Insert Schuldenabbau into the generated Ausgaben JSON using Bilanzberichte
     try {
-      const { readBalanceReports, extractAccountBalances } = await import('./lib/utils.js');
-      const balanceReports = readBalanceReports();
-      const jsonPath = outPath;
-      if (jsonPath && fs.existsSync(jsonPath)) {
-        const j = JSON.parse(fs.readFileSync(jsonPath, 'utf8')) || {};
-        const yrs = Object.keys(j).sort();
-        let prevSum = null;
-        for (const y of yrs) {
-          const bal = extractAccountBalances(balanceReports[y] || []);
-          let dsum = 0;
-          Object.entries(bal || {}).forEach(([k,v]) => {
-            const key = String(k || '').toLowerCase();
-            if (key.includes('darleh') || key.includes('privatdarlehen') || key.includes('privat')) dsum += Math.abs(Number(v) || 0);
-          });
-          if (prevSum === null) {
-            j[y]['Schuldenabbau'] = 0;
-          } else {
-            j[y]['Schuldenabbau'] = Number((dsum - prevSum).toFixed(2));
-          }
-          prevSum = dsum;
-        }
-        fs.writeFileSync(jsonPath, JSON.stringify(j, null, 2), 'utf8');
-        logToFile(`Schuldenabbau in ${jsonPath} eingetragen`);
+      const outPath = chartsModule.generateAusgabenJsonFromSorted(excelResult.sortedExpensesData, years, currentYear);
+      if (outPath && fs.existsSync(outPath)) {
+        logToFile(`Ausgaben JSON erstellt: ${outPath}`);
+      } else {
+        logToFile(`Ausgaben JSON: Funktion lieferte keinen gültigen Pfad oder Datei wurde nicht gefunden: ${outPath}`);
       }
-    } catch (e) { logToFile('Fehler beim Eintragen Schuldenabbau: ' + e.message); }
+    } catch (e) {
+      logToFile('Fehler beim Erzeugen Ausgaben-JSON aus sortierten Daten: ' + (e && e.message ? e.message : String(e)));
+    }
   } else if (chartsModule.generateAusgabenJson) {
-    await chartsModule.generateAusgabenJson(currentYear);
-    logToFile('Ausgaben JSON erstellt (fallback raw reports)');
+    try {
+      await chartsModule.generateAusgabenJson(currentYear);
+      logToFile('Ausgaben JSON erstellt (fallback raw reports)');
+    } catch (e) {
+      logToFile('Fehler beim Erzeugen Ausgaben-JSON (fallback): ' + (e && e.message ? e.message : String(e)));
+    }
   }
 
   // Generate Einnahmen JSON (analog)
   if (chartsModule.generateEinnahmenJsonFromSorted && excelResult.sortedIncomeData && Array.isArray(excelResult.sortedIncomeData.data) && excelResult.sortedIncomeData.data.length > 0) {
-    const outPathInc = chartsModule.generateEinnahmenJsonFromSorted(excelResult.sortedIncomeData, years, currentYear);
-    logToFile(`Einnahmen JSON erstellt: ${outPathInc}`);
+    try {
+      const outPathInc = chartsModule.generateEinnahmenJsonFromSorted(excelResult.sortedIncomeData, years, currentYear);
+      if (outPathInc && fs.existsSync(outPathInc)) {
+        logToFile(`Einnahmen JSON erstellt: ${outPathInc}`);
+      } else {
+        logToFile(`Einnahmen JSON: Funktion lieferte keinen gültigen Pfad oder Datei wurde nicht gefunden: ${outPathInc}`);
+      }
+    } catch (e) {
+      logToFile('Fehler beim Erzeugen Einnahmen-JSON aus sortierten Daten: ' + (e && e.message ? e.message : String(e)));
+    }
   } else if (chartsModule.generateEinnahmenJson) {
-    await chartsModule.generateEinnahmenJson(currentYear);
-    logToFile('Einnahmen JSON erstellt (fallback raw reports)');
+    try {
+      await chartsModule.generateEinnahmenJson(currentYear);
+      logToFile('Einnahmen JSON erstellt (fallback raw reports)');
+    } catch (e) {
+      logToFile('Fehler beim Erzeugen Einnahmen-JSON (fallback): ' + (e && e.message ? e.message : String(e)));
+    }
   }
   // Generate Ausgaben PNG from JSON using Playwright renderer if available
   try {
@@ -599,6 +607,312 @@ async function createPresentation() {
       }
     }
   } catch (e) { logToFile('Fehler beim Erzeugen Entwicklung-PNG: ' + e.message); }
+  
+  // Generate index.html for navigation
+  try {
+    const indexHtml = `<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FeG Eschweiler - Finanzberichte</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .nav {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0;
+        }
+
+        .nav-item {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            border-right: 1px solid #e5e5e5;
+        }
+
+        .nav-item:last-child {
+            border-right: none;
+        }
+
+        .nav-item a {
+            display: block;
+            padding: 1.2rem 1.5rem;
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-item a:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .nav-item a.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .nav-item a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: #764ba2;
+            transition: width 0.3s ease;
+        }
+
+        .nav-item a:hover::after,
+        .nav-item a.active::after {
+            width: 80%;
+        }
+
+        .content {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .iframe-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            min-height: 600px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 850px;
+            border: none;
+            display: block;
+        }
+
+        .welcome {
+            background: white;
+            border-radius: 8px;
+            padding: 3rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .welcome h2 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .welcome p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: #999;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+
+            .nav-item {
+                border-right: none;
+                border-bottom: 1px solid #e5e5e5;
+            }
+
+            .nav-item:last-child {
+                border-bottom: none;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .welcome {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>FeG Eschweiler - Finanzberichte</h1>
+        <p>Übersicht der Finanzberichte und Budgets</p>
+    </div>
+
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-item">
+                <a href="#" onclick="showWelcome(); return false;" class="active" id="nav-welcome">Startseite</a>
+            </div>
+            <div class="nav-item">
+                <a href="#" onclick="loadPage('Ausgaben_2025.html', this); return false;">Ausgaben 2025</a>
+            </div>
+            <div class="nav-item">
+                <a href="#" onclick="loadPage('Einnahmen_2025.html', this); return false;">Einnahmen 2025</a>
+            </div>
+            <div class="nav-item">
+                <a href="#" onclick="loadPage('Entwicklung_2025.html', this); return false;">Entwicklung 2025</a>
+            </div>
+            <div class="nav-item">
+                <a href="#" onclick="loadPage('Budget_2025.html', this); return false;">Budget 2025</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="content">
+        <div id="welcome-section" class="welcome">
+            <h2>Willkommen</h2>
+            <p>Hier finden Sie eine Übersicht über die Finanzberichte der FeG Eschweiler. Wählen Sie einen Bericht aus dem Menü oben aus, um die Details anzuzeigen.</p>
+            
+            <div class="card-grid">
+                <div class="card" onclick="loadPage('Ausgaben_2025.html', document.querySelector('[onclick*=Ausgaben]'))">
+                    <h3>📊 Ausgaben 2025</h3>
+                    <p>Detaillierte Übersicht der Ausgaben für das Jahr 2025 im Vergleich zu den Vorjahren.</p>
+                </div>
+                <div class="card" onclick="loadPage('Einnahmen_2025.html', document.querySelector('[onclick*=Einnahmen]'))">
+                    <h3>💰 Einnahmen 2025</h3>
+                    <p>Übersicht der Einnahmen und Erträge für das Jahr 2025.</p>
+                </div>
+                <div class="card" onclick="loadPage('Entwicklung_2025.html', document.querySelector('[onclick*=Entwicklung]'))">
+                    <h3>📈 Entwicklung 2025</h3>
+                    <p>Entwicklung der Finanzen über mehrere Jahre hinweg.</p>
+                </div>
+                <div class="card" onclick="loadPage('Budget_2025.html', document.querySelector('[onclick*=Budget]'))">
+                    <h3>📋 Budget 2025</h3>
+                    <p>Budgetplanung und -übersicht für das Jahr 2025.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="iframe-section" class="iframe-container" style="display: none;">
+            <iframe id="content-frame" src=""></iframe>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; ${currentYear} FeG Eschweiler - Finanzberichte</p>
+    </div>
+
+    <script>
+        function loadPage(page, linkElement) {
+            // Update active state
+            document.querySelectorAll('.nav-item a').forEach(a => a.classList.remove('active'));
+            if (linkElement) {
+                linkElement.classList.add('active');
+            }
+
+            // Hide welcome, show iframe
+            document.getElementById('welcome-section').style.display = 'none';
+            document.getElementById('iframe-section').style.display = 'block';
+
+            // Load page
+            document.getElementById('content-frame').src = page;
+        }
+
+        function showWelcome() {
+            // Update active state
+            document.querySelectorAll('.nav-item a').forEach(a => a.classList.remove('active'));
+            document.getElementById('nav-welcome').classList.add('active');
+
+            // Show welcome, hide iframe
+            document.getElementById('welcome-section').style.display = 'block';
+            document.getElementById('iframe-section').style.display = 'none';
+
+            // Clear iframe
+            document.getElementById('content-frame').src = '';
+        }
+    </script>
+</body>
+</html>`;
+    const indexPath = path.join(process.cwd(), 'Daten', 'result', 'index.html');
+    fs.writeFileSync(indexPath, indexHtml, 'utf8');
+    logToFile(`Index HTML erstellt: ${indexPath}`);
+  } catch (e) {
+    logToFile('Fehler beim Erzeugen index.html: ' + (e && e.message ? e.message : String(e)));
+  }
+  
   await createPPT(excelResult.sortedIncomeData, excelResult.sortedExpensesData, excelResult.sortedPieData);
 }
 

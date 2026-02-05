@@ -6,11 +6,11 @@
   ],
   "datasets": [
     {
-      "label": "Pastor",
+      "label": "Spende von Mitgliedern",
       "data": [
-        61013,
-        63591,
-        66705
+        134808.58,
+        143404.88,
+        139829.89
       ],
       "backgroundColor": "#3B82F6",
       "borderColor": "#ffffff",
@@ -18,11 +18,11 @@
       "stack": "stack1"
     },
     {
-      "label": "Darlehensleistungen",
+      "label": "Kollekte Eigenbedarf",
       "data": [
-        38200,
-        15513,
-        14564
+        9681.44,
+        12041.66,
+        12585.3
       ],
       "backgroundColor": "#10B981",
       "borderColor": "#ffffff",
@@ -30,11 +30,11 @@
       "stack": "stack1"
     },
     {
-      "label": "Weiterleitung an Bund FeG",
+      "label": "Freizeitbeträge Teilnehmer",
       "data": [
-        8130,
-        9004,
-        9865
+        5440.5,
+        780,
+        10100
       ],
       "backgroundColor": "#F59E0B",
       "borderColor": "#ffffff",
@@ -42,11 +42,11 @@
       "stack": "stack1"
     },
     {
-      "label": "Heizung",
+      "label": "Spende von Freunden",
       "data": [
-        7114,
-        8084,
-        6511
+        2093.38,
+        5590,
+        6130
       ],
       "backgroundColor": "#EF4444",
       "borderColor": "#ffffff",
@@ -54,11 +54,11 @@
       "stack": "stack1"
     },
     {
-      "label": "Reinigung",
+      "label": "Spende für Allianz-Mission",
       "data": [
-        7491,
-        7227,
-        6777
+        2200,
+        3720,
+        3730
       ],
       "backgroundColor": "#8B5CF6",
       "borderColor": "#ffffff",
@@ -66,11 +66,11 @@
       "stack": "stack1"
     },
     {
-      "label": "Weiterleitung Mission",
+      "label": "Vermietung",
       "data": [
-        5543,
-        4810,
-        4240
+        1785,
+        2940,
+        4292
       ],
       "backgroundColor": "#EC4899",
       "borderColor": "#ffffff",
@@ -78,11 +78,11 @@
       "stack": "stack1"
     },
     {
-      "label": "Weiterleitung Diakonie",
+      "label": "Kollekte zur Weiterleitung",
       "data": [
-        4052,
-        4330,
-        5350
+        2576.62,
+        1997.45,
+        1113.15
       ],
       "backgroundColor": "#06B6D4",
       "borderColor": "#ffffff",
@@ -90,11 +90,23 @@
       "stack": "stack1"
     },
     {
+      "label": "Sonstige Einnahmen",
+      "data": [
+        3126.19,
+        102,
+        600
+      ],
+      "backgroundColor": "#84CC16",
+      "borderColor": "#ffffff",
+      "borderWidth": 1,
+      "stack": "stack1"
+    },
+    {
       "label": "Sonstiges",
       "data": [
-        4353,
-        3199,
-        14922
+        1374.33,
+        2379.21,
+        1713.23
       ],
       "backgroundColor": "#A9A9A9",
       "borderColor": "#ffffff",
@@ -104,10 +116,10 @@
   ]
 },"options":{"indexAxis":"x","plugins":{"title":{
   "display": true,
-  "text": "Ausgaben 2025 nach Kategorien",
+  "text": "Einnahmen 2025",
   "font": {
     "size": 30
   }
 },"legend":{
   "position": "top"
-},"datalabels":{"color":"#ffffff","anchor":"center","align":"center","padding":{"left":6},"font":{"weight":"bold","size":16},"formatter":function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.round(Math.abs(Number(v) || 0)); return (label ? label + ': ' : '') + n.toLocaleString('de-DE') + ' €'; } catch (e) { return '' + value; } }}},"scales":{"x":{"stacked":true},"y":{"stacked":true}},"responsive":false,"maintainAspectRatio":true}};Chart.register(ChartDataLabels);const ctx=document.getElementById('chart').getContext('2d');const chart=new Chart(ctx,cfg);window.__chart_ready=true;</script></body></html>
+},"datalabels":{"color":"#ffffff","anchor":"center","align":"center","padding":{"left":6},"font":{"weight":"bold","size":12},"formatter":function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.round(Number(v) || 0); return (label ? label + ': ' : '') + n.toLocaleString('de-DE') + ' €'; } catch (e) { return '' + value; } }}},"scales":{"x":{"stacked":true},"y":{"stacked":true}},"responsive":false,"maintainAspectRatio":true}};Chart.register(ChartDataLabels);const ctx=document.getElementById('chart').getContext('2d');const chart=new Chart(ctx,cfg);window.__chart_ready=true;</script></body></html>
