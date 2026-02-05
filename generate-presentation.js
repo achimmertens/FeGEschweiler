@@ -322,7 +322,7 @@ function createDevelopmentSlide(pres) {
 
 async function createPresentation() {
   const { readProfitLossReports } = await import('./lib/utils.js');
-  const { createExcelFile } = await import('./lib/excel.js');
+  // Excel generation not required anymore - skip creating Finanzlage_FeG_Eschweiler.xlsx
   const { createPPT } = await import('./lib/ppt.js');
   // import both chart modules
   const chartsModule = {};
@@ -349,8 +349,13 @@ async function createPresentation() {
 
   logToFile(`Gefundene Jahre: ${years.join(', ')}`);
 
-  // Erstelle Excel (liefert sortierte Daten für PPT zurück)
-  const excelResult = await createExcelFile(profitLossReports, years);
+  // Excel generation skipped - provide empty structures used downstream
+  logToFile('Excel-Erzeugung übersprungen (Finanzlage_FeG_Eschweiler.xlsx wird nicht erstellt).');
+  const excelResult = {
+    sortedExpensesData: { data: [], categories: [], totals: {} },
+    sortedIncomeData: { data: [], categories: [], totals: {} },
+    sortedPieData: {}
+  };
 
   // Debug dump of sortedExpensesData to help diagnose empty JSON output
   try {
