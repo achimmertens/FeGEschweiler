@@ -515,6 +515,43 @@ async function createPresentation() {
       logToFile('Fehler beim Erzeugen Einnahmen-JSON (fallback): ' + (e && e.message ? e.message : String(e)));
     }
   }
+  // Overwrite (or create) authoritative Einnahmen JSON from CSV reports to ensure totals match source
+  try {
+    const reportYear = currentYear - 1;
+    const yearsToProcess = [currentYear - 3, currentYear - 2, currentYear - 1];
+    const reports = readProfitLossReports();
+    const incomesOut = {};
+    for (const y of yearsToProcess) {
+      const rows = reports[String(y)] || [];
+      const map = {};
+      let total = 0;
+      rows.forEach(r => {
+        try {
+          const v = parseGermanNumber(r.Summe || r['Summe'] || 0);
+          const kk = (r.Kontoklasse || r['Kontoklasse'] || '').toString().toLowerCase();
+          const name = (r.Name || r['Name'] || '').toString();
+          const isRevenueClass = /betr\.? erträge/i.test(r.Kontoklasse || r['Kontoklasse'] || '') || /umsatzerlöse/i.test(r.Kontoklasse || r['Kontoklasse'] || '');
+          const isInterest = /haben-?zinsen|zinsen/i.test(name.toLowerCase());
+          if (v > 0 || isRevenueClass || isInterest) {
+            const key = name || '(unnamed)';
+            map[key] = (map[key] || 0) + Number(v || 0);
+            total += Number(v || 0);
+          }
+        } catch (e) { /* ignore row parse errors */ }
+      });
+      // normalize and round
+      Object.keys(map).forEach(k => map[k] = Number(Number(map[k] || 0).toFixed(2)));
+      const sumMap = Object.values(map).reduce((s,n)=>s+Number(n||0),0);
+      const gap = Number((total - sumMap).toFixed(2));
+      if (Math.abs(gap) > 0.001) map['Sonstiges'] = Number((map['Sonstiges'] || 0) + gap);
+      else if (!map.hasOwnProperty('Sonstiges')) map['Sonstiges'] = 0;
+      incomesOut[y] = map;
+      logToFile(`Einnahmen authoritative ${y}: total=${total} listed=${sumMap} gap=${gap}`);
+    }
+    const outPath = path.join(process.cwd(), 'Daten', 'result', `Einnahmen_${reportYear}.json`);
+    fs.writeFileSync(outPath, JSON.stringify(incomesOut, null, 2), 'utf8');
+    logToFile(`Einnahmen JSON (authoritative) geschrieben: ${outPath}`);
+  } catch (e) { logToFile('Fehler beim Erzeugen authoritativer Einnahmen-JSON: ' + (e && e.message ? e.message : String(e))); }
   // Generate Ausgaben PNG from JSON using Playwright renderer if available
   try {
     const reportYear = currentYear - 1;
@@ -1022,8 +1059,19 @@ async function createPresentation() {
       const categories = Object.keys(years.length ? data[years[0]] : {});
       const headers = ['Kategorie', ...years];
       const escapeHtml = s => String(s === undefined || s === null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      // rows for categories
       const rows = categories.map(cat => '<tr>' + [`<td>${escapeHtml(cat)}</td>`, ...years.map(y=>`<td>${escapeHtml((data[y] && data[y][cat])? String(data[y][cat]) : '0')}</td>` )].join('') + '</tr>').join('\n');
-      const tableHtml = `<!doctype html><html lang="de"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Einnahmen ${reportYear}</title><style>body{font-family:Arial,sans-serif;margin:12px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:6px;text-align:left;font-size:13px}th{background:#f3f4f6}</style></head><body><h1>Einnahmen ${reportYear}</h1><table><thead><tr>${headers.map(h=>`<th>${escapeHtml(h)}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></body></html>`;
+      // totals per year (sum of categories)
+      const totals = years.map(y => categories.reduce((s,cat) => s + (Number((data[y] && data[y][cat]) || 0)), 0));
+      // format totals using German number formatting if available
+      let formatGermanNumber = n => (Number(n||0).toFixed(2)).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+      try { const _utils = await import('./lib/utils.js'); if (_utils.formatGermanNumber) formatGermanNumber = _utils.formatGermanNumber; } catch (e) {}
+      const totalRow = '<tr>' + [`<td><strong>Gesamt</strong></td>`, ...totals.map(t => {
+        const raw = formatGermanNumber(t);
+        const withoutCents = raw.endsWith(',00') ? raw.slice(0, -3) : raw;
+        return `<td><strong>${escapeHtml(withoutCents)} €</strong></td>`;
+      })].join('') + '</tr>';
+      const tableHtml = `<!doctype html><html lang="de"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Einnahmen ${reportYear}</title><style>body{font-family:Arial,sans-serif;margin:12px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:6px;text-align:left;font-size:13px}th{background:#f3f4f6}</style></head><body><h1>Einnahmen ${reportYear}</h1><table><thead><tr>${headers.map(h=>`<th>${escapeHtml(h)}</th>`).join('')}</tr></thead><tbody>${rows}\n${totalRow}</tbody></table></body></html>`;
       const outPath = path.join(process.cwd(), 'Daten', 'result', `EinnahmenTab_${reportYear}.html`);
       fs.writeFileSync(outPath, tableHtml, 'utf8');
       logToFile(`Einnahmen-Tabelle erstellt: ${outPath}`);
