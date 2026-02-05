@@ -354,7 +354,7 @@ async function createPresentation() {
   const excelResult = {
     sortedExpensesData: { data: [], categories: [], totals: {} },
     sortedIncomeData: { data: [], categories: [], totals: {} },
-    sortedPieData: {}
+    sortedPieData: []
   };
 
   // Debug dump of sortedExpensesData to help diagnose empty JSON output
@@ -1011,7 +1011,19 @@ async function createPresentation() {
     logToFile(`Checkliste HTML erstellt: ${chkOut}`);
   } catch (e) { logToFile('Fehler beim Erzeugen Checkliste-Seite: ' + (e && e.message ? e.message : String(e))); }
   
-  await createPPT(excelResult.sortedIncomeData, excelResult.sortedExpensesData, excelResult.sortedPieData);
+  // Create PPT only if there is meaningful data
+  try {
+    const hasIncome = excelResult.sortedIncomeData && Array.isArray(excelResult.sortedIncomeData.data) && excelResult.sortedIncomeData.data.length > 0;
+    const hasExpenses = excelResult.sortedExpensesData && Array.isArray(excelResult.sortedExpensesData.data) && excelResult.sortedExpensesData.data.length > 0;
+    const hasPie = excelResult.sortedPieData && Array.isArray(excelResult.sortedPieData) && excelResult.sortedPieData.length > 0;
+    if (hasIncome || hasExpenses || hasPie) {
+      await createPPT(excelResult.sortedIncomeData, excelResult.sortedExpensesData, excelResult.sortedPieData);
+    } else {
+      logToFile('Keine Daten für PPT vorhanden, PPT-Erzeugung übersprungen.');
+    }
+  } catch (e) {
+    logToFile('Fehler beim Erzeugen PPT: ' + (e && e.message ? e.message : String(e)));
+  }
 }
 
 // Hauptfunktion
