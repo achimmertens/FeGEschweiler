@@ -388,6 +388,7 @@ async function createPresentation() {
     if (budgetFiles.length > 0) {
       const best = budgetFiles[0];
       const { parseBudgetFile, saveBudgetAsCSV } = await import('./lib/utils.js');
+      const { generateBudgetHtml } = await import('./lib/budget.js');
       const parsed = parseBudgetFile(best.file);
       const outCsv = saveBudgetAsCSV(parsed, best.year);
       logToFile(`Budget CSV erstellt aus ${best.file}: ${outCsv}`);
@@ -443,10 +444,16 @@ async function createPresentation() {
 
         const html = `<!doctype html>\n<html lang="de">\n<head>\n<meta charset="utf-8"/>\n<meta name="viewport" content="width=device-width,initial-scale=1"/>\n<title>Budget ${best.year}</title>\n<style>body{font-family:Arial,sans-serif;margin:12px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:6px;text-align:left;font-size:13px}th{background:#f3f4f6}</style>\n</head>\n<body>\n<h1>Budget ${best.year} + ${best.year+1}</h1>\n<table>\n<thead>\n<tr>\n${finalHeaders.map(h=>`<th>${escapeHtml(h)}</th>`).join('\n')}\n</tr>\n</thead>\n<tbody>\n${tableRows}\n</tbody>\n</table>\n</body>\n</html>`;
 
-        // Write HTML under current year filename (Budget_zzzz.html)
-        const outHtml = path.join(process.cwd(), 'Daten', 'result', `Budget_${planYear}.html`);
-        fs.writeFileSync(outHtml, html, 'utf8');
-        logToFile(`Budget HTML erstellt: ${outHtml}`);
+        // Delegate HTML generation to lib/budget.js
+        try {
+          const generated = await generateBudgetHtml(outCsv, best.year, planYear);
+          logToFile(`Budget HTML erstellt: ${generated}`);
+        } catch (e) {
+          // fallback: write the original html if helper fails
+          const outHtml = path.join(process.cwd(), 'Daten', 'result', `Budget_${planYear}.html`);
+          fs.writeFileSync(outHtml, html, 'utf8');
+          logToFile(`Budget HTML (Fallback) erstellt: ${outHtml}`);
+        }
       } catch (e) { logToFile('Fehler beim Erzeugen Budget-HTML: ' + (e && e.message ? e.message : String(e))); }
     } else {
       logToFile('Keine Budgets_YYYY.txt Datei im Daten-Ordner gefunden.');
