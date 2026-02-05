@@ -394,7 +394,10 @@ async function createPresentation() {
       // Also generate a simple HTML table view of the budget CSV for inspection
       try {
         const csvRows = readCSV(outCsv);
-        const headers = csvRows && csvRows.length ? Object.keys(csvRows[0]) : [];
+        // collect headers from CSV and remove unwanted previous-year columns
+        let headers = csvRows && csvRows.length ? Object.keys(csvRows[0]) : [];
+        // Remove the two columns 'Verbraucht-Vorjahr' and 'Geplant-Vorjahr' from display
+        headers = headers.filter(h => h !== 'Verbraucht-Vorjahr' && h !== 'Geplant-Vorjahr');
         const escapeHtml = s => String(s === undefined || s === null ? '' : s)
           .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 

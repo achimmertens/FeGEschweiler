@@ -13382,3 +13382,23 @@
 [2026-02-05T09:44:04.796Z] Fehler beim Erzeugen Entwicklung-PNG: require is not defined
 [2026-02-05T09:44:04.797Z] Index HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\index.html
 [2026-02-05T09:44:04.825Z] Fertig!
+[2026-02-05T09:48:36.052Z] Starte Generierung der Präsentation...
+[2026-02-05T09:48:37.029Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-05T09:48:37.085Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-05T09:48:37.087Z] Budget CSV für aktuelles Jahr kopiert: D:\Users\User\git\FeGEschweiler\Daten\result\Budget_2026.csv
+[2026-02-05T09:48:37.090Z] Budget CSV erstellt aus D:\Users\User\git\FeGEschweiler\Daten\Budgets_2025.txt: D:\Users\User\git\FeGEschweiler\Daten\result\Budget_2025.csv
+[2026-02-05T09:48:37.094Z] Budget HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Budget_2026.html
+[2026-02-05T09:48:37.095Z] sortedExpensesData rows: 11
+[2026-02-05T09:48:37.095Z] sortedExpensesData sample row: {"2023":61013,"2024":63591,"2025":66705,"category":"Pastor"}
+[charts] JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Debug JSON written to D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025_debug.json
+[2026-02-05T09:48:37.097Z] Ausgaben JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[charts] Einnahmen JSON from sorted data saved to D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-05T09:48:37.099Z] Einnahmen JSON erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-05T09:48:38.565Z] Ausgaben PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Ausgaben_2025.png"}
+[2026-02-05T09:48:39.892Z] Einnahmen PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.png"}
+[2026-02-05T09:48:39.894Z] Entwicklung HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Entwicklung_2025.html
+[2026-02-05T09:48:41.293Z] Entwicklung PNG erstellt (Playwright): D:\Users\User\git\FeGEschweiler\Daten\result\Entwicklung_2025.png
+[2026-02-05T09:48:41.299Z] Fehler beim Erzeugen Entwicklung-PNG: require is not defined
+[2026-02-05T09:48:41.299Z] Index HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\index.html
+[2026-02-05T09:48:41.320Z] Fertig!
