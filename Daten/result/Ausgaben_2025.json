@@ -8,7 +8,8 @@
     "Weiterleitung Mission": 5543,
     "Weiterleitung Diakonie": 4052,
     "Investitionen/Anschaffungen": 4353,
-    "Sonstiges": 25639
+    "Sonstiges": 25639,
+    "Schuldenabbau": 0
   },
   "2024": {
     "Pastor": 63591,
@@ -19,7 +20,8 @@
     "Weiterleitung Mission": 4810,
     "Weiterleitung Diakonie": 4330,
     "Investitionen/Anschaffungen": 3199,
-    "Sonstiges": 16452
+    "Sonstiges": 16452,
+    "Schuldenabbau": -22936.51
   },
   "2025": {
     "Pastor": 66705,
@@ -30,6 +32,7 @@
     "Weiterleitung Mission": 4240,
     "Weiterleitung Diakonie": 5350,
     "Investitionen/Anschaffungen": 5283,
-    "Sonstiges": 25636
+    "Sonstiges": 25636,
+    "Schuldenabbau": -23735.31
   }
 }
