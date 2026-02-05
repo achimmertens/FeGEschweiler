@@ -994,36 +994,15 @@ async function createPresentation() {
   
   // Also create a simple Sonderspenden page if Sonderspenden CSV exists
   try {
-    const sFile = path.join(process.cwd(), 'Daten', 'SonderspendenTermine.csv');
-    if (fs.existsSync(sFile)) {
-      const rows = readCSV(sFile);
-      const escapeHtml = s => String(s === undefined || s === null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-      const tableRows = (rows||[]).map(r => '<tr>' + Object.values(r).map(v => `<td>${escapeHtml(v)}</td>`).join('') + '</tr>').join('\n');
-      const headers = rows && rows.length ? Object.keys(rows[0]).map(h => `<th>${escapeHtml(h)}</th>`).join('\n') : '';
-      const sHtml = `<!doctype html><html lang="de"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Sonderspenden</title><style>body{font-family:Arial,sans-serif;margin:12px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:6px;text-align:left;font-size:13px}th{background:#f3f4f6}</style></head><body><h1>Sonderspenden Termine</h1><table><thead><tr>${headers}</tr></thead><tbody>${tableRows}</tbody></table></body></html>`;
-      const sOut = path.join(process.cwd(), 'Daten', 'result', 'Sonderspenden.html');
-      fs.writeFileSync(sOut, sHtml, 'utf8');
-      logToFile(`Sonderspenden HTML erstellt: ${sOut}`);
-    }
+    const { generateSonderspendenPage } = await import('./lib/sonderspenden.js');
+    const sOut = await generateSonderspendenPage();
+    if (sOut) logToFile(`Sonderspenden HTML erstellt: ${sOut}`);
   } catch (e) { logToFile('Fehler beim Erzeugen Sonderspenden-Seite: ' + (e && e.message ? e.message : String(e))); }
 
-  // Create a simple annual checklist page
+  // Create a simple annual checklist page (delegated to lib/checklist.js)
   try {
-    const checklist = [
-      '1. Neue Gewinn-Verlust-Berichte (gewinn-verlust-bericht_YYYY.csv) in /Daten ablegen',
-      '2. Neue Bilanzberichte (bilanzbericht_YYYY.csv) in /Daten ablegen',
-      '3. Budgets_YYYY.txt prüfen / aktualisieren und in /Daten ablegen',
-      '4. Falls vorhanden: Budget_YYYY.csv in /Daten ablegen (wird nach /Daten/result kopiert)',
-      '5. Prüfen: Kontoauszüge und Summen-Salden in /Daten oder /old ablegen',
-      '6. node generate-presentation.js ausführen und debug.log lesen',
-      '7. Ergebnis prüfen: Daten/result enthält Budget_YYYY.html, Ausgaben_YYYY.html, Einnahmen_YYYY.html, Entwicklung_YYYY.html, Präsentation.pptx',
-      '8. PPTX öffnen und Folien prüfen; ggf. manuelle Korrekturen an Budget-Planungen vornehmen',
-      '9. Website/Index prüfen: /Daten/result/index.html öffnet alle Seiten',
-      '10. Repository commit & push: git add -A && git commit -m "update data YYYY" && git push'
-    ];
-    const checklistHtml = `<!doctype html><html lang="de"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Checkliste</title><style>body{font-family:Arial,sans-serif;margin:18px}h1{color:#667eea}ol{font-size:16px;line-height:1.6}</style></head><body><h1>Checkliste: Jährliche Datenaktualisierung</h1><ol>${checklist.map(i=>`<li>${i}</li>`).join('')}</ol></body></html>`;
-    const chkOut = path.join(process.cwd(), 'Daten', 'result', 'Checkliste.html');
-    fs.writeFileSync(chkOut, checklistHtml, 'utf8');
+    const { generateDefaultChecklist } = await import('./lib/checklist.js');
+    const chkOut = generateDefaultChecklist(currentYear);
     logToFile(`Checkliste HTML erstellt: ${chkOut}`);
   } catch (e) { logToFile('Fehler beim Erzeugen Checkliste-Seite: ' + (e && e.message ? e.message : String(e))); }
   
