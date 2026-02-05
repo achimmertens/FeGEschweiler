@@ -906,6 +906,9 @@ async function createPresentation() {
                 <a href="#" onclick="loadPage('Einnahmen_2025.html', this); return false;">Einnahmen 2025</a>
             </div>
             <div class="nav-item">
+              <a href="#" onclick="loadPage('EinnahmenTab_${currentYear-1}.html', this); return false;">EinnahmenTabelle</a>
+            </div>
+            <div class="nav-item">
                 <a href="#" onclick="loadPage('Entwicklung_2025.html', this); return false;">Entwicklung 2025</a>
             </div>
             <div class="nav-item">
@@ -928,8 +931,12 @@ async function createPresentation() {
                     <p>Detaillierte Übersicht der Ausgaben für das Jahr 2025 im Vergleich zu den Vorjahren.</p>
                 </div>
                 <div class="card" onclick="loadPage('Einnahmen_2025.html', document.querySelector('[onclick*=Einnahmen]'))">
-                    <h3>💰 Einnahmen 2025</h3>
-                    <p>Übersicht der Einnahmen und Erträge für das Jahr 2025.</p>
+                  <h3>💰 Einnahmen 2025</h3>
+                  <p>Übersicht der Einnahmen und Erträge für das Jahr 2025.</p>
+                </div>
+                <div class="card" onclick="loadPage('EinnahmenTab_${currentYear-1}.html', document.querySelector('[onclick*=EinnahmenTabelle]'))">
+                  <h3>📋 EinnahmenTabelle</h3>
+                  <p>Tabellarische Darstellung der Einnahmen für ${currentYear-1}.</p>
                 </div>
                 <div class="card" onclick="loadPage('Checkliste.html', document.querySelector('[onclick*=Checkliste]'))">
                   <h3>📝 Checkliste</h3>
@@ -1003,6 +1010,25 @@ async function createPresentation() {
     const sOut = await generateSonderspendenPage();
     if (sOut) logToFile(`Sonderspenden HTML erstellt: ${sOut}`);
   } catch (e) { logToFile('Fehler beim Erzeugen Sonderspenden-Seite: ' + (e && e.message ? e.message : String(e))); }
+
+  // Create Einnahmen tabellarische Seite using Einnahmen JSON if available
+  try {
+    const reportYear = currentYear - 1;
+    const einJson = path.join(process.cwd(), 'Daten', 'result', `Einnahmen_${reportYear}.json`);
+    if (fs.existsSync(einJson)) {
+      const data = JSON.parse(fs.readFileSync(einJson, 'utf8')) || {};
+      // build table: categories x values
+      const years = Object.keys(data).sort();
+      const categories = Object.keys(years.length ? data[years[0]] : {});
+      const headers = ['Kategorie', ...years];
+      const escapeHtml = s => String(s === undefined || s === null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      const rows = categories.map(cat => '<tr>' + [`<td>${escapeHtml(cat)}</td>`, ...years.map(y=>`<td>${escapeHtml((data[y] && data[y][cat])? String(data[y][cat]) : '0')}</td>` )].join('') + '</tr>').join('\n');
+      const tableHtml = `<!doctype html><html lang="de"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Einnahmen ${reportYear}</title><style>body{font-family:Arial,sans-serif;margin:12px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:6px;text-align:left;font-size:13px}th{background:#f3f4f6}</style></head><body><h1>Einnahmen ${reportYear}</h1><table><thead><tr>${headers.map(h=>`<th>${escapeHtml(h)}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></body></html>`;
+      const outPath = path.join(process.cwd(), 'Daten', 'result', `EinnahmenTab_${reportYear}.html`);
+      fs.writeFileSync(outPath, tableHtml, 'utf8');
+      logToFile(`Einnahmen-Tabelle erstellt: ${outPath}`);
+    }
+  } catch (e) { logToFile('Fehler beim Erzeugen Einnahmen-Tabelle: ' + (e && e.message ? e.message : String(e))); }
 
   // Create a simple annual checklist page (delegated to lib/checklist.js)
   try {
