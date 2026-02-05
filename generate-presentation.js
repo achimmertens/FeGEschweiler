@@ -892,6 +892,9 @@ async function createPresentation() {
                 <a href="#" onclick="showWelcome(); return false;" class="active" id="nav-welcome">Startseite</a>
             </div>
             <div class="nav-item">
+              <a href="#" onclick="loadPage('Checkliste.html', this); return false;">Checkliste</a>
+            </div>
+            <div class="nav-item">
                 <a href="#" onclick="loadPage('Ausgaben_2025.html', this); return false;">Ausgaben 2025</a>
             </div>
             <div class="nav-item">
@@ -922,6 +925,10 @@ async function createPresentation() {
                 <div class="card" onclick="loadPage('Einnahmen_2025.html', document.querySelector('[onclick*=Einnahmen]'))">
                     <h3>💰 Einnahmen 2025</h3>
                     <p>Übersicht der Einnahmen und Erträge für das Jahr 2025.</p>
+                </div>
+                <div class="card" onclick="loadPage('Checkliste.html', document.querySelector('[onclick*=Checkliste]'))">
+                  <h3>📝 Checkliste</h3>
+                  <p>Jährliche Schritte zur Aktualisierung der Daten.</p>
                 </div>
                 <div class="card" onclick="loadPage('Entwicklung_2025.html', document.querySelector('[onclick*=Entwicklung]'))">
                     <h3>📈 Entwicklung 2025</h3>
@@ -999,6 +1006,26 @@ async function createPresentation() {
       logToFile(`Sonderspenden HTML erstellt: ${sOut}`);
     }
   } catch (e) { logToFile('Fehler beim Erzeugen Sonderspenden-Seite: ' + (e && e.message ? e.message : String(e))); }
+
+  // Create a simple annual checklist page
+  try {
+    const checklist = [
+      '1. Neue Gewinn-Verlust-Berichte (gewinn-verlust-bericht_YYYY.csv) in /Daten ablegen',
+      '2. Neue Bilanzberichte (bilanzbericht_YYYY.csv) in /Daten ablegen',
+      '3. Budgets_YYYY.txt prüfen / aktualisieren und in /Daten ablegen',
+      '4. Falls vorhanden: Budget_YYYY.csv in /Daten ablegen (wird nach /Daten/result kopiert)',
+      '5. Prüfen: Kontoauszüge und Summen-Salden in /Daten oder /old ablegen',
+      '6. node generate-presentation.js ausführen und debug.log lesen',
+      '7. Ergebnis prüfen: Daten/result enthält Budget_YYYY.html, Ausgaben_YYYY.html, Einnahmen_YYYY.html, Entwicklung_YYYY.html, Präsentation.pptx',
+      '8. PPTX öffnen und Folien prüfen; ggf. manuelle Korrekturen an Budget-Planungen vornehmen',
+      '9. Website/Index prüfen: /Daten/result/index.html öffnet alle Seiten',
+      '10. Repository commit & push: git add -A && git commit -m "update data YYYY" && git push'
+    ];
+    const checklistHtml = `<!doctype html><html lang="de"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Checkliste</title><style>body{font-family:Arial,sans-serif;margin:18px}h1{color:#667eea}ol{font-size:16px;line-height:1.6}</style></head><body><h1>Checkliste: Jährliche Datenaktualisierung</h1><ol>${checklist.map(i=>`<li>${i}</li>`).join('')}</ol></body></html>`;
+    const chkOut = path.join(process.cwd(), 'Daten', 'result', 'Checkliste.html');
+    fs.writeFileSync(chkOut, checklistHtml, 'utf8');
+    logToFile(`Checkliste HTML erstellt: ${chkOut}`);
+  } catch (e) { logToFile('Fehler beim Erzeugen Checkliste-Seite: ' + (e && e.message ? e.message : String(e))); }
   
   await createPPT(excelResult.sortedIncomeData, excelResult.sortedExpensesData, excelResult.sortedPieData);
 }
