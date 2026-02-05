@@ -384,9 +384,49 @@ async function createPresentation() {
         const headers = csvRows && csvRows.length ? Object.keys(csvRows[0]) : [];
         const escapeHtml = s => String(s === undefined || s === null ? '' : s)
           .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-        const tableRows = csvRows.map(r => '<tr>' + headers.map(h => `<td>${escapeHtml(r[h]===undefined? '': r[h])}</td>`).join('') + '</tr>').join('\n');
-        const html = `<!doctype html>\n<html lang="de">\n<head>\n<meta charset="utf-8"/>\n<meta name="viewport" content="width=device-width,initial-scale=1"/>\n<title>Budget ${best.year}</title>\n<style>body{font-family:Arial,sans-serif;margin:12px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:6px;text-align:left;font-size:13px}th{background:#f3f4f6}</style>\n</head>\n<body>\n<h1>Budget ${best.year} + ${best.year+1}</h1>\n<table>\n<thead>\n<tr>\n${headers.map(h=>`<th>${escapeHtml(h)}</th>`).join('\n')}\n</tr>\n</thead>\n<tbody>\n${tableRows}\n</tbody>\n</table>\n</body>\n</html>`;
-        const outHtml = path.join(process.cwd(), 'Daten', 'result', `Budget_${best.year}.html`);
+
+        // Try to enrich with plan column from Budget_<currentYear>.csv if available
+        const planYear = currentYear;
+        const planCandidates = [];
+        const planSrcA = path.join(process.cwd(), 'Daten', `Budget_${planYear}.csv`);
+        const planSrcB = path.join(process.cwd(), 'Daten', 'result', `Budget_${planYear}.csv`);
+        if (fs.existsSync(planSrcA)) planCandidates.push(planSrcA);
+        if (fs.existsSync(planSrcB) && planSrcB !== outCsv) planCandidates.push(planSrcB);
+
+        let planHeader = null;
+        const planMap = {}; // key -> plan value (key = Nummer or Kostenstelle)
+        try {
+          for (const p of planCandidates) {
+            const planRows = readCSV(p);
+            if (!planRows || !planRows.length) continue;
+            const ph = Object.keys(planRows[0] || {}).find(h => /^Plan/i.test(h) || /Plan/i.test(h) || /Plan_?\d{2,4}/i.test(h));
+            if (!ph) continue;
+            planHeader = ph;
+            planRows.forEach(r => {
+              const key = (r['Nummer'] || r['Nummer'] === 0) ? String(r['Nummer']).trim() : String(r['Kostenstelle'] || '').trim();
+              if (key) planMap[key] = r[planHeader];
+            });
+            if (planHeader) break;
+          }
+        } catch (e) {
+          logToFile('Fehler beim Lesen Plan-CSV: ' + (e && e.message ? e.message : String(e)));
+        }
+
+        // Build table rows, append plan cell when available
+        const tableRows = csvRows.map(r => {
+          const base = headers.map(h => `<td>${escapeHtml(r[h]===undefined? '': r[h])}</td>`).join('');
+          const key = (r['Nummer'] || r['Nummer'] === 0) ? String(r['Nummer']).trim() : String(r['Kostenstelle'] || '').trim();
+          const planCell = planHeader ? `<td>${escapeHtml(planMap[key] !== undefined ? planMap[key] : '')}</td>` : '';
+          return '<tr>' + base + planCell + '</tr>';
+        }).join('\n');
+
+        const finalHeaders = headers.slice();
+        if (planHeader) finalHeaders.push(`Plan ${planYear}`);
+
+        const html = `<!doctype html>\n<html lang="de">\n<head>\n<meta charset="utf-8"/>\n<meta name="viewport" content="width=device-width,initial-scale=1"/>\n<title>Budget ${best.year}</title>\n<style>body{font-family:Arial,sans-serif;margin:12px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:6px;text-align:left;font-size:13px}th{background:#f3f4f6}</style>\n</head>\n<body>\n<h1>Budget ${best.year} + ${best.year+1}</h1>\n<table>\n<thead>\n<tr>\n${finalHeaders.map(h=>`<th>${escapeHtml(h)}</th>`).join('\n')}\n</tr>\n</thead>\n<tbody>\n${tableRows}\n</tbody>\n</table>\n</body>\n</html>`;
+
+        // Write HTML under current year filename (Budget_zzzz.html)
+        const outHtml = path.join(process.cwd(), 'Daten', 'result', `Budget_${planYear}.html`);
         fs.writeFileSync(outHtml, html, 'utf8');
         logToFile(`Budget HTML erstellt: ${outHtml}`);
       } catch (e) { logToFile('Fehler beim Erzeugen Budget-HTML: ' + (e && e.message ? e.message : String(e))); }
