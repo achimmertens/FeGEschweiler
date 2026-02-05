@@ -364,6 +364,19 @@ async function createPresentation() {
   // Erstelle JSON-Datei für Ausgaben (Top 9 + Sonstiges) und PPT aus den Ergebnissen
   // current year used for naming the Ausgaben_YYYY.json (YYYY = currentYear - 1)
   const currentYear = new Date().getFullYear();
+  // If a Budget CSV for the current year exists in /Daten, copy it to /Daten/result
+  try {
+    const budgetSrc = path.join(process.cwd(), 'Daten', `Budget_${currentYear}.csv`);
+    const resultDir = path.join(process.cwd(), 'Daten', 'result');
+    if (fs.existsSync(budgetSrc)) {
+      if (!fs.existsSync(resultDir)) fs.mkdirSync(resultDir, { recursive: true });
+      const budgetDst = path.join(resultDir, `Budget_${currentYear}.csv`);
+      fs.copyFileSync(budgetSrc, budgetDst);
+      logToFile(`Budget CSV für aktuelles Jahr kopiert: ${budgetDst}`);
+    }
+  } catch (e) {
+    logToFile('Fehler beim Kopieren Budget CSV aktuelles Jahr: ' + (e && e.message ? e.message : String(e)));
+  }
   // Also try to parse the latest Budgets_YYYY.txt in the Daten folder and save as CSV in result
   try {
     const dataDir = path.join(process.cwd(), 'Daten');
@@ -876,7 +889,7 @@ async function createPresentation() {
                 <a href="#" onclick="loadPage('Entwicklung_2025.html', this); return false;">Entwicklung 2025</a>
             </div>
             <div class="nav-item">
-                <a href="#" onclick="loadPage('Budget_2025.html', this); return false;">Budget 2025</a>
+                <a href="#" onclick="loadPage('Budget_2026.html', this); return false;">Budget 2026</a>
             </div>
         </div>
     </nav>
