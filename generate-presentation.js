@@ -903,6 +903,9 @@ async function createPresentation() {
             <div class="nav-item">
                 <a href="#" onclick="loadPage('Budget_2026.html', this); return false;">Budget 2026</a>
             </div>
+            <div class="nav-item">
+              <a href="#" onclick="loadPage('Sonderspenden.html', this); return false;">Sonderspenden</a>
+            </div>
         </div>
     </nav>
 
@@ -924,9 +927,13 @@ async function createPresentation() {
                     <h3>📈 Entwicklung 2025</h3>
                     <p>Entwicklung der Finanzen über mehrere Jahre hinweg.</p>
                 </div>
-                <div class="card" onclick="loadPage('Budget_2025.html', document.querySelector('[onclick*=Budget]'))">
-                    <h3>📋 Budget 2025</h3>
-                    <p>Budgetplanung und -übersicht für das Jahr 2025.</p>
+                <div class="card" onclick="loadPage('Budget_2026.html', document.querySelector('[onclick*=Budget]'))">
+                  <h3>📋 Budget 2026</h3>
+                  <p>Budgetplanung und -übersicht für das Jahr 2026.</p>
+                </div>
+                <div class="card" onclick="loadPage('Sonderspenden.html', document.querySelector('[onclick*=Sonderspenden]'))">
+                  <h3>🎁 Sonderspenden</h3>
+                  <p>Übersicht zu anstehenden Sonderspenden und Terminen.</p>
                 </div>
             </div>
         </div>
@@ -977,6 +984,21 @@ async function createPresentation() {
   } catch (e) {
     logToFile('Fehler beim Erzeugen index.html: ' + (e && e.message ? e.message : String(e)));
   }
+  
+  // Also create a simple Sonderspenden page if Sonderspenden CSV exists
+  try {
+    const sFile = path.join(process.cwd(), 'Daten', 'SonderspendenTermine.csv');
+    if (fs.existsSync(sFile)) {
+      const rows = readCSV(sFile);
+      const escapeHtml = s => String(s === undefined || s === null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      const tableRows = (rows||[]).map(r => '<tr>' + Object.values(r).map(v => `<td>${escapeHtml(v)}</td>`).join('') + '</tr>').join('\n');
+      const headers = rows && rows.length ? Object.keys(rows[0]).map(h => `<th>${escapeHtml(h)}</th>`).join('\n') : '';
+      const sHtml = `<!doctype html><html lang="de"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Sonderspenden</title><style>body{font-family:Arial,sans-serif;margin:12px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:6px;text-align:left;font-size:13px}th{background:#f3f4f6}</style></head><body><h1>Sonderspenden Termine</h1><table><thead><tr>${headers}</tr></thead><tbody>${tableRows}</tbody></table></body></html>`;
+      const sOut = path.join(process.cwd(), 'Daten', 'result', 'Sonderspenden.html');
+      fs.writeFileSync(sOut, sHtml, 'utf8');
+      logToFile(`Sonderspenden HTML erstellt: ${sOut}`);
+    }
+  } catch (e) { logToFile('Fehler beim Erzeugen Sonderspenden-Seite: ' + (e && e.message ? e.message : String(e))); }
   
   await createPPT(excelResult.sortedIncomeData, excelResult.sortedExpensesData, excelResult.sortedPieData);
 }
