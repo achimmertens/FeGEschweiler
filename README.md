@@ -1,3 +1,93 @@
+# FeG Eschweiler — Generator für Ergebnisseiten und Präsentationen
+#
+# Autor: Achim Mertens
+# Version 1.0 (2026-02-05)
+#
+
+Dieses Repository erzeugt aus CSV-Finanzdaten eine Reihe von Ergebnisseiten im Ordner `Daten/result` und (optional) eine PowerPoint-Präsentation.
+
+Wichtig: README wurde aktualisiert — das Tool erstellt heute HTML/JSON/PNG-Ausgaben und einige Hilfsseiten. Die frühere automatische Excel-Erzeugung ist standardmäßig deaktiviert.
+
+## Schneller Start
+
+1. Node.js installieren (empfohlen >= 18)
+2. Abhängigkeiten installieren:
+
+```bash
+npm install
+```
+
+3. Generierung starten:
+
+```bash
+node generate-presentation.js
+```
+
+Die Ausgaben landen in `Daten/result`.
+
+## Was das Skript jetzt erzeugt
+
+- HTML- und JSON-Ausgaben für Berichte (z.B. `Ausgaben_YYYY.html`, `Ausgaben_YYYY.json`)
+- PNG-Vorschauen der Diagramme (wenn Playwright verfügbar)
+- `index.html` in `Daten/result` mit Navigation und eingebetteten Seiten
+- `Budget_YYYY.html` (Budget-Tabelle; die Plan-Spalte wird aus der letzten Spalte von `Budget_YYYY.csv` übernommen)
+- `Sonderspenden.html` (aus `Daten/SonderspendenTermine.csv`)
+- `Checkliste.html` (eine einfache jährliche Checkliste)
+
+Außerdem werden Hilfsmodule verwendet:
+- `lib/budget.js` — Budget-HTML-Generator
+- `lib/sonderspenden.js` — Sonderspenden-Page-Generator
+- `lib/checklist.js` — Checkliste-Generator
+
+Wenn die Datei `Daten/Budget_<aktuellesJahr>.csv` existiert, wird sie beim Lauf automatisch nach `Daten/result/` kopiert und als Plan-Spalte verwendet.
+
+## Hinweise zu Budget-HTML
+
+- Die beiden Spalten `Verbraucht-Vorjahr` und `Geplant-Vorjahr` werden in der erzeugten HTML-Tabelle nicht angezeigt.
+- Die Planwerte für das laufende Jahr werden aus der letzten Spalte der Budget-CSV übernommen.
+
+## PPT / Excel Verhalten
+
+- Die frühere automatische Erstellung von `Finanzlage_FeG_Eschweiler.xlsx` ist standardmäßig deaktiviert.
+- Die PPT-Erzeugung wird nur ausgeführt, wenn ausreichend sortierte Daten (Einnahmen/Ausgaben/Pie) vorhanden sind. Andernfalls wird sie übersprungen.
+
+Wenn du wieder eine Excel- oder PPT-Erzeugung aus Daten erzwingen willst, sag mir Bescheid — ich kann das wieder aktivieren und die Quellen (CSV/JSON) definieren.
+
+# Was du jährlich tun musst, um die Präsentation zu erzeugen
+## Erwartete Eingabedateien (Ordner `Daten/`)
+
+- `gewinn-verlust-bericht_YYYY.csv` — Gewinn-/Verlustberichte
+- `bilanzbericht_YYYY.csv` — Bilanzberichte
+- `Entwicklung.csv` — historische Kontostände (wird aktualisiert)
+- optional: `Budgets_YYYY.txt` oder `Budget_YYYY.csv` — Budgets
+- optional: `SonderspendenTermine.csv` — Termine für Sonderspenden
+
+## Überprüfe auch die Punkte in der Checklist
+Siehe checklist.js — dort findest du eine einfache Schritt-für-Schritt-Anleitung, was du tun musst, um die Daten zu aktualisieren.
+Ggf. musst du die Liste noch etwas anpassen.
+
+## Ergebnisordner (`Daten/result`)
+
+Nach Ausführung findest du dort mindestens:
+- `index.html` — Hauptseite mit Navigation
+- `Ausgaben_YYYY.html`, `Einnahmen_YYYY.html`, `Entwicklung_YYYY.html`
+- `Budget_<aktuellesJahr>.html` und `Budget_<aktuellesJahr>.csv` (falls vorhanden)
+- `Sonderspenden.html`, `Checkliste.html`
+- ggf. `*.png` Vorschauen und `*.json` für Diagrammdaten
+
+## Debugging
+
+- Logs: `debug.log` im Projekt-Root enthält Laufinformationen.
+- Wenn etwas fehlt, starte `node generate-presentation.js` und prüfe das Log auf Hinweise.
+
+## Weiteres / Anpassungen
+
+- Die HTML-Vorlagen und das Index-Menü werden in `generate-presentation.js` erzeugt — kleine Anpassungen (Labels, Reihenfolge) lassen sich dort schnell ändern.
+- Wenn du interaktive Checklisten, sortierte/formatierte Sonderspenden-Tabellen oder weitere Exporte brauchst, implementiere ich das gern.
+
+---
+
+Wenn du möchtest, schreibe ich noch eine kurze Anleitung, welche Dateien du jährlich aktualisieren musst — oder mache die Checkliste interaktiv.
 # FeG Eschweiler - Finanzpräsentation Generator
 
 Dieses Projekt generiert automatisch eine PowerPoint-Präsentation zur Finanzlage der Freien evangelischen Gemeinde Eschweiler.
