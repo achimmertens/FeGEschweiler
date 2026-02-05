@@ -412,8 +412,10 @@ async function createPresentation() {
           for (const p of planCandidates) {
             const planRows = readCSV(p);
             if (!planRows || !planRows.length) continue;
-            const ph = Object.keys(planRows[0] || {}).find(h => /^Plan/i.test(h) || /Plan/i.test(h) || /Plan_?\d{2,4}/i.test(h));
-            if (!ph) continue;
+            // Use the last column of the budget CSV as the plan for the current year
+            const planCols = Object.keys(planRows[0] || {});
+            if (!planCols || planCols.length === 0) continue;
+            const ph = planCols[planCols.length - 1];
             planHeader = ph;
             planRows.forEach(r => {
               const key = (r['Nummer'] || r['Nummer'] === 0) ? String(r['Nummer']).trim() : String(r['Kostenstelle'] || '').trim();
