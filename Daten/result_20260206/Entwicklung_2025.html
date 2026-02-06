@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Entwicklung Kontostände 2025</title>
+        <style>
+            body { margin: 0; font-family: Arial, sans-serif; background: #fff; }
+            .container { padding: 12px; }
+            canvas { display: block; }
+            h1 { font-size: 18px; margin: 0 0 8px 0; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Entwicklung Kontostände (bis 2025)</h1>
+            <canvas id="chart" width="1200" height="800"></canvas>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            const labels = [
+    "2011",
+    "2012",
+    "2013",
+    "2014",
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+];
+            const datasets = [
+    {
+        "label": "Girokonto SKB 001",
+        "data": [
+            -807,
+            2248,
+            3419,
+            66,
+            5874,
+            13581,
+            38642,
+            12037,
+            3151,
+            5098,
+            5307,
+            9037,
+            4609,
+            11408,
+            11504
+        ],
+        "backgroundColor": "#3B82F6",
+        "stack": "stack1"
+    },
+    {
+        "label": "Sparkonto SKB 003",
+        "data": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            5900,
+            8304,
+            705,
+            705,
+            705,
+            705,
+            706,
+            5706,
+            33210.05
+        ],
+        "backgroundColor": "#10B981",
+        "stack": "stack1"
+    },
+    {
+        "label": "Freizeitkonto SKB 000",
+        "data": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            382,
+            2463,
+            1054.42
+        ],
+        "backgroundColor": "#F59E0B",
+        "stack": "stack1"
+    },
+    {
+        "label": "Darlehenskonto SKB 004",
+        "data": [
+            -900431,
+            -889943,
+            -870129,
+            -576948,
+            -562453,
+            -532339,
+            -515986,
+            -498953,
+            -481210,
+            -457724,
+            -438057,
+            -411764,
+            -389988,
+            -367051,
+            -343315.81
+        ],
+        "backgroundColor": "#EF4444",
+        "stack": "stack1"
+    },
+    {
+        "label": "Privatdarlehen 006",
+        "data": [
+            -212000,
+            -307000,
+            -340000,
+            -335000,
+            -330000,
+            -320000,
+            -320000,
+            -288000,
+            -288000,
+            -258000,
+            -208000,
+            -169000,
+            -169000,
+            -169000,
+            -169000
+        ],
+        "backgroundColor": "#8B5CF6",
+        "stack": "stack1"
+    }
+];
+
+            const config = {
+                type: 'bar',
+                data: { labels, datasets },
+                options: {
+                    indexAxis: 'x',
+                    plugins: {
+                        title: { display: true, text: 'Entwicklung der Kontostände', font: { size: 20 } },
+                        legend: { position: 'top' }
+                    },
+                    scales: {
+                        x: { stacked: true },
+                        y: {
+                            stacked: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+                                }
+                            }
+                        }
+                    },
+                    responsive: false,
+                    maintainAspectRatio: false
+                }
+            };
+
+            const ctx = document.getElementById('chart').getContext('2d');
+            new Chart(ctx, config);
+        </script>
+    </body>
+</html>

@@ -1057,12 +1057,24 @@ async function createPresentation() {
       // build table: categories x values
       const years = Object.keys(data).sort();
       const categories = Object.keys(years.length ? data[years[0]] : {});
+      const filteredCategories = categories.filter(cat => {
+        if (cat === 'Sonstiges') {
+          return years.some(year => Number((data[year] && data[year][cat]) || 0) !== 0);
+        }
+        return true;
+      });
+      const latestYear = years[years.length - 1];
+      const sortedCategories = filteredCategories.slice().sort((a, b) => {
+        const valueA = Number((data[latestYear] && data[latestYear][a]) || 0);
+        const valueB = Number((data[latestYear] && data[latestYear][b]) || 0);
+        return valueA - valueB;
+      });
       const headers = ['Kategorie', ...years];
       const escapeHtml = s => String(s === undefined || s === null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
       // rows for categories
-      const rows = categories.map(cat => '<tr>' + [`<td>${escapeHtml(cat)}</td>`, ...years.map(y=>`<td>${escapeHtml((data[y] && data[y][cat])? String(data[y][cat]) : '0')}</td>` )].join('') + '</tr>').join('\n');
+      const rows = sortedCategories.map(cat => '<tr>' + [`<td>${escapeHtml(cat)}</td>`, ...years.map(y=>`<td>${escapeHtml((data[y] && data[y][cat])? String(data[y][cat]) : '0')}</td>` )].join('\n') + '</tr>').join('\n');
       // totals per year (sum of categories)
-      const totals = years.map(y => categories.reduce((s,cat) => s + (Number((data[y] && data[y][cat]) || 0)), 0));
+      const totals = years.map(y => sortedCategories.reduce((s,cat) => s + (Number((data[y] && data[y][cat]) || 0)), 0));
       // format totals using German number formatting if available
       let formatGermanNumber = n => (Number(n||0).toFixed(2)).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
       try { const _utils = await import('./lib/utils.js'); if (_utils.formatGermanNumber) formatGermanNumber = _utils.formatGermanNumber; } catch (e) {}

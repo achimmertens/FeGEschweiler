@@ -14606,3 +14606,84 @@
 [2026-02-05T14:56:14.903Z] Checkliste HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Checkliste.html
 [2026-02-05T14:56:14.903Z] Keine Daten für PPT vorhanden, PPT-Erzeugung übersprungen.
 [2026-02-05T14:56:14.903Z] Fertig!
+[2026-02-06T05:46:21.743Z] Starte Generierung der Präsentation...
+[2026-02-06T05:46:22.603Z] Warnung: lib/charts.js konnte nicht geladen werden: Identifier 'output' has already been declared
+[2026-02-06T05:46:22.612Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-06T05:46:22.612Z] Excel-Erzeugung übersprungen (Finanzlage_FeG_Eschweiler.xlsx wird nicht erstellt).
+[2026-02-06T05:46:22.613Z] Fehler beim Schreiben debug_sortedExpensesData: ENOENT: no such file or directory, open 'D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json'
+[2026-02-06T05:46:22.615Z] Budget CSV für aktuelles Jahr kopiert: D:\Users\User\git\FeGEschweiler\Daten\result\Budget_2026.csv
+[2026-02-06T05:46:22.620Z] Budget CSV erstellt aus D:\Users\User\git\FeGEschweiler\Daten\Budgets_2025.txt: D:\Users\User\git\FeGEschweiler\Daten\result\Budget_2025.csv
+[budget] Budget HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Budget_2026.html
+[2026-02-06T05:46:22.639Z] Budget HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Budget_2026.html
+[2026-02-06T05:46:22.640Z] sortedExpensesData rows: 0
+[2026-02-06T05:46:22.644Z] Einnahmen authoritative 2023: total=164197 listed=164197 gap=0
+[2026-02-06T05:46:22.644Z] Einnahmen authoritative 2024: total=159752 listed=159752 gap=0
+[2026-02-06T05:46:22.645Z] Einnahmen authoritative 2025: total=166909 listed=166909 gap=0
+[2026-02-06T05:46:22.646Z] Einnahmen JSON (authoritative) geschrieben: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-06T05:46:22.646Z] Fehler beim Erzeugen Ausgaben-PNG: JSON file not found: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[2026-02-06T05:46:24.882Z] Einnahmen PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.png"}
+[2026-02-06T05:46:24.885Z] Entwicklung HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Entwicklung_2025.html
+[2026-02-06T05:46:29.261Z] Entwicklung PNG erstellt (Playwright): D:\Users\User\git\FeGEschweiler\Daten\result\Entwicklung_2025.png
+[2026-02-06T05:46:29.265Z] Fehler beim Erzeugen Entwicklung-PNG: require is not defined
+[2026-02-06T05:46:29.268Z] Index HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\index.html
+[sonderspenden] Sonderspenden HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Sonderspenden.html
+[2026-02-06T05:46:29.271Z] Sonderspenden HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Sonderspenden.html
+[2026-02-06T05:46:29.273Z] Einnahmen-Tabelle erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\EinnahmenTab_2025.html
+[checklist] Checkliste HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Checkliste.html
+[2026-02-06T05:46:29.276Z] Checkliste HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Checkliste.html
+[2026-02-06T05:46:29.276Z] Keine Daten für PPT vorhanden, PPT-Erzeugung übersprungen.
+[2026-02-06T05:46:29.277Z] Fertig!
+[2026-02-06T05:55:23.612Z] Starte Generierung der Präsentation...
+[2026-02-06T05:55:24.270Z] Warnung: lib/charts.js konnte nicht geladen werden: Identifier 'output' has already been declared
+[2026-02-06T05:55:24.277Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-06T05:55:24.278Z] Excel-Erzeugung übersprungen (Finanzlage_FeG_Eschweiler.xlsx wird nicht erstellt).
+[2026-02-06T05:55:24.280Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-06T05:55:24.282Z] Budget CSV für aktuelles Jahr kopiert: D:\Users\User\git\FeGEschweiler\Daten\result\Budget_2026.csv
+[2026-02-06T05:55:24.287Z] Budget CSV erstellt aus D:\Users\User\git\FeGEschweiler\Daten\Budgets_2025.txt: D:\Users\User\git\FeGEschweiler\Daten\result\Budget_2025.csv
+[budget] Budget HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Budget_2026.html
+[2026-02-06T05:55:24.295Z] Budget HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Budget_2026.html
+[2026-02-06T05:55:24.296Z] sortedExpensesData rows: 0
+[2026-02-06T05:55:24.302Z] Einnahmen authoritative 2023: total=164197 listed=164197 gap=0
+[2026-02-06T05:55:24.303Z] Einnahmen authoritative 2024: total=159752 listed=159752 gap=0
+[2026-02-06T05:55:24.303Z] Einnahmen authoritative 2025: total=166909 listed=166909 gap=0
+[2026-02-06T05:55:24.304Z] Einnahmen JSON (authoritative) geschrieben: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-06T05:55:24.304Z] Fehler beim Erzeugen Ausgaben-PNG: JSON file not found: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[2026-02-06T05:55:25.783Z] Einnahmen PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.png"}
+[2026-02-06T05:55:25.785Z] Entwicklung HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Entwicklung_2025.html
+[2026-02-06T05:55:29.540Z] Entwicklung PNG erstellt (Playwright): D:\Users\User\git\FeGEschweiler\Daten\result\Entwicklung_2025.png
+[2026-02-06T05:55:29.545Z] Fehler beim Erzeugen Entwicklung-PNG: require is not defined
+[2026-02-06T05:55:29.545Z] Index HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\index.html
+[sonderspenden] Sonderspenden HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Sonderspenden.html
+[2026-02-06T05:55:29.549Z] Sonderspenden HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Sonderspenden.html
+[2026-02-06T05:55:29.550Z] Einnahmen-Tabelle erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\EinnahmenTab_2025.html
+[checklist] Checkliste HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Checkliste.html
+[2026-02-06T05:55:29.552Z] Checkliste HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Checkliste.html
+[2026-02-06T05:55:29.552Z] Keine Daten für PPT vorhanden, PPT-Erzeugung übersprungen.
+[2026-02-06T05:55:29.552Z] Fertig!
+[2026-02-06T05:59:25.996Z] Starte Generierung der Präsentation...
+[2026-02-06T05:59:26.656Z] Warnung: lib/charts.js konnte nicht geladen werden: Identifier 'output' has already been declared
+[2026-02-06T05:59:26.663Z] Gefundene Jahre: 2023, 2024, 2025
+[2026-02-06T05:59:26.663Z] Excel-Erzeugung übersprungen (Finanzlage_FeG_Eschweiler.xlsx wird nicht erstellt).
+[2026-02-06T05:59:26.664Z] Wrote debug file: D:\Users\User\git\FeGEschweiler\Daten\result\debug_sortedExpensesData.json
+[2026-02-06T05:59:26.666Z] Budget CSV für aktuelles Jahr kopiert: D:\Users\User\git\FeGEschweiler\Daten\result\Budget_2026.csv
+[2026-02-06T05:59:26.670Z] Budget CSV erstellt aus D:\Users\User\git\FeGEschweiler\Daten\Budgets_2025.txt: D:\Users\User\git\FeGEschweiler\Daten\result\Budget_2025.csv
+[budget] Budget HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Budget_2026.html
+[2026-02-06T05:59:26.678Z] Budget HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Budget_2026.html
+[2026-02-06T05:59:26.679Z] sortedExpensesData rows: 0
+[2026-02-06T05:59:26.685Z] Einnahmen authoritative 2023: total=164197 listed=164197 gap=0
+[2026-02-06T05:59:26.686Z] Einnahmen authoritative 2024: total=159752 listed=159752 gap=0
+[2026-02-06T05:59:26.687Z] Einnahmen authoritative 2025: total=166909 listed=166909 gap=0
+[2026-02-06T05:59:26.687Z] Einnahmen JSON (authoritative) geschrieben: D:\Users\User\git\FeGEschweiler\Daten\result\Einnahmen_2025.json
+[2026-02-06T05:59:26.688Z] Fehler beim Erzeugen Ausgaben-PNG: JSON file not found: D:\Users\User\git\FeGEschweiler\Daten\result\Ausgaben_2025.json
+[2026-02-06T05:59:28.221Z] Einnahmen PNG erstellt (Playwright): {"html":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.html","png":"D:\\Users\\User\\git\\FeGEschweiler\\Daten\\result\\Einnahmen_2025.png"}
+[2026-02-06T05:59:28.223Z] Entwicklung HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Entwicklung_2025.html
+[2026-02-06T05:59:29.661Z] Entwicklung PNG erstellt (Playwright): D:\Users\User\git\FeGEschweiler\Daten\result\Entwicklung_2025.png
+[2026-02-06T05:59:29.665Z] Fehler beim Erzeugen Entwicklung-PNG: require is not defined
+[2026-02-06T05:59:29.666Z] Index HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\index.html
+[sonderspenden] Sonderspenden HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Sonderspenden.html
+[2026-02-06T05:59:29.669Z] Sonderspenden HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Sonderspenden.html
+[2026-02-06T05:59:29.671Z] Einnahmen-Tabelle erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\EinnahmenTab_2025.html
+[checklist] Checkliste HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Checkliste.html
+[2026-02-06T05:59:29.673Z] Checkliste HTML erstellt: D:\Users\User\git\FeGEschweiler\Daten\result\Checkliste.html
+[2026-02-06T05:59:29.673Z] Keine Daten für PPT vorhanden, PPT-Erzeugung übersprungen.
+[2026-02-06T05:59:29.673Z] Fertig!
