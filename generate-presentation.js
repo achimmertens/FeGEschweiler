@@ -1113,11 +1113,17 @@ async function createPresentation() {
     if (fs.existsSync(ausJson)) {
       const data = JSON.parse(fs.readFileSync(ausJson, 'utf8')) || {};
       const years = Object.keys(data).sort();
+      const latestYear = years[years.length - 1];
       const categorySet = new Set();
       years.forEach(year => {
         Object.keys(data[year] || {}).forEach(cat => categorySet.add(cat));
       });
-      const categories = Array.from(categorySet).sort((a, b) => a.localeCompare(b, 'de', { sensitivity: 'base' }));
+      const categories = Array.from(categorySet).filter(cat => cat !== 'Schuldenabbau');
+      const categoriesSorted = categories.sort((a, b) => {
+        const valueA = Number((data[latestYear] && data[latestYear][a]) || 0);
+        const valueB = Number((data[latestYear] && data[latestYear][b]) || 0);
+        return valueA - valueB;
+      });
       const headers = ['Kategorie', ...years];
       const escapeHtml = s => String(s === undefined || s === null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
       let formatGermanNumber = n => (Number(n||0).toFixed(2)).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
@@ -1126,20 +1132,24 @@ async function createPresentation() {
         const raw = formatGermanNumber(value);
         return raw.endsWith(',00') ? raw.slice(0, -3) : raw;
       };
-      const rows = categories.map(cat => {
+      const rows = categoriesSorted.map(cat => {
         const cells = years.map(y => {
           const value = Number((data[y] && data[y][cat]) || 0);
           return `<td>${escapeHtml(formatGermanInteger(value))}</td>`;
         }).join('');
         return `<tr><td>${escapeHtml(cat)}</td>${cells}</tr>`;
       }).join('\n');
-      const totals = years.map(y => categories.reduce((sum, cat) => sum + (Number((data[y] && data[y][cat]) || 0)), 0));
+      const totals = years.map(y => categoriesSorted.reduce((sum, cat) => sum + (Number((data[y] && data[y][cat]) || 0)), 0));
       const totalRow = '<tr>' + [`<td><strong>Gesamt</strong></td>`, ...totals.map(t => {
         const raw = formatGermanInteger(t);
         const withoutCents = raw.endsWith(',00') ? raw.slice(0, -3) : raw;
         return `<td><strong>${escapeHtml(withoutCents)} €</strong></td>`;
       })].join('') + '</tr>';
-      const tableHtml = `<!doctype html><html lang="de"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Ausgaben ${reportYear}</title><style>body{font-family:Arial,sans-serif;margin:12px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:6px;text-align:left;font-size:13px}th{background:#f3f4f6}</style></head><body><h1>Ausgaben ${reportYear}</h1><table><thead><tr>${headers.map(h=>`<th>${escapeHtml(h)}</th>`).join('')}</tr></thead><tbody>${rows}\n${totalRow}</tbody></table></body></html>`;
+      const schuldenRow = '<tr><td><strong>Schuldenabbau</strong></td>' + years.map(y => {
+        const value = Number((data[y] && data[y]['Schuldenabbau']) || 0);
+        return `<td><strong>${escapeHtml(formatGermanInteger(value))} €</strong></td>`;
+      }).join('') + '</tr>';
+      const tableHtml = `<!doctype html><html lang="de"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Ausgaben ${reportYear}</title><style>body{font-family:Arial,sans-serif;margin:12px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:6px;text-align:left;font-size:13px}th{background:#f3f4f6}</style></head><body><h1>Ausgaben ${reportYear}</h1><table><thead><tr>${headers.map(h=>`<th>${escapeHtml(h)}</th>`).join('')}</tr></thead><tbody>${rows}\n${totalRow}\n${schuldenRow}</tbody></table></body></html>`;
       const outPath = path.join(process.cwd(), 'Daten', 'result', `AusgabenTab_${reportYear}.html`);
       fs.writeFileSync(outPath, tableHtml, 'utf8');
       logToFile(`Ausgaben-Tabelle erstellt: ${outPath}`);
