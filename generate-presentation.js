@@ -949,10 +949,13 @@ async function createPresentation() {
               <a href="#" onclick="loadPage('EinnahmenTab_${currentYear-1}.html', this); return false;">EinnahmenTabelle</a>
             </div>
             <div class="nav-item">
-                <a href="#" onclick="loadPage('Entwicklung_2025.html', this); return false;">Entwicklung 2025</a>
+              <a href="#" onclick="loadPage('Entwicklung_2025.html', this); return false;">Entwicklung 2025</a>
             </div>
             <div class="nav-item">
-                <a href="#" onclick="loadPage('Budget_2026.html', this); return false;">Budget 2026</a>
+              <a href="#" onclick="loadPage('Budget_2026.html', this); return false;">Budget 2026</a>
+            </div>
+            <div class="nav-item">
+                <a href="#" onclick="loadPage('EntwicklungTab_${currentYear-1}.html', this); return false;">EntwicklungTab</a>
             </div>
             <div class="nav-item">
               <a href="#" onclick="loadPage('Sonderspenden.html', this); return false;">Sonderspenden</a>
@@ -982,13 +985,13 @@ async function createPresentation() {
                   <h3>📝 Checkliste</h3>
                   <p>Jährliche Schritte zur Aktualisierung der Daten.</p>
                 </div>
-                <div class="card" onclick="loadPage('AusgabenTab_${currentYear-1}.html', document.querySelector('[onclick*=AusgabenTabelle]'))">
-                  <h3>📋 AusgabenTabelle</h3>
-                  <p>Tabellarische Darstellung der Ausgaben für ${currentYear-1}.</p>
-                </div>
                 <div class="card" onclick="loadPage('Entwicklung_2025.html', document.querySelector('[onclick*=Entwicklung]'))">
                     <h3>📈 Entwicklung 2025</h3>
                     <p>Entwicklung der Finanzen über mehrere Jahre hinweg.</p>
+                </div>
+                <div class="card" onclick="loadPage('EntwicklungTab_${currentYear-1}.html', document.querySelector('[onclick*=EntwicklungTab]'))">
+                  <h3>🗂 EntwicklungTab</h3>
+                  <p>Tabellarische Darstellung von Entwicklung.csv für ${currentYear-1}.</p>
                 </div>
                 <div class="card" onclick="loadPage('Budget_2026.html', document.querySelector('[onclick*=Budget]'))">
                   <h3>📋 Budget 2026</h3>
@@ -1109,52 +1112,46 @@ async function createPresentation() {
   // Create Ausgaben-Tab similarly
   try {
     const reportYear = currentYear - 1;
-    const ausJson = path.join(process.cwd(), 'Daten', 'result', `Ausgaben_${reportYear}.json`);
-    if (fs.existsSync(ausJson)) {
-      const data = JSON.parse(fs.readFileSync(ausJson, 'utf8')) || {};
-      const years = Object.keys(data).sort();
-      const latestYear = years[years.length - 1];
-      const categorySet = new Set();
-      years.forEach(year => {
-        Object.keys(data[year] || {}).forEach(cat => categorySet.add(cat));
-      });
-      const categories = Array.from(categorySet).filter(cat => cat !== 'Schuldenabbau');
-      const categoriesSorted = categories.sort((a, b) => {
-        const valueA = Number((data[latestYear] && data[latestYear][a]) || 0);
-        const valueB = Number((data[latestYear] && data[latestYear][b]) || 0);
-        return valueA - valueB;
-      });
-      const headers = ['Kategorie', ...years];
-      const escapeHtml = s => String(s === undefined || s === null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-      let formatGermanNumber = n => (Number(n||0).toFixed(2)).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-      try { const _utils = await import('./lib/utils.js'); if (_utils.formatGermanNumber) formatGermanNumber = _utils.formatGermanNumber; } catch (e) {}
-      const formatGermanInteger = value => {
-        const raw = formatGermanNumber(value);
-        return raw.endsWith(',00') ? raw.slice(0, -3) : raw;
-      };
-      const rows = categoriesSorted.map(cat => {
-        const cells = years.map(y => {
-          const value = Number((data[y] && data[y][cat]) || 0);
-          return `<td>${escapeHtml(formatGermanInteger(value))}</td>`;
-        }).join('');
-        return `<tr><td>${escapeHtml(cat)}</td>${cells}</tr>`;
-      }).join('\n');
-      const totals = years.map(y => categoriesSorted.reduce((sum, cat) => sum + (Number((data[y] && data[y][cat]) || 0)), 0));
-      const totalRow = '<tr>' + [`<td><strong>Gesamt</strong></td>`, ...totals.map(t => {
-        const raw = formatGermanInteger(t);
-        const withoutCents = raw.endsWith(',00') ? raw.slice(0, -3) : raw;
-        return `<td><strong>${escapeHtml(withoutCents)} €</strong></td>`;
-      })].join('') + '</tr>';
-      const schuldenRow = '<tr><td><strong>Schuldenabbau</strong></td>' + years.map(y => {
-        const value = Number((data[y] && data[y]['Schuldenabbau']) || 0);
-        return `<td><strong>${escapeHtml(formatGermanInteger(value))} €</strong></td>`;
-      }).join('') + '</tr>';
-      const tableHtml = `<!doctype html><html lang="de"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Ausgaben ${reportYear}</title><style>body{font-family:Arial,sans-serif;margin:12px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:6px;text-align:left;font-size:13px}th{background:#f3f4f6}</style></head><body><h1>Ausgaben ${reportYear}</h1><table><thead><tr>${headers.map(h=>`<th>${escapeHtml(h)}</th>`).join('')}</tr></thead><tbody>${rows}\n${totalRow}\n${schuldenRow}</tbody></table></body></html>`;
-      const outPath = path.join(process.cwd(), 'Daten', 'result', `AusgabenTab_${reportYear}.html`);
-      fs.writeFileSync(outPath, tableHtml, 'utf8');
-      logToFile(`Ausgaben-Tabelle erstellt: ${outPath}`);
+    const einYear = currentYear - 1;
+    const entwicklungPath = path.join(process.cwd(), 'Daten', 'Entwicklung.csv');
+    if (fs.existsSync(entwicklungPath)) {
+      const entwicklungRows = readCSV(entwicklungPath);
+      if (entwicklungRows && entwicklungRows.length > 0) {
+        const columnsOrig = Object.keys(entwicklungRows[0] || {});
+        const positionCol = 'Position';
+        const orderedColumns = [positionCol, ...columnsOrig.filter(col => col !== positionCol)];
+        const escapeHtml = s => String(s === undefined || s === null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        let formatGermanNumber = n => (Number(n||0).toFixed(2)).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        try { const _utils = await import('./lib/utils.js'); if (_utils.formatGermanNumber) formatGermanNumber = _utils.formatGermanNumber; } catch (e) {}
+        const formatGermanInteger = (value) => {
+          const raw = formatGermanNumber(value);
+          return raw.endsWith(',00') ? raw.slice(0, -3) : raw;
+        };
+        const tableRows = entwicklungRows.map(row => {
+          const cells = orderedColumns.map(col => {
+            const cellValue = row[col];
+            if (col === positionCol) {
+              return `<td>${escapeHtml(cellValue)}</td>`;
+            }
+            const numeric = typeof cellValue === 'string' && /-?\d/.test(cellValue.replace(/\./g, '').replace(',', '.'));
+            if (!numeric) {
+              return `<td>${escapeHtml(cellValue)}</td>`;
+            }
+            const parsed = parseGermanNumber(cellValue);
+            return `<td>${escapeHtml(formatGermanInteger(parsed))} €</td>`;
+          }).join('');
+          return `<tr>${cells}</tr>`;
+        }).join('\n');
+        const headers = orderedColumns.map(h => h === positionCol ? 'Position' : h);
+        const tableHtml = `<!doctype html><html lang="de"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Entwicklung ${reportYear}</title><style>body{font-family:Arial,sans-serif;margin:12px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:6px;text-align:left;font-size:13px}th{background:#f3f4f6}</style></head><body><h1>Entwicklung ${reportYear}</h1><table><thead><tr>${headers.map(h=>`<th>${escapeHtml(h)}</th>`).join('')}</tr></thead><tbody>${tableRows}</tbody></table></body></html>`;
+        const outPath = path.join(process.cwd(), 'Daten', 'result', `EntwicklungTab_${reportYear}.html`);
+        fs.writeFileSync(outPath, tableHtml, 'utf8');
+        logToFile(`Entwicklung-Tab erstellt: ${outPath}`);
+      }
     }
-  } catch (e) { logToFile('Fehler beim Erzeugen Ausgaben-Tabelle: ' + (e && e.message ? e.message : String(e))); }
+  } catch (e) {
+    logToFile('Fehler beim Erzeugen Entwicklung-Tab: ' + (e && e.message ? e.message : String(e)));
+  }
 
   // Create a simple annual checklist page (delegated to lib/checklist.js)
   try {
