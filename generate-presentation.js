@@ -1071,15 +1071,24 @@ async function createPresentation() {
       });
       const headers = ['Kategorie', ...years];
       const escapeHtml = s => String(s === undefined || s === null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-      // rows for categories
-      const rows = sortedCategories.map(cat => '<tr>' + [`<td>${escapeHtml(cat)}</td>`, ...years.map(y=>`<td>${escapeHtml((data[y] && data[y][cat])? String(data[y][cat]) : '0')}</td>` )].join('\n') + '</tr>').join('\n');
-      // totals per year (sum of categories)
-      const totals = years.map(y => sortedCategories.reduce((s,cat) => s + (Number((data[y] && data[y][cat]) || 0)), 0));
-      // format totals using German number formatting if available
       let formatGermanNumber = n => (Number(n||0).toFixed(2)).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
       try { const _utils = await import('./lib/utils.js'); if (_utils.formatGermanNumber) formatGermanNumber = _utils.formatGermanNumber; } catch (e) {}
+      const formatGermanInteger = value => {
+        const raw = formatGermanNumber(value);
+        return raw.endsWith(',00') ? raw.slice(0, -3) : raw;
+      };
+      // rows for categories
+      const rows = sortedCategories.map(cat => {
+        const cells = years.map(y => {
+          const value = Number((data[y] && data[y][cat]) || 0);
+          return `<td>${escapeHtml(formatGermanInteger(value))}</td>`;
+        }).join('');
+        return `<tr><td>${escapeHtml(cat)}</td>${cells}</tr>`;
+      }).join('\n');
+      // totals per year (sum of categories)
+      const totals = years.map(y => sortedCategories.reduce((s,cat) => s + (Number((data[y] && data[y][cat]) || 0)), 0));
       const totalRow = '<tr>' + [`<td><strong>Gesamt</strong></td>`, ...totals.map(t => {
-        const raw = formatGermanNumber(t);
+        const raw = formatGermanInteger(t);
         const withoutCents = raw.endsWith(',00') ? raw.slice(0, -3) : raw;
         return `<td><strong>${escapeHtml(withoutCents)} €</strong></td>`;
       })].join('') + '</tr>';
