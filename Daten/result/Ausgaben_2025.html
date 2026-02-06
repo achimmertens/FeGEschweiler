@@ -1,0 +1,125 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0}canvas{display:block}</style></head><body><canvas id="chart" width="1200" height="800"></canvas><script src="https://cdn.jsdelivr.net/npm/chart.js"></script><script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script><script>const cfg = {"type":"bar","data":{
+  "labels": [
+    "2023",
+    "2024",
+    "2025"
+  ],
+  "datasets": [
+    {
+      "label": "Pastor",
+      "data": [
+        61013,
+        63591,
+        66705
+      ],
+      "backgroundColor": "#3B82F6",
+      "borderColor": "#ffffff",
+      "borderWidth": 1,
+      "stack": "stack1"
+    },
+    {
+      "label": "Schuldenabbau",
+      "data": [
+        0,
+        -22936.51,
+        -23735.31
+      ],
+      "backgroundColor": "#10B981",
+      "borderColor": "#ffffff",
+      "borderWidth": 1,
+      "stack": "stack1"
+    },
+    {
+      "label": "Darlehensleistungen",
+      "data": [
+        38200,
+        0,
+        0
+      ],
+      "backgroundColor": "#F59E0B",
+      "borderColor": "#ffffff",
+      "borderWidth": 1,
+      "stack": "stack1"
+    },
+    {
+      "label": "Weiterleitung an Bund FeG",
+      "data": [
+        8130,
+        9004,
+        9865
+      ],
+      "backgroundColor": "#EF4444",
+      "borderColor": "#ffffff",
+      "borderWidth": 1,
+      "stack": "stack1"
+    },
+    {
+      "label": "Heizung",
+      "data": [
+        7114,
+        8084,
+        6511
+      ],
+      "backgroundColor": "#8B5CF6",
+      "borderColor": "#ffffff",
+      "borderWidth": 1,
+      "stack": "stack1"
+    },
+    {
+      "label": "Reinigung",
+      "data": [
+        7491,
+        7227,
+        6777
+      ],
+      "backgroundColor": "#EC4899",
+      "borderColor": "#ffffff",
+      "borderWidth": 1,
+      "stack": "stack1"
+    },
+    {
+      "label": "Weiterleitung Mission",
+      "data": [
+        5543,
+        4810,
+        4240
+      ],
+      "backgroundColor": "#06B6D4",
+      "borderColor": "#ffffff",
+      "borderWidth": 1,
+      "stack": "stack1"
+    },
+    {
+      "label": "Weiterleitung Diakonie",
+      "data": [
+        4052,
+        4330,
+        5350
+      ],
+      "backgroundColor": "#84CC16",
+      "borderColor": "#ffffff",
+      "borderWidth": 1,
+      "stack": "stack1"
+    },
+    {
+      "label": "Investitionen/Anschaffungen",
+      "data": [
+        4353,
+        3199,
+        5283
+      ],
+      "backgroundColor": "#F97316",
+      "borderColor": "#ffffff",
+      "borderWidth": 1,
+      "stack": "stack1"
+    }
+  ]
+},"options":{"indexAxis":"x","plugins":{"title":{
+  "display": true,
+  "text": "Ausgaben der letzten 3 Jahre",
+  "font": {
+    "size": 30
+  }
+},"legend":{
+  "position": "top"
+},"datalabels":{"color":"#ffffff","anchor":"center","align":"center","padding":{"left":6},"font":{"weight":"bold","size":16},"formatter":function(value, context) { try { var label = (context && context.dataset && context.dataset.label) ? context.dataset.label : ''; var v = (typeof value === 'number') ? value : (value && value.y !== undefined ? value.y : 0); var n = Math.round(Math.abs(Number(v) || 0)); return (label ? label + ': ' : '') + n.toLocaleString('de-DE') + ' €'; } catch (e) { return '' + value; } }}},"scales":{"x":{"stacked":true},"y":{"stacked":true}},"responsive":false,"maintainAspectRatio":true}};Chart.register(ChartDataLabels);const ctx=document.getElementById('chart').getContext('2d');const chart=new Chart(ctx,cfg);window.__chart_ready=true;</script></body></html>

@@ -1,4 +1,4 @@
-import { updateEntwicklungCSV, formatGermanInteger, parseGermanNumber, readCSV } from './lib/utils.js';
+import { updateEntwicklungCSV, formatGermanInteger, parseGermanNumber, readCSV, extractExpenses } from './lib/utils.js';
 import fs from 'fs';
 import path from 'path';
 import QuickChart from 'quickchart-js';

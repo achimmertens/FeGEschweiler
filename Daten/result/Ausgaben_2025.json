@@ -1,0 +1,38 @@
+{
+  "2023": {
+    "Pastor": 61013,
+    "Darlehensleistungen": 38200,
+    "Weiterleitung an Bund FeG": 8130,
+    "Heizung": 7114,
+    "Reinigung": 7491,
+    "Weiterleitung Mission": 5543,
+    "Weiterleitung Diakonie": 4052,
+    "Investitionen/Anschaffungen": 4353,
+    "Sonstiges": 25639,
+    "Schuldenabbau": 0
+  },
+  "2024": {
+    "Pastor": 63591,
+    "Darlehensleistungen": 0,
+    "Weiterleitung an Bund FeG": 9004,
+    "Heizung": 8084,
+    "Reinigung": 7227,
+    "Weiterleitung Mission": 4810,
+    "Weiterleitung Diakonie": 4330,
+    "Investitionen/Anschaffungen": 3199,
+    "Sonstiges": 16452,
+    "Schuldenabbau": -22936.51
+  },
+  "2025": {
+    "Pastor": 66705,
+    "Darlehensleistungen": 0,
+    "Weiterleitung an Bund FeG": 9865,
+    "Heizung": 6511,
+    "Reinigung": 6777,
+    "Weiterleitung Mission": 4240,
+    "Weiterleitung Diakonie": 5350,
+    "Investitionen/Anschaffungen": 5283,
+    "Sonstiges": 25636,
+    "Schuldenabbau": -23735.31
+  }
+}
