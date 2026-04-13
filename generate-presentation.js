@@ -952,13 +952,16 @@ async function createPresentation() {
               <a href="#" onclick="loadPage('Entwicklung_2025.html', this); return false;">Entwicklung 2025</a>
             </div>
             <div class="nav-item">
-              <a href="#" onclick="loadPage('Budget_2026.html', this); return false;">Budget 2026</a>
-            </div>
-            <div class="nav-item">
                 <a href="#" onclick="loadPage('EntwicklungTab_${currentYear-1}.html', this); return false;">EntwicklungTab</a>
             </div>
             <div class="nav-item">
+              <a href="#" onclick="loadPage('Budget_2026.html', this); return false;">Budget 2026</a>
+            </div>
+            <div class="nav-item">
               <a href="#" onclick="loadPage('Sonderspenden.html', this); return false;">Sonderspenden</a>
+            </div>
+            <div class="nav-item">
+              <a href="#" onclick="loadPage('JahresabschlussUnterlagen_${currentYear-1}.html', this); return false;">JahresabschlussUnterlagen ${currentYear-1}</a>
             </div>
         </div>
     </nav>
@@ -1000,6 +1003,10 @@ async function createPresentation() {
                 <div class="card" onclick="loadPage('Sonderspenden.html', document.querySelector('[onclick*=Sonderspenden]'))">
                   <h3>🎁 Sonderspenden</h3>
                   <p>Übersicht zu anstehenden Sonderspenden und Terminen.</p>
+                </div>
+                <div class="card" onclick="loadPage('JahresabschlussUnterlagen_${currentYear-1}.html', document.querySelector('[onclick*=JahresabschlussUnterlagen]'))">
+                  <h3>📋 Jahresabschlussunterlagen ${currentYear-1}</h3>
+                  <p>Bilanz und Gewinn-Verlust-Rechnung für ${currentYear-1}.</p>
                 </div>
             </div>
         </div>
@@ -1159,6 +1166,77 @@ async function createPresentation() {
     const chkOut = generateDefaultChecklist(currentYear);
     logToFile(`Checkliste HTML erstellt: ${chkOut}`);
   } catch (e) { logToFile('Fehler beim Erzeugen Checkliste-Seite: ' + (e && e.message ? e.message : String(e))); }
+
+  // Create Jahresabschluss page
+  try {
+    const reportYear = currentYear - 1;
+    const bilanzPath = path.join(process.cwd(), 'Daten', `bilanzbericht_${reportYear}.csv`);
+    const gvPath = path.join(process.cwd(), 'Daten', `gewinn-verlust-bericht_${reportYear}.csv`);
+    const einJson = path.join(process.cwd(), 'Daten', 'result', `Einnahmen_${reportYear}.json`);
+    const ausgabenJson = path.join(process.cwd(), 'Daten', 'result', `Ausgaben_${reportYear}.json`);
+    const entwicklungPath = path.join(process.cwd(), 'Daten', 'Entwicklung.csv');
+    if (fs.existsSync(bilanzPath) && fs.existsSync(gvPath) && fs.existsSync(einJson) && fs.existsSync(ausgabenJson) && fs.existsSync(entwicklungPath)) {
+      const bilanzRows = readCSV(bilanzPath);
+      const gvRows = readCSV(gvPath);
+      const einData = JSON.parse(fs.readFileSync(einJson, 'utf8')) || {};
+      const ausgabenData = JSON.parse(fs.readFileSync(ausgabenJson, 'utf8')) || {};
+      const entwicklungRows = readCSV(entwicklungPath);
+      const escapeHtml = s => String(s === undefined || s === null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      const formatGermanNumber = n => (Number(n||0).toFixed(2)).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+      const formatGermanInteger = (value) => {
+        const raw = formatGermanNumber(value);
+        return raw.endsWith(',00') ? raw.slice(0, -3) : raw;
+      };
+
+      // Einnahmen Tabelle für reportYear
+      let einnahmenTable = '<h2>Einnahmen</h2><table><thead><tr><th>Kategorie</th><th>Betrag</th></tr></thead><tbody>';
+      const einYearData = einData[reportYear] || {};
+      const einCategories = Object.keys(einYearData).sort((a, b) => Number(einYearData[b] || 0) - Number(einYearData[a] || 0));
+      einCategories.forEach(cat => {
+        const value = Number(einYearData[cat] || 0);
+        einnahmenTable += `<tr><td>${escapeHtml(cat)}</td><td>${escapeHtml(formatGermanInteger(value))} €</td></tr>`;
+      });
+      const einTotal = einCategories.reduce((s, cat) => s + Number(einYearData[cat] || 0), 0);
+      einnahmenTable += `<tr><td><strong>Gesamt</strong></td><td><strong>${escapeHtml(formatGermanInteger(einTotal))} €</strong></td></tr></tbody></table>`;
+
+      // Ausgaben Tabelle für reportYear
+      let ausgabenTable = '<h2>Ausgaben</h2><table><thead><tr><th>Kategorie</th><th>Betrag</th></tr></thead><tbody>';
+      const ausYearData = ausgabenData[reportYear] || {};
+      const ausCategories = Object.keys(ausYearData).sort((a, b) => Number(ausYearData[b] || 0) - Number(ausYearData[a] || 0));
+      ausCategories.forEach(cat => {
+        const value = Number(ausYearData[cat] || 0);
+        ausgabenTable += `<tr><td>${escapeHtml(cat)}</td><td>${escapeHtml(formatGermanInteger(value))} €</td></tr>`;
+      });
+      const ausTotal = ausCategories.reduce((s, cat) => s + Number(ausYearData[cat] || 0), 0);
+      ausgabenTable += `<tr><td><strong>Gesamt</strong></td><td><strong>${escapeHtml(formatGermanInteger(ausTotal))} €</strong></td></tr></tbody></table>`;
+
+      // Vermögensaufbau: Erste und letzte Spalte aus Entwicklung
+      const columnsOrig = Object.keys(entwicklungRows[0] || {});
+      const positionCol = 'Position';
+      const yearCols = columnsOrig.filter(col => col !== positionCol && /^\d{4}$/.test(col)).sort();
+      const firstYear = yearCols[0];
+      const lastYear = yearCols[yearCols.length - 1];
+      let vermoegenTable = '<h2>Vermögensaufbau</h2><table><thead><tr><th>Position</th><th>' + firstYear + '</th><th>' + lastYear + '</th></tr></thead><tbody>';
+      entwicklungRows.forEach(row => {
+        const pos = row[positionCol] || '';
+        const firstVal = parseGermanNumber(row[firstYear] || '0');
+        const lastVal = parseGermanNumber(row[lastYear] || '0');
+        vermoegenTable += `<tr><td>${escapeHtml(pos)}</td><td>${escapeHtml(formatGermanInteger(firstVal))} €</td><td>${escapeHtml(formatGermanInteger(lastVal))} €</td></tr>`;
+      });
+      vermoegenTable += '</tbody></table>';
+
+      // Anzahl Gemeindemitglieder
+      const mitgliederField = '<h2>Anzahl Gemeindemitglieder</h2><input type="text" placeholder="Anzahl eintragen" style="padding: 8px; font-size: 16px; width: 200px;">';
+
+      // Unterschriften
+      const unterschriften = '<h2>Unterschriften der Gemeindeleitung</h2><p>Digital unterschrieben mit <a href="https://yousign.app" target="_blank">https://yousign.app</a></p>';
+
+      const html = `<!doctype html><html lang="de"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Jahresabschlussunterlagen ${reportYear}</title><style>body{font-family:Arial,sans-serif;margin:20px}table{border-collapse:collapse;width:100%;margin-bottom:20px}th,td{border:1px solid #ddd;padding:8px;text-align:left;font-size:14px}th{background:#f3f4f6}h2{margin-top:30px;border-bottom:2px solid #333;padding-bottom:5px}</style></head><body><h1>Jahresabschlussunterlagen ${reportYear}</h1>${einnahmenTable}${ausgabenTable}${vermoegenTable}${mitgliederField}${unterschriften}</body></html>`;
+      const outPath = path.join(process.cwd(), 'Daten', 'result', `JahresabschlussUnterlagen_${reportYear}.html`);
+      fs.writeFileSync(outPath, html, 'utf8');
+      logToFile(`Jahresabschluss HTML erstellt: ${outPath}`);
+    }
+  } catch (e) { logToFile('Fehler beim Erzeugen Jahresabschluss-Seite: ' + (e && e.message ? e.message : String(e))); }
   
   // Create PPT only if there is meaningful data
   try {

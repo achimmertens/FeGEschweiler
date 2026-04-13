@@ -190,4 +190,21 @@ Kurz:
 - Budgets und resut/Bilder nach Documente/FeG/Kassenbericht_yyyy.odp überführen
 
 
+# Schritte zum Starten der Webseite:
 
+Generiere die HTML-Dateien (falls noch nicht geschehen):
+
+- Führe npm run start aus (das läuft node generate-presentation.js und erstellt die Dateien in result).
+
+## Starte einen lokalen Webserver:
+
+Navigiere in den Ordner result:
+Verwende einen einfachen HTTP-Server. Da Node.js installiert ist, kannst du npx nutzen:
+> npx http-server . -p 8080
+Das startet einen Server auf Port 8080.
+
+Öffne die Webseite:
+http://localhost:8080/Daten/result/index.html
+
+Die Hauptseite ist index.html im Daten/result-Ordner.
+Sie enthält Navigation zu den generierten Berichten (z. B. Ausgaben, Einnahmen, Budget usw.).
