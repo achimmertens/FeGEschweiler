@@ -1138,7 +1138,8 @@ async function createPresentation() {
           const cells = orderedColumns.map(col => {
             const cellValue = row[col];
             if (col === positionCol) {
-              return `<td>${escapeHtml(cellValue)}</td>`;
+              const displayValue = cellValue === 'Verbindlichkeiten' ? 'Summe Passiva' : cellValue;
+              return `<td>${escapeHtml(displayValue)}</td>`;
             }
             const numeric = typeof cellValue === 'string' && /-?\d/.test(cellValue.replace(/\./g, '').replace(',', '.'));
             if (!numeric) {
@@ -1172,13 +1173,13 @@ async function createPresentation() {
     const reportYear = currentYear - 1;
     const bilanzPath = path.join(process.cwd(), 'Daten', `bilanzbericht_${reportYear}.csv`);
     const gvPath = path.join(process.cwd(), 'Daten', `gewinn-verlust-bericht_${reportYear}.csv`);
-    const einJson = path.join(process.cwd(), 'Daten', 'result', `Einnahmen_${reportYear}.json`);
+    const einTabPath = path.join(process.cwd(), 'Daten', 'result', `EinnahmenTab_${reportYear}.html`);
     const ausgabenJson = path.join(process.cwd(), 'Daten', 'result', `Ausgaben_${reportYear}.json`);
     const entwicklungPath = path.join(process.cwd(), 'Daten', 'Entwicklung.csv');
-    if (fs.existsSync(bilanzPath) && fs.existsSync(gvPath) && fs.existsSync(einJson) && fs.existsSync(ausgabenJson) && fs.existsSync(entwicklungPath)) {
+    if (fs.existsSync(bilanzPath) && fs.existsSync(gvPath) && fs.existsSync(einTabPath) && fs.existsSync(ausgabenJson) && fs.existsSync(entwicklungPath)) {
       const bilanzRows = readCSV(bilanzPath);
       const gvRows = readCSV(gvPath);
-      const einData = JSON.parse(fs.readFileSync(einJson, 'utf8')) || {};
+      const einTabHtml = fs.readFileSync(einTabPath, 'utf8');
       const ausgabenData = JSON.parse(fs.readFileSync(ausgabenJson, 'utf8')) || {};
       const entwicklungRows = readCSV(entwicklungPath);
       const escapeHtml = s => String(s === undefined || s === null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -1188,50 +1189,216 @@ async function createPresentation() {
         return raw.endsWith(',00') ? raw.slice(0, -3) : raw;
       };
 
-      // Einnahmen Tabelle für reportYear
-      let einnahmenTable = '<h2>Einnahmen</h2><table><thead><tr><th>Kategorie</th><th>Betrag</th></tr></thead><tbody>';
-      const einYearData = einData[reportYear] || {};
-      const einCategories = Object.keys(einYearData).sort((a, b) => Number(einYearData[b] || 0) - Number(einYearData[a] || 0));
-      einCategories.forEach(cat => {
-        const value = Number(einYearData[cat] || 0);
-        einnahmenTable += `<tr><td>${escapeHtml(cat)}</td><td>${escapeHtml(formatGermanInteger(value))} €</td></tr>`;
-      });
-      const einTotal = einCategories.reduce((s, cat) => s + Number(einYearData[cat] || 0), 0);
-      einnahmenTable += `<tr><td><strong>Gesamt</strong></td><td><strong>${escapeHtml(formatGermanInteger(einTotal))} €</strong></td></tr></tbody></table>`;
+      // Einnahmen Tabelle direkt aus EinnahmenTab_HTML übernehmen
+      const theadMatch = einTabHtml.match(/<thead>([\s\S]*?)<\/thead>/i);
+      let yearIndex = -1;
+      if (theadMatch) {
+        const headHtml = theadMatch[1];
+        const thMatches = Array.from(headHtml.matchAll(/<th>([\s\S]*?)<\/th>/gi)).map(m => m[1].trim());
+        yearIndex = thMatches.findIndex(text => text === String(reportYear));
+        if (yearIndex >= 0) {
+          // because the first column is Kategorie, the td index is the same
+        } else {
+          yearIndex = thMatches.length - 1; // fallback to last column
+        }
+      }
 
-      // Ausgaben Tabelle für reportYear
-      let ausgabenTable = '<h2>Ausgaben</h2><table><thead><tr><th>Kategorie</th><th>Betrag</th></tr></thead><tbody>';
-      const ausYearData = ausgabenData[reportYear] || {};
-      const ausCategories = Object.keys(ausYearData).sort((a, b) => Number(ausYearData[b] || 0) - Number(ausYearData[a] || 0));
-      ausCategories.forEach(cat => {
-        const value = Number(ausYearData[cat] || 0);
-        ausgabenTable += `<tr><td>${escapeHtml(cat)}</td><td>${escapeHtml(formatGermanInteger(value))} €</td></tr>`;
-      });
-      const ausTotal = ausCategories.reduce((s, cat) => s + Number(ausYearData[cat] || 0), 0);
-      ausgabenTable += `<tr><td><strong>Gesamt</strong></td><td><strong>${escapeHtml(formatGermanInteger(ausTotal))} €</strong></td></tr></tbody></table>`;
+      const tbodyMatch = einTabHtml.match(/<tbody>([\s\S]*?)<\/tbody>/i);
+      let einnahmenRows = [];
+      if (tbodyMatch) {
+        const rowHtml = tbodyMatch[1];
+        const trMatches = Array.from(rowHtml.matchAll(/<tr>([\s\S]*?)<\/tr>/gi));
+        for (const trMatch of trMatches) {
+          const cells = Array.from(trMatch[1].matchAll(/<td>([\s\S]*?)<\/td>/gi)).map(c => c[1].trim());
+          if (cells.length > 0) {
+            einnahmenRows.push(cells);
+          }
+        }
+      }
+      const stripTags = s => String(s || '').replace(/<[^>]+>/g, '');
+      const einnahmeTotalRow = einnahmenRows.find(cells => stripTags(cells[0]).toLowerCase().includes('gesamt'));
+      const einnahmenTableRows = einnahmenRows
+        .filter(cells => !stripTags(cells[0]).toLowerCase().includes('gesamt'))
+        .map(cells => {
+          const category = escapeHtml(stripTags(cells[0]));
+          const valueRaw = stripTags(cells[yearIndex] || cells[cells.length - 1] || '');
+          return `        <tr><td>${category}</td><td>${escapeHtml(valueRaw)}</td></tr>`;
+        }).join('\n');
+      const einTotalHtml = einnahmeTotalRow ? escapeHtml(stripTags(einnahmeTotalRow[yearIndex] || einnahmeTotalRow[einnahmeTotalRow.length - 1] || '')) : formatGermanInteger(0) + ' €';
+      const einnahmenTable = `
+      <h2>Einnahmen</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Kategorie</th>
+            <th>${reportYear}</th>
+          </tr>
+        </thead>
+        <tbody>
+${einnahmenTableRows}
+          <tr>
+            <td><strong>Gesamt</strong></td>
+            <td><strong>${einTotalHtml}</strong></td>
+          </tr>
+        </tbody>
+      </table>`;
+
+      // Ausgaben Tabelle direkt aus AusgabenTab_HTML übernehmen
+      const ausTabPath = path.join(process.cwd(), 'Daten', 'result', `AusgabenTab_${reportYear}.html`);
+      let ausgabenTable = `
+      <h2>Ausgaben</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Kategorie</th>
+            <th>${reportYear}</th>
+          </tr>
+        </thead>
+        <tbody>`;
+      if (fs.existsSync(ausTabPath)) {
+        const ausTabHtml = fs.readFileSync(ausTabPath, 'utf8');
+        const ausTheadMatch = ausTabHtml.match(/<thead>([\s\S]*?)<\/thead>/i);
+        let ausYearIndex = -1;
+        if (ausTheadMatch) {
+          const headHtml = ausTheadMatch[1];
+          const thMatches = Array.from(headHtml.matchAll(/<th>([\s\S]*?)<\/th>/gi)).map(m => m[1].trim());
+          ausYearIndex = thMatches.findIndex(text => text === String(reportYear));
+          if (ausYearIndex < 0) {
+            ausYearIndex = thMatches.length - 1;
+          }
+        }
+        const ausTbodyMatch = ausTabHtml.match(/<tbody>([\s\S]*?)<\/tbody>/i);
+        const ausgabenRows = [];
+        if (ausTbodyMatch) {
+          const rowHtml = ausTbodyMatch[1];
+          const trMatches = Array.from(rowHtml.matchAll(/<tr>([\s\S]*?)<\/tr>/gi));
+          for (const trMatch of trMatches) {
+            const cells = Array.from(trMatch[1].matchAll(/<td>([\s\S]*?)<\/td>/gi)).map(c => c[1].trim());
+            if (cells.length > 0) {
+              ausgabenRows.push(cells);
+            }
+          }
+        }
+        const stripTags = s => String(s || '').replace(/<[^>]+>/g, '');
+        const ausTotalRow = ausgabenRows.find(cells => stripTags(cells[0]).toLowerCase().includes('gesamt'));
+        const ausgabenTableRows = ausgabenRows
+          .filter(cells => {
+            const label = stripTags(cells[0]).toLowerCase();
+            return !label.includes('gesamt') && !label.includes('schuldenabbau');
+          })
+          .map(cells => {
+            const category = escapeHtml(stripTags(cells[0]));
+            const valueRaw = stripTags(cells[ausYearIndex] || cells[cells.length - 1] || '');
+            return `        <tr><td>${category}</td><td>${escapeHtml(valueRaw)}</td></tr>`;
+          }).join('\n');
+        const ausTotalHtml = ausTotalRow ? escapeHtml(stripTags(ausTotalRow[ausYearIndex] || ausTotalRow[ausTotalRow.length - 1] || '')) : `${escapeHtml(formatGermanInteger(0))} €`;
+        ausgabenTable = `
+      <h2>Ausgaben</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Kategorie</th>
+            <th>${reportYear}</th>
+          </tr>
+        </thead>
+        <tbody>
+${ausgabenTableRows}
+          <tr>
+            <td><strong>Gesamt</strong></td>
+            <td><strong>${ausTotalHtml}</strong></td>
+          </tr>
+        </tbody>
+      </table>`;
+      } else {
+        const ausYearData = ausgabenData[reportYear] || {};
+        const ausCategories = Object.keys(ausYearData).filter(cat => {
+          if (cat === 'Sonstiges') {
+            return Number(ausYearData[cat] || 0) !== 0;
+          }
+          return true;
+        }).sort((a, b) => {
+          const valueA = Number(ausYearData[a] || 0);
+          const valueB = Number(ausYearData[b] || 0);
+          return valueA - valueB;
+        });
+        ausCategories.forEach(cat => {
+          const value = Number(ausYearData[cat] || 0);
+          ausgabenTable += `
+          <tr><td>${escapeHtml(cat)}</td><td>${escapeHtml(formatGermanInteger(value))} €</td></tr>`;
+        });
+        const ausTotal = ausCategories.reduce((s, cat) => s + Number(ausYearData[cat] || 0), 0);
+        ausgabenTable += `
+          <tr>
+            <td><strong>Gesamt</strong></td>
+            <td><strong>${escapeHtml(formatGermanInteger(ausTotal))} €</strong></td>
+          </tr>
+        </tbody>
+      </table>`;
+      }
 
       // Vermögensaufbau: Erste und letzte Spalte aus Entwicklung
       const columnsOrig = Object.keys(entwicklungRows[0] || {});
       const positionCol = 'Position';
       const yearCols = columnsOrig.filter(col => col !== positionCol && /^\d{4}$/.test(col)).sort();
-      const firstYear = yearCols[0];
+      const firstYear = String(reportYear - 1);
       const lastYear = yearCols[yearCols.length - 1];
-      let vermoegenTable = '<h2>Vermögensaufbau</h2><table><thead><tr><th>Position</th><th>' + firstYear + '</th><th>' + lastYear + '</th></tr></thead><tbody>';
+      let vermoegenTable = `
+      <h2>Vermögensaufbau</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Position</th>
+            <th>${firstYear}</th>
+            <th>${lastYear}</th>
+          </tr>
+        </thead>
+        <tbody>`;
       entwicklungRows.forEach(row => {
-        const pos = row[positionCol] || '';
+        const pos = (row[positionCol] || '') === 'Verbindlichkeiten' ? 'Summe Passiva' : (row[positionCol] || '');
         const firstVal = parseGermanNumber(row[firstYear] || '0');
         const lastVal = parseGermanNumber(row[lastYear] || '0');
-        vermoegenTable += `<tr><td>${escapeHtml(pos)}</td><td>${escapeHtml(formatGermanInteger(firstVal))} €</td><td>${escapeHtml(formatGermanInteger(lastVal))} €</td></tr>`;
+        vermoegenTable += `
+          <tr><td>${escapeHtml(pos)}</td><td>${escapeHtml(formatGermanInteger(firstVal))} €</td><td>${escapeHtml(formatGermanInteger(lastVal))} €</td></tr>`;
       });
-      vermoegenTable += '</tbody></table>';
+      vermoegenTable += `
+        </tbody>
+      </table>`;
 
       // Anzahl Gemeindemitglieder
-      const mitgliederField = '<h2>Anzahl Gemeindemitglieder</h2><input type="text" placeholder="Anzahl eintragen" style="padding: 8px; font-size: 16px; width: 200px;">';
+      const mitgliederField = `
+      <h2>Anzahl Gemeindemitglieder</h2>
+      <input type="text" placeholder="Anzahl eintragen" style="padding: 8px; font-size: 16px; width: 200px;">`;
 
       // Unterschriften
-      const unterschriften = '<h2>Unterschriften der Gemeindeleitung</h2><p>Digital unterschrieben mit <a href="https://yousign.app" target="_blank">https://yousign.app</a></p>';
+      const unterschriften = `
+      <h2>Unterschriften der Gemeindeleitung</h2>
+      <p>Digital unterschrieben mit <a href="https://yousign.app" target="_blank">https://yousign.app</a></p>`;
 
-      const html = `<!doctype html><html lang="de"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Jahresabschlussunterlagen ${reportYear}</title><style>body{font-family:Arial,sans-serif;margin:20px}table{border-collapse:collapse;width:100%;margin-bottom:20px}th,td{border:1px solid #ddd;padding:8px;text-align:left;font-size:14px}th{background:#f3f4f6}h2{margin-top:30px;border-bottom:2px solid #333;padding-bottom:5px}</style></head><body><h1>Jahresabschlussunterlagen ${reportYear}</h1>${einnahmenTable}${ausgabenTable}${vermoegenTable}${mitgliederField}${unterschriften}</body></html>`;
+      const html = `<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>Jahresabschlussunterlagen ${reportYear}</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 20px; }
+      table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+      th, td { border: 1px solid #ddd; padding: 8px; text-align: left; font-size: 14px; }
+      th { background: #f3f4f6; }
+      h2 { margin-top: 30px; border-bottom: 2px solid #333; padding-bottom: 5px; }
+      input { display: block; margin-top: 10px; }
+    </style>
+  </head>
+  <body>
+    <h1>Jahresabschlussunterlagen ${reportYear}</h1>
+    <p>Gültig für den 31.12.${reportYear}</p>
+    ${einnahmenTable}
+    ${ausgabenTable}
+    ${vermoegenTable}
+    ${mitgliederField}
+    ${unterschriften}
+  </body>
+</html>`;
       const outPath = path.join(process.cwd(), 'Daten', 'result', `JahresabschlussUnterlagen_${reportYear}.html`);
       fs.writeFileSync(outPath, html, 'utf8');
       logToFile(`Jahresabschluss HTML erstellt: ${outPath}`);
