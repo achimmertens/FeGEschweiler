@@ -210,3 +210,6 @@ http://localhost:8080/Daten/result/index.html
 Die Hauptseite ist index.html im Daten/result-Ordner.
 Sie enthält Navigation zu den generierten Berichten (z. B. Ausgaben, Einnahmen, Budget usw.).
 
+# Jahresunterlagen PDF 
+Das PDF wird automatisch mit "npm run" mit erstellt im Ordner `Daten/result` als `JahresabschlussUnterlagen_YYYY.pdf` (wobei YYYY das aktuelle Jahr ist). 
+Bitte darauf achten, dass die Anzahl der Gemeindemitglieder in der Datei Daten/Mitgliederzahl.txt korrekt eingetragen ist, damit sie im PDF angezeigt wird.

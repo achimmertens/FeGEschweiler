@@ -1,0 +1,2 @@
+# In Churchtools unter Personen/Personenstatus=Mitglied wählen. Ganz unten steht "Zeige xxx Einträge", wobei XXX (144 im Jahr 2025) die Zahl der Mitglieder ist.
+MitgliederAnzahl: 144

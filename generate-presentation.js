@@ -2,6 +2,7 @@ import { updateEntwicklungCSV, formatGermanInteger, parseGermanNumber, readCSV, 
 import fs from 'fs';
 import path from 'path';
 import QuickChart from 'quickchart-js';
+import { chromium } from 'playwright';
 // charts helper will be imported dynamically in createPresentation
 
 const logFilePath = path.join(process.cwd(), 'debug.log');
@@ -318,6 +319,25 @@ function createDevelopmentSlide(pres) {
     valign: 'middle',
     border: { type: 'solid', color: COLORS.text, pt: 1 }
   });
+}
+
+async function generateJahresabschlussPDF(htmlPath, year) {
+  try {
+    const pdfPath = htmlPath.replace(/\.html$/, '.pdf');
+    const browser = await chromium.launch();
+    const page = await browser.newPage();
+    await page.goto(`file://${htmlPath}`);
+    await page.pdf({
+      path: pdfPath,
+      format: 'A4',
+      printBackground: true,
+      margin: { top: '1cm', right: '1cm', bottom: '1cm', left: '1cm' }
+    });
+    await browser.close();
+    logToFile(`Jahresabschluss PDF erstellt: ${pdfPath}`);
+  } catch (e) {
+    logToFile('Fehler beim Erzeugen Jahresabschluss-PDF: ' + (e && e.message ? e.message : String(e)));
+  }
 }
 
 async function createPresentation() {
@@ -1365,9 +1385,24 @@ ${ausgabenTableRows}
       </table>`;
 
       // Anzahl Gemeindemitglieder
+      const mitgliederCountPath = path.join(process.cwd(), 'Daten', 'Mitgliederanzahl.txt');
+      let mitgliederCount = '';
+      if (fs.existsSync(mitgliederCountPath)) {
+        const rawContent = fs.readFileSync(mitgliederCountPath, 'utf8').trim();
+        const lines = rawContent.split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+        if (lines.length > 0) {
+          const candidateLine = lines.find(line => line.includes(':')) || lines[lines.length - 1];
+          const parts = candidateLine.split(':');
+          mitgliederCount = parts.length > 1 ? parts.slice(1).join(':').trim() : candidateLine;
+        }
+        if (!/^\d+$/.test(mitgliederCount)) {
+          const parsed = parseInt(mitgliederCount.replace(/\D/g, ''), 10);
+          mitgliederCount = Number.isNaN(parsed) ? '' : String(parsed);
+        }
+      }
       const mitgliederField = `
       <h2>Anzahl Gemeindemitglieder</h2>
-      <input type="text" placeholder="Anzahl eintragen" style="padding: 8px; font-size: 16px; width: 200px;">`;
+      <input type="text" value="${escapeHtml(mitgliederCount)}" placeholder="Anzahl eintragen" style="padding: 8px; font-size: 16px; width: 200px;">`;
 
       // Unterschriften
       const unterschriften = `
@@ -1402,6 +1437,9 @@ ${ausgabenTableRows}
       const outPath = path.join(process.cwd(), 'Daten', 'result', `JahresabschlussUnterlagen_${reportYear}.html`);
       fs.writeFileSync(outPath, html, 'utf8');
       logToFile(`Jahresabschluss HTML erstellt: ${outPath}`);
+      
+      // Generate PDF automatically
+      await generateJahresabschlussPDF(outPath, reportYear);
     }
   } catch (e) { logToFile('Fehler beim Erzeugen Jahresabschluss-Seite: ' + (e && e.message ? e.message : String(e))); }
   
