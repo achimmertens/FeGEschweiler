@@ -118,7 +118,7 @@ node generate-presentation.js
 Das Skript:
 1. Liest alle Gewinn-Verlust-Berichte aus dem Ordner `Daten/`
 2. Liest alle Bilanzberichte aus dem Ordner `Daten/`
-3. Aktualisiert die Datei `Entwicklung.csv` mit den neuesten Kontoständen
+3. Aktualisiert die Datei `Entwicklung.csv` mit den neuesten Kontoständen (Achtung: Werte überprüfen)
 4. **Erstellt eine Excel-Datei** `Finanzlage_FeG_Eschweiler.xlsx` mit 4 Reitern:
    - **Einnahmen**: Sortierte Tabelle nach Gesamtsumme (absteigend)
    - **Ausgaben**: Sortierte Tabelle nach Gesamtsumme (absteigend)
