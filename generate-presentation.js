@@ -1426,7 +1426,7 @@ ${ausgabenTableRows}
   </head>
   <body>
     <h1>Jahresabschlussunterlagen ${reportYear}</h1>
-    <p>Gültig für den 31.12.${reportYear}</p>
+    <p>Ergebnis der gewöhnlichen Geschäftstätigkeit im Zeitraum vom 01.01.${reportYear} -<br/>31.12.${reportYear}</p>
     ${einnahmenTable}
     ${ausgabenTable}
     ${vermoegenTable}
